@@ -1,5 +1,5 @@
 ﻿
-namespace DBInteractive
+namespace DB
 {
     partial class ConnectDB
     {
@@ -108,7 +108,7 @@ namespace DBInteractive
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
-            // Form2
+            // ConnectDB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -122,7 +122,7 @@ namespace DBInteractive
             this.Controls.Add(this.txtServer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form2";
+            this.Name = "ConnectDB";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connect DB";
             this.Load += new System.EventHandler(this.Form2_Load);

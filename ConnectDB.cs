@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DBInteractive
+namespace DB
 {
     public partial class ConnectDB : Form
     {
@@ -58,6 +58,10 @@ namespace DBInteractive
             txtServer.Text = @"NAM\MSSQLSERVER01";
             txtUserName.Text = "sa";
             txtPassword.Text = "12345";
+
+            /*txtServer.Text = @".";
+            txtUserName.Text = "sa";
+            txtPassword.Text = "P@ssword";*/
         }
     }
 }

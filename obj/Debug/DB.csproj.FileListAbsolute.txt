@@ -9,3 +9,28 @@ C:\Application\Project\C#\DBInteractive\obj\Debug\DB.csproj.GenerateResource.cac
 C:\Application\Project\C#\DBInteractive\obj\Debug\DB.csproj.CoreCompileInputs.cache
 C:\Application\Project\C#\DBInteractive\obj\Debug\DBInteractive.exe
 C:\Application\Project\C#\DBInteractive\obj\Debug\DBInteractive.pdb
+C:\Application\Project\C#\DBInteractive\obj\Debug\DB.csprojAssemblyReference.cache
+C:\Ứng dụng\Project\C#\DB\bin\Debug\DBInteractive.exe.config
+C:\Ứng dụng\Project\C#\DB\bin\Debug\DBInteractive.exe
+C:\Ứng dụng\Project\C#\DB\bin\Debug\DBInteractive.pdb
+C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.csprojAssemblyReference.cache
+C:\Ứng dụng\Project\C#\DB\obj\Debug\DBInteractive.Properties.Resources.resources
+C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.csproj.GenerateResource.cache
+C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.csproj.CoreCompileInputs.cache
+C:\Ứng dụng\Project\C#\DB\obj\Debug\DBInteractive.exe
+C:\Ứng dụng\Project\C#\DB\obj\Debug\DBInteractive.pdb
+C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.Home.resources
+C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.ConnectDB.resources
+C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.Clone.resources
+C:\Project\C#\DB\bin\Debug\DBInteractive.exe.config
+C:\Project\C#\DB\bin\Debug\DBInteractive.exe
+C:\Project\C#\DB\bin\Debug\DBInteractive.pdb
+C:\Project\C#\DB\obj\Debug\DB.csprojAssemblyReference.cache
+C:\Project\C#\DB\obj\Debug\DB.Home.resources
+C:\Project\C#\DB\obj\Debug\DB.ConnectDB.resources
+C:\Project\C#\DB\obj\Debug\DB.Clone.resources
+C:\Project\C#\DB\obj\Debug\DBInteractive.Properties.Resources.resources
+C:\Project\C#\DB\obj\Debug\DB.csproj.GenerateResource.cache
+C:\Project\C#\DB\obj\Debug\DB.csproj.CoreCompileInputs.cache
+C:\Project\C#\DB\obj\Debug\DBInteractive.exe
+C:\Project\C#\DB\obj\Debug\DBInteractive.pdb

@@ -1,5 +1,5 @@
 ﻿
-namespace DBInteractive
+namespace DB
 {
     partial class Clone
     {
@@ -107,7 +107,7 @@ namespace DBInteractive
             this.btnClone.UseVisualStyleBackColor = true;
             this.btnClone.Click += new System.EventHandler(this.btnClone_Click);
             // 
-            // Form3
+            // Clone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -119,7 +119,8 @@ namespace DBInteractive
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPathClone);
             this.Controls.Add(this.txtPathText);
-            this.Name = "Form3";
+            this.MaximizeBox = false;
+            this.Name = "Clone";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhân bản";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form3_FormClosing);
