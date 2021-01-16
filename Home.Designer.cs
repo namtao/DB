@@ -54,7 +54,6 @@ namespace DB
             this.rdnKT = new System.Windows.Forms.RadioButton();
             this.rdnKS = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.lb1Ngay = new System.Windows.Forms.Label();
             this.lbTong = new System.Windows.Forms.Label();
             this.lbCMC = new System.Windows.Forms.Label();
             this.lbKH = new System.Windows.Forms.Label();
@@ -105,7 +104,7 @@ namespace DB
             this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datagrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.datagrid.Size = new System.Drawing.Size(1261, 503);
+            this.datagrid.Size = new System.Drawing.Size(1115, 503);
             this.datagrid.TabIndex = 1000000003;
             this.datagrid.Visible = false;
             // 
@@ -113,7 +112,7 @@ namespace DB
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(576, 48);
+            this.label4.Location = new System.Drawing.Point(15, 48);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 19);
             this.label4.TabIndex = 1000000005;
@@ -122,7 +121,7 @@ namespace DB
             // txtYear
             // 
             this.txtYear.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtYear.Location = new System.Drawing.Point(621, 45);
+            this.txtYear.Location = new System.Drawing.Point(60, 45);
             this.txtYear.Multiline = true;
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(75, 28);
@@ -131,22 +130,22 @@ namespace DB
             // 
             // btnExe
             // 
-            this.btnExe.Enabled = false;
             this.btnExe.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExe.Location = new System.Drawing.Point(1184, 81);
+            this.btnExe.Location = new System.Drawing.Point(669, 45);
             this.btnExe.Name = "btnExe";
             this.btnExe.Size = new System.Drawing.Size(89, 28);
             this.btnExe.TabIndex = 2;
             this.btnExe.Text = "Thực hiện";
             this.btnExe.UseVisualStyleBackColor = true;
+            this.btnExe.Visible = false;
             this.btnExe.Click += new System.EventHandler(this.btnExe_Click);
             // 
             // btnClone
             // 
             this.btnClone.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClone.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnClone.Location = new System.Drawing.Point(1184, 163);
+            this.btnClone.Location = new System.Drawing.Point(859, 45);
             this.btnClone.Name = "btnClone";
             this.btnClone.Size = new System.Drawing.Size(89, 28);
             this.btnClone.TabIndex = 5;
@@ -156,15 +155,15 @@ namespace DB
             // 
             // btnExportExcel
             // 
-            this.btnExportExcel.Enabled = false;
             this.btnExportExcel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExportExcel.Location = new System.Drawing.Point(1184, 122);
+            this.btnExportExcel.Location = new System.Drawing.Point(764, 45);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(89, 28);
             this.btnExportExcel.TabIndex = 3;
             this.btnExportExcel.Text = "Xuất Excel";
             this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Visible = false;
             this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // groupBox1
@@ -177,14 +176,14 @@ namespace DB
             this.groupBox1.Controls.Add(this.rdnId7);
             this.groupBox1.Controls.Add(this.rdnTrung);
             this.groupBox1.Controls.Add(this.rdnLoiTrangSo);
-            this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(173, 46);
+            this.groupBox1.Location = new System.Drawing.Point(173, 101);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(293, 206);
+            this.groupBox1.Size = new System.Drawing.Size(293, 151);
             this.groupBox1.TabIndex = 1000000020;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chọn câu lệnh để thực hiện";
+            this.groupBox1.Visible = false;
             // 
             // rdnKetThuc
             // 
@@ -280,14 +279,14 @@ namespace DB
             this.groupBox2.Controls.Add(this.rdnKH);
             this.groupBox2.Controls.Add(this.rdnKT);
             this.groupBox2.Controls.Add(this.rdnKS);
-            this.groupBox2.Enabled = false;
             this.groupBox2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 46);
+            this.groupBox2.Location = new System.Drawing.Point(12, 101);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(155, 206);
+            this.groupBox2.Size = new System.Drawing.Size(155, 151);
             this.groupBox2.TabIndex = 1000000021;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chọn loại";
+            this.groupBox2.Visible = false;
             // 
             // rdnCMC
             // 
@@ -337,29 +336,18 @@ namespace DB
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(702, 48);
+            this.label3.Location = new System.Drawing.Point(141, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 19);
             this.label3.TabIndex = 1000000023;
             this.label3.Text = "Nơi đăng ký";
-            // 
-            // lb1Ngay
-            // 
-            this.lb1Ngay.AutoSize = true;
-            this.lb1Ngay.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb1Ngay.ForeColor = System.Drawing.Color.Red;
-            this.lb1Ngay.Location = new System.Drawing.Point(805, 236);
-            this.lb1Ngay.Margin = new System.Windows.Forms.Padding(20);
-            this.lb1Ngay.Name = "lb1Ngay";
-            this.lb1Ngay.Size = new System.Drawing.Size(0, 19);
-            this.lb1Ngay.TabIndex = 1000000030;
             // 
             // lbTong
             // 
             this.lbTong.AutoSize = true;
             this.lbTong.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTong.ForeColor = System.Drawing.Color.Red;
-            this.lbTong.Location = new System.Drawing.Point(969, 4);
+            this.lbTong.Location = new System.Drawing.Point(929, 4);
             this.lbTong.Margin = new System.Windows.Forms.Padding(20);
             this.lbTong.Name = "lbTong";
             this.lbTong.Size = new System.Drawing.Size(0, 19);
@@ -410,17 +398,18 @@ namespace DB
             // 
             this.lbCount.AutoSize = true;
             this.lbCount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCount.Location = new System.Drawing.Point(1186, 236);
+            this.lbCount.Location = new System.Drawing.Point(1163, 233);
             this.lbCount.Margin = new System.Windows.Forms.Padding(20);
             this.lbCount.Name = "lbCount";
             this.lbCount.Size = new System.Drawing.Size(0, 19);
             this.lbCount.TabIndex = 1000000024;
+            this.lbCount.Visible = false;
             // 
             // txtNdk
             // 
             this.txtNdk.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNdk.FormattingEnabled = true;
-            this.txtNdk.Location = new System.Drawing.Point(795, 46);
+            this.txtNdk.Location = new System.Drawing.Point(234, 46);
             this.txtNdk.Name = "txtNdk";
             this.txtNdk.Size = new System.Drawing.Size(381, 27);
             this.txtNdk.TabIndex = 1000000031;
@@ -433,17 +422,19 @@ namespace DB
             this.rtbSQL.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbSQL.ForeColor = System.Drawing.Color.DodgerBlue;
             this.rtbSQL.Location = new System.Drawing.Point(474, 81);
-            this.rtbSQL.Margin = new System.Windows.Forms.Padding(5);
+            this.rtbSQL.Margin = new System.Windows.Forms.Padding(5, 5, 10, 5);
             this.rtbSQL.Name = "rtbSQL";
-            this.rtbSQL.Size = new System.Drawing.Size(702, 171);
+            this.rtbSQL.Size = new System.Drawing.Size(653, 171);
             this.rtbSQL.TabIndex = 4;
             this.rtbSQL.Text = "";
+            this.rtbSQL.Visible = false;
             // 
             // btnThongKe
             // 
             this.btnThongKe.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThongKe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnThongKe.Location = new System.Drawing.Point(1184, 206);
+            this.btnThongKe.Location = new System.Drawing.Point(954, 45);
+            this.btnThongKe.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.btnThongKe.Name = "btnThongKe";
             this.btnThongKe.Size = new System.Drawing.Size(89, 28);
             this.btnThongKe.TabIndex = 1000000032;
@@ -458,10 +449,9 @@ namespace DB
             this.AutoScrollMargin = new System.Drawing.Size(10, 10);
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1285, 783);
+            this.ClientSize = new System.Drawing.Size(1143, 783);
             this.Controls.Add(this.btnThongKe);
             this.Controls.Add(this.txtNdk);
-            this.Controls.Add(this.lb1Ngay);
             this.Controls.Add(this.lbTong);
             this.Controls.Add(this.lbCMC);
             this.Controls.Add(this.lbKH);
@@ -514,7 +504,6 @@ namespace DB
         private System.Windows.Forms.RadioButton rdnKS;
         private System.Windows.Forms.RadioButton rdnOther;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lb1Ngay;
         private System.Windows.Forms.Label lbTong;
         private System.Windows.Forms.Label lbCMC;
         private System.Windows.Forms.Label lbKH;

@@ -88,7 +88,7 @@ namespace DB
 
             rowHead.Font.Bold = true;
 
-            //in đậm tiêu đề
+            //in đậm cột A
             Microsoft.Office.Interop.Excel.Range rowA = oSheet.get_Range((Microsoft.Office.Interop.Excel.Range)oSheet.Cells[3, 1],
                 (Microsoft.Office.Interop.Excel.Range)oSheet.Cells[100, 1]);
 

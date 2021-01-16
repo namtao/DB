@@ -242,8 +242,6 @@ namespace DB
                 lbKT.Text = "Khai Tử: " + new SqlCommand(dbName + "SELECT COUNT(*) FROM HT_KHAITU", conn).ExecuteScalar().ToString();
                 lbKH.Text = "Kết hôn: " + new SqlCommand(dbName + "SELECT COUNT(*) FROM HT_KETHON", conn).ExecuteScalar().ToString();
                 lbCMC.Text = "Nhận cha mẹ con: " + new SqlCommand(dbName + "SELECT COUNT(*) FROM HT_NHANCHAMECON", conn).ExecuteScalar().ToString();
-                //lb1Ngay.Text = "Số lượng/ngày: " + new SqlCommand("SELECT COUNT(DISTINCT OBJECTID) FROM HT_XULY " +
-                //"WHERE CONVERT(DATE, NGAYXULY, 103) = CONVERT(DATE, GETDATE(), 103)", conn).ExecuteScalar().ToString();
                 lbTong.Text = "Tổng: " + (Convert.ToInt32(new SqlCommand(dbName + "SELECT COUNT(*) FROM HT_KHAISINH", conn).ExecuteScalar()) +
                     Convert.ToInt32(new SqlCommand(dbName + "SELECT COUNT(*) FROM HT_KHAITU", conn).ExecuteScalar()) +
                     Convert.ToInt32(new SqlCommand(dbName + "SELECT COUNT(*) FROM HT_KETHON", conn).ExecuteScalar()) +
@@ -363,30 +361,30 @@ namespace DB
         {
             if ((txtYear.Text != "" && Utils.IsNumber(txtYear.Text) && txtYear.Text.Length == 4))
             {
-                groupBox1.Enabled = true;
-                groupBox2.Enabled = true;
-                //txtNdk.Enabled = true;
-                //rtbSQL.Enabled = true;
-                //btnClone.Enabled = true;
-                btnExe.Enabled = true;
-                btnExportExcel.Enabled = true;
+                groupBox1.Visible = true;
+                groupBox2.Visible = true;
+                btnExe.Visible = true;
+                btnExportExcel.Visible = true;
                 rdnKS.Checked = true;
                 rdnLoiTrangSo.Checked = true;
                 rtbSQL.Text = strCommandSql;
-                //datagrid.Visible = true;
+                rtbSQL.Visible = true;
+                lbCount.Visible = true;
             }
             else
             {
-                groupBox1.Enabled = false;
-                groupBox2.Enabled = false;
-                rtbSQL.Enabled = false;
-                //btnClone.Enabled = false;
-                btnExe.Enabled = false;
-                btnExportExcel.Enabled = false;
+                groupBox1.Visible = false;
+                groupBox2.Visible = false;
+                rtbSQL.Visible = false;
+                //btnClone.Visible = false;
+                btnExe.Visible = false;
+                btnExportExcel.Visible = false;
                 rdnKS.Checked = false;
                 rdnLoiTrangSo.Checked = false;
                 rtbSQL.Text = "";
                 datagrid.Visible = false;
+                rtbSQL.Visible = false;
+                lbCount.Visible = false;
             }
         }
 
@@ -394,30 +392,30 @@ namespace DB
         {
             if (txtNdk.Text != "")
             {
-                groupBox1.Enabled = true;
-                groupBox2.Enabled = true;
-                //txtNdk.Enabled = true;
-                //rtbSQL.Enabled = true;
-                //btnClone.Enabled = true;
-                btnExe.Enabled = true;
-                btnExportExcel.Enabled = true;
+                rtbSQL.Visible = true;
+                groupBox1.Visible = true;
+                groupBox2.Visible = true;
+                btnExe.Visible = true;
+                btnExportExcel.Visible = true;
                 rdnKS.Checked = true;
                 rdnLoiTrangSo.Checked = true;
                 rtbSQL.Text = strCommandSql;
-                //datagrid.Visible = true;
+                lbCount.Visible = true;
             }
             else
             {
-                groupBox1.Enabled = false;
-                groupBox2.Enabled = false;
-                rtbSQL.Enabled = false;
-                //btnClone.Enabled = false;
-                btnExe.Enabled = false;
-                btnExportExcel.Enabled = false;
+                groupBox1.Visible = false;
+                groupBox2.Visible = false;
+                rtbSQL.Visible = false;
+                //btnClone.Visible = false;
+                btnExe.Visible = false;
+                btnExportExcel.Visible = false;
                 rdnKS.Checked = false;
                 rdnLoiTrangSo.Checked = false;
                 rtbSQL.Text = "";
                 datagrid.Visible = false;
+                rtbSQL.Visible = false;
+                lbCount.Visible = false;
             }
             xuLyLenh();
         }
@@ -564,8 +562,12 @@ namespace DB
                     "select so, quyenSo, " + hoten + ", noiDangKy, TinhTrangID from " + table + " " +
                     "where QUYENSO LIKE '%" + txtYear.Text.Trim() + "%' AND NOIDANGKY LIKE '%" + txtNdk.SelectedValue + "%';  ";
             }
-            else if (rdnOther.Checked) rtbSQL.Enabled = true;
-            if (!rdnOther.Checked) rtbSQL.Enabled = false;
+            else if (rdnOther.Checked)
+            {
+                rtbSQL.Visible = true;
+                rtbSQL.Enabled = true;
+            }
+            else if(!rdnOther.Checked) rtbSQL.Enabled = false;
 
             rtbSQL.Text = strCommandSql;
         }
@@ -604,9 +606,9 @@ namespace DB
                 threadKH.ThreadState == ThreadState.Stopped)
             {
                 //gán dữ liệu vào datagridview
-                datagrid.Enabled = true;
                 datagrid.Visible = true;
-                //btnExportExcel.Enabled = true;
+                datagrid.Visible = true;
+                //btnExportExcel.Visible = true;
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add(new DataColumn(" ", typeof(string)));
