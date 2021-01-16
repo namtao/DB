@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace DB
 {
@@ -46,7 +39,8 @@ namespace DB
                     this.Hide();
                     sqlConnection.Close();
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 sqlConnection.Close();
@@ -55,13 +49,9 @@ namespace DB
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            txtServer.Text = @"NAM\MSSQLSERVER01";
+            txtServer.Text = @".";
             txtUserName.Text = "sa";
-            txtPassword.Text = "12345";
-
-            /*txtServer.Text = @".";
-            txtUserName.Text = "sa";
-            txtPassword.Text = "P@ssword";*/
+            txtPassword.Text = "P@ssword";
         }
     }
 }

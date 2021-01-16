@@ -29,10 +29,10 @@ namespace DB
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.datagrid = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.txtYear = new System.Windows.Forms.TextBox();
@@ -63,6 +63,7 @@ namespace DB
             this.lbCount = new System.Windows.Forms.Label();
             this.txtNdk = new System.Windows.Forms.ComboBox();
             this.rtbSQL = new System.Windows.Forms.RichTextBox();
+            this.btnThongKe = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,38 +73,38 @@ namespace DB
             // 
             this.datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.datagrid.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.datagrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagrid.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.datagrid.Location = new System.Drawing.Point(12, 267);
             this.datagrid.Margin = new System.Windows.Forms.Padding(20);
             this.datagrid.Name = "datagrid";
             this.datagrid.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datagrid.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datagrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.datagrid.Size = new System.Drawing.Size(1261, 503);
             this.datagrid.TabIndex = 1000000003;
             this.datagrid.Visible = false;
@@ -361,9 +362,8 @@ namespace DB
             this.lbTong.Location = new System.Drawing.Point(969, 4);
             this.lbTong.Margin = new System.Windows.Forms.Padding(20);
             this.lbTong.Name = "lbTong";
-            this.lbTong.Size = new System.Drawing.Size(49, 19);
+            this.lbTong.Size = new System.Drawing.Size(0, 19);
             this.lbTong.TabIndex = 1000000025;
-            this.lbTong.Text = "label2";
             // 
             // lbCMC
             // 
@@ -372,9 +372,8 @@ namespace DB
             this.lbCMC.Location = new System.Drawing.Point(546, 4);
             this.lbCMC.Margin = new System.Windows.Forms.Padding(20);
             this.lbCMC.Name = "lbCMC";
-            this.lbCMC.Size = new System.Drawing.Size(49, 19);
+            this.lbCMC.Size = new System.Drawing.Size(0, 19);
             this.lbCMC.TabIndex = 1000000026;
-            this.lbCMC.Text = "label2";
             // 
             // lbKH
             // 
@@ -383,9 +382,8 @@ namespace DB
             this.lbKH.Location = new System.Drawing.Point(371, 4);
             this.lbKH.Margin = new System.Windows.Forms.Padding(20);
             this.lbKH.Name = "lbKH";
-            this.lbKH.Size = new System.Drawing.Size(49, 19);
+            this.lbKH.Size = new System.Drawing.Size(0, 19);
             this.lbKH.TabIndex = 1000000027;
-            this.lbKH.Text = "label2";
             // 
             // lbKT
             // 
@@ -394,9 +392,8 @@ namespace DB
             this.lbKT.Location = new System.Drawing.Point(188, 4);
             this.lbKT.Margin = new System.Windows.Forms.Padding(20);
             this.lbKT.Name = "lbKT";
-            this.lbKT.Size = new System.Drawing.Size(49, 19);
+            this.lbKT.Size = new System.Drawing.Size(0, 19);
             this.lbKT.TabIndex = 1000000028;
-            this.lbKT.Text = "label2";
             // 
             // lbKS
             // 
@@ -405,9 +402,8 @@ namespace DB
             this.lbKS.Location = new System.Drawing.Point(14, 4);
             this.lbKS.Margin = new System.Windows.Forms.Padding(20);
             this.lbKS.Name = "lbKS";
-            this.lbKS.Size = new System.Drawing.Size(49, 19);
+            this.lbKS.Size = new System.Drawing.Size(0, 19);
             this.lbKS.TabIndex = 1000000029;
-            this.lbKS.Text = "label2";
             this.lbKS.MouseHover += new System.EventHandler(this.lbKS_MouseHover);
             // 
             // lbCount
@@ -443,6 +439,18 @@ namespace DB
             this.rtbSQL.TabIndex = 4;
             this.rtbSQL.Text = "";
             // 
+            // btnThongKe
+            // 
+            this.btnThongKe.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThongKe.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnThongKe.Location = new System.Drawing.Point(1184, 206);
+            this.btnThongKe.Name = "btnThongKe";
+            this.btnThongKe.Size = new System.Drawing.Size(89, 28);
+            this.btnThongKe.TabIndex = 1000000032;
+            this.btnThongKe.Text = "Thống kê";
+            this.btnThongKe.UseVisualStyleBackColor = true;
+            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -451,6 +459,7 @@ namespace DB
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1285, 783);
+            this.Controls.Add(this.btnThongKe);
             this.Controls.Add(this.txtNdk);
             this.Controls.Add(this.lb1Ngay);
             this.Controls.Add(this.lbTong);
@@ -517,6 +526,7 @@ namespace DB
         private System.Windows.Forms.RadioButton rdnKetThuc;
         private System.Windows.Forms.RadioButton rdnKTBM1;
         private System.Windows.Forms.RadioButton rdnBM;
+        private System.Windows.Forms.Button btnThongKe;
     }
 }
 

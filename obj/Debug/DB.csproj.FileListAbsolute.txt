@@ -22,15 +22,14 @@ C:\Ứng dụng\Project\C#\DB\obj\Debug\DBInteractive.pdb
 C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.Home.resources
 C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.ConnectDB.resources
 C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.Clone.resources
-C:\Project\C#\DB\bin\Debug\DBInteractive.exe.config
-C:\Project\C#\DB\bin\Debug\DBInteractive.exe
-C:\Project\C#\DB\bin\Debug\DBInteractive.pdb
-C:\Project\C#\DB\obj\Debug\DB.csprojAssemblyReference.cache
+C:\Project\C#\DB\bin\Debug\DB.exe.config
+C:\Project\C#\DB\bin\Debug\DB.exe
+C:\Project\C#\DB\bin\Debug\DB.pdb
 C:\Project\C#\DB\obj\Debug\DB.Home.resources
 C:\Project\C#\DB\obj\Debug\DB.ConnectDB.resources
 C:\Project\C#\DB\obj\Debug\DB.Clone.resources
-C:\Project\C#\DB\obj\Debug\DBInteractive.Properties.Resources.resources
+C:\Project\C#\DB\obj\Debug\DB.Properties.Resources.resources
 C:\Project\C#\DB\obj\Debug\DB.csproj.GenerateResource.cache
 C:\Project\C#\DB\obj\Debug\DB.csproj.CoreCompileInputs.cache
-C:\Project\C#\DB\obj\Debug\DBInteractive.exe
-C:\Project\C#\DB\obj\Debug\DBInteractive.pdb
+C:\Project\C#\DB\obj\Debug\DB.exe
+C:\Project\C#\DB\obj\Debug\DB.pdb

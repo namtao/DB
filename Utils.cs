@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
+using System.Windows.Forms;
 
 namespace DB
 {
@@ -20,7 +17,7 @@ namespace DB
         }
 
 
-        public static void Export(DataTable dt, string sheetName, string title)
+        public static void Export(DataTable dt, DataGridView dataGrid, string sheetName, string title)
         {
 
             //Tạo các đối tượng Excel
@@ -53,29 +50,49 @@ namespace DB
 
             oSheet.Name = sheetName;
 
-            // Tạo tiêu đề cột 
-            /*
-                        Microsoft.Office.Interop.Excel.Range cl1 = oSheet.get_Range("A3", "A3");
 
-                        cl1.Value2 = "Số";
+            // Tạo mảng đối tượng để lưu dữ toàn bồ dữ liệu trong DataTable,
 
-                        cl1.ColumnWidth = 13.5;
+            // vì dữ liệu được được gán vào các Cell trong Excel phải thông qua object thuần.
 
-                        Microsoft.Office.Interop.Excel.Range cl2 = oSheet.get_Range("B3", "B3");
+            object[,] arr = new object[dt.Rows.Count + 1, dt.Columns.Count];
 
-                        cl2.Value2 = "Quyển số";
+            //Chuyển dữ liệu từ DataTable vào mảng đối tượng
+            for (int r = 0; r < dt.Rows.Count; r++)
 
-                        cl2.ColumnWidth = 25.0;
+            {
+                DataRow dr = dt.Rows[r];
 
-                        Microsoft.Office.Interop.Excel.Range cl3 = oSheet.get_Range("C3", "C3");
+                for (int c = 0; c < dt.Columns.Count; c++)
 
-                        cl3.Value2 = "Nơi đăng ký";
+                {
+                    arr[0, c] = dataGrid.Columns[c].HeaderText.ToString();
+                    arr[r + 1, c] = dr[c];
+                }
+            }
 
-                        cl3.ColumnWidth = 40.0;*/
+            //Thiết lập vùng điền dữ liệu
 
-            Microsoft.Office.Interop.Excel.Range rowHead = oSheet.get_Range("A3", "C3");
+            int rowStart = 3;
 
-            //rowHead.Font.Bold = true;
+            int columnStart = 1;
+
+            int rowEnd = rowStart + dt.Rows.Count;
+
+            int columnEnd = dt.Columns.Count;
+
+
+            //in đậm tiêu đề
+            Microsoft.Office.Interop.Excel.Range rowHead = oSheet.get_Range((Microsoft.Office.Interop.Excel.Range)oSheet.Cells[3, columnStart],
+                (Microsoft.Office.Interop.Excel.Range)oSheet.Cells[3, columnEnd]);
+
+            rowHead.Font.Bold = true;
+
+            //in đậm tiêu đề
+            Microsoft.Office.Interop.Excel.Range rowA = oSheet.get_Range((Microsoft.Office.Interop.Excel.Range)oSheet.Cells[3, 1],
+                (Microsoft.Office.Interop.Excel.Range)oSheet.Cells[100, 1]);
+
+            rowA.Font.Bold = true;
 
             // Kẻ viền
 
@@ -86,38 +103,6 @@ namespace DB
             //rowHead.Interior.ColorIndex = 15;
 
             rowHead.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-
-            // Tạo mảng đối tượng để lưu dữ toàn bồ dữ liệu trong DataTable,
-
-            // vì dữ liệu được được gán vào các Cell trong Excel phải thông qua object thuần.
-
-            object[,] arr = new object[dt.Rows.Count, dt.Columns.Count];
-
-            //Chuyển dữ liệu từ DataTable vào mảng đối tượng
-
-            for (int r = 0; r < dt.Rows.Count; r++)
-
-            {
-
-                DataRow dr = dt.Rows[r];
-
-                for (int c = 0; c < dt.Columns.Count; c++)
-
-                {
-                    arr[r, c] = dr[c];
-                }
-            }
-
-            //Thiết lập vùng điền dữ liệu
-
-            int rowStart = 3;
-
-            int columnStart = 1;
-
-            int rowEnd = rowStart + dt.Rows.Count - 1;
-
-            int columnEnd = dt.Columns.Count;
-
 
             // Tạo phần đầu nếu muốn
 
@@ -131,7 +116,7 @@ namespace DB
 
             head.Font.Name = "Tahoma";
 
-            head.Font.Size = "15";
+            head.Font.Size = "12";
 
             head.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
@@ -147,8 +132,8 @@ namespace DB
 
             Microsoft.Office.Interop.Excel.Range range = oSheet.get_Range(c1, c2);
 
-            //định dạng text
-            range.NumberFormat = "@";
+            //định dạng số ngăn cách bằng dấu .
+            range.NumberFormat = "#,##0";
 
             //auto witdh
 

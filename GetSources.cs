@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DB
 {
@@ -28,9 +25,9 @@ namespace DB
                     readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                 string data = readStream.ReadToEnd();
-                if (!File.Exists(@"C:\Ứng dụng\Project\source.txt")) 
-                    File.Create(@"C:\Ứng dụng\Project\source.txt").Close();
-                File.WriteAllText(@"C:\Ứng dụng\Project\source.txt", data);
+                if (!File.Exists(@"C:\Project\source.txt"))
+                    File.Create(@"C:\Project\source.txt").Close();
+                File.WriteAllText(@"C:\Project\source.txt", data);
 
                 response.Close();
                 readStream.Close();
