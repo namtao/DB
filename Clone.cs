@@ -37,7 +37,7 @@ namespace DB
                         while ((fileName = sr.ReadLine()) != null)
                         {
                             string[] str = fileName.ToUpper().Split('X');
-                            if (str[0].Trim().IndexOf(".pdf") < 0) fileName = str[0].Trim() + ".pdf";
+                            if (str[0].Trim().IndexOf(".PDF") < 0) fileName = str[0].Trim() + ".pdf";
                             else fileName = str[0].Trim();
 
                             try
@@ -88,14 +88,14 @@ namespace DB
                         //File.Create(filePath[0]).Close();
                         File.WriteAllText(fileTxtPath[j], String.Empty);
                     }
-
-                    MessageBox.Show("Copy done successfully!!!");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
             }
+
+            MessageBox.Show("Copy done successfully!!!");
         }
 
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)

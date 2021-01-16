@@ -25,6 +25,7 @@ C:\Ứng dụng\Project\C#\DB\obj\Debug\DB.Clone.resources
 C:\Project\C#\DB\bin\Debug\DB.exe.config
 C:\Project\C#\DB\bin\Debug\DB.exe
 C:\Project\C#\DB\bin\Debug\DB.pdb
+C:\Project\C#\DB\obj\Debug\DB.csprojAssemblyReference.cache
 C:\Project\C#\DB\obj\Debug\DB.Home.resources
 C:\Project\C#\DB\obj\Debug\DB.ConnectDB.resources
 C:\Project\C#\DB\obj\Debug\DB.Clone.resources

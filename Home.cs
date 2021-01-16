@@ -15,7 +15,6 @@ namespace DB
         string hoten = null;
         string ngaySinh = null;
         string strCommandSql = null;
-        string exe = null;
         string table = null;
         SqlConnection conn;
         int ksDuoi16 = 0, ksTren16 = 0;
@@ -80,7 +79,7 @@ namespace DB
 
                             }
                         }
-                        MessageBox.Show("Khai sinh xong!", "Thông báo");
+                        MessageBox.Show("Sẵn sàng thống kê!", "Thông báo");
                         con.Close();
                     }
                 }
@@ -128,7 +127,6 @@ namespace DB
                             }
                         }
 
-                        MessageBox.Show("Khai tử xong!", "Thông báo");
                         con.Close();
                     }
                 }
@@ -175,7 +173,6 @@ namespace DB
                             }
                         }
 
-                        MessageBox.Show("Kết hôn xong!", "Thông báo");
                         con.Close();
                     }
                 }
@@ -226,7 +223,6 @@ namespace DB
 
                             }
                         }
-                        MessageBox.Show("Cha mẹ con xong!", "Thông báo");
                         con.Close();
                     }
                 }
@@ -275,6 +271,7 @@ namespace DB
                 //strCommandSql = rtbSQL.Text;
                 if (rdnOther.Checked) strCommandSql = rtbSQL.Text;
                 datagrid.Visible = true;
+                lbCount.Visible = true;
                 fillDgv(strCommandSql);
                 lbCount.Text = (datagrid.Rows.Count - 1).ToString() + " Rows";
             }
@@ -369,14 +366,13 @@ namespace DB
                 rdnLoiTrangSo.Checked = true;
                 rtbSQL.Text = strCommandSql;
                 rtbSQL.Visible = true;
-                lbCount.Visible = true;
+                //lbCount.Visible = true;
             }
             else
             {
                 groupBox1.Visible = false;
                 groupBox2.Visible = false;
                 rtbSQL.Visible = false;
-                //btnClone.Visible = false;
                 btnExe.Visible = false;
                 btnExportExcel.Visible = false;
                 rdnKS.Checked = false;
@@ -400,7 +396,7 @@ namespace DB
                 rdnKS.Checked = true;
                 rdnLoiTrangSo.Checked = true;
                 rtbSQL.Text = strCommandSql;
-                lbCount.Visible = true;
+                //lbCount.Visible = true;
             }
             else
             {
