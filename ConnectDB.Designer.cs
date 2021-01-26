@@ -29,6 +29,7 @@ namespace DB
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectDB));
             this.label1 = new System.Windows.Forms.Label();
             this.txtServer = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -98,20 +99,23 @@ namespace DB
             // 
             // btnConnect
             // 
+            this.btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnect.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnConnect.Location = new System.Drawing.Point(147, 155);
+            this.btnConnect.Location = new System.Drawing.Point(159, 155);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(89, 28);
             this.btnConnect.TabIndex = 1000007;
             this.btnConnect.Text = "Kết nối";
-            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.UseVisualStyleBackColor = false;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // ConnectDB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(404, 195);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.label3);
@@ -121,6 +125,7 @@ namespace DB
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtServer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ConnectDB";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -156,5 +156,27 @@ namespace DB
             range.Columns.AutoFit();
         }
 
+        public static string format(string str)
+        {
+            int max = 0;
+            string[] s = str.Split('\'');
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i].Length > max) str = s[i];
+            }
+
+            return str;
+        }
+
+        public static string QuotationMarks(string str)
+        {
+            int count = str.Split('\'').Length;
+            string result = str.Split('\'')[0];
+            for (int i = 0; i < count - 1; i++)
+            {
+                result = result + "''" + str.Split('\'')[i + 1];
+            }
+            return result;
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace DB
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Clone));
             this.txtPathText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPathClone = new System.Windows.Forms.TextBox();
@@ -97,6 +98,8 @@ namespace DB
             // 
             // btnClone
             // 
+            this.btnClone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnClone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClone.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClone.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnClone.Location = new System.Drawing.Point(271, 195);
@@ -104,13 +107,14 @@ namespace DB
             this.btnClone.Size = new System.Drawing.Size(89, 28);
             this.btnClone.TabIndex = 1000000017;
             this.btnClone.Text = "Nhân bản";
-            this.btnClone.UseVisualStyleBackColor = true;
+            this.btnClone.UseVisualStyleBackColor = false;
             this.btnClone.Click += new System.EventHandler(this.btnClone_Click);
             // 
             // Clone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(685, 235);
             this.Controls.Add(this.btnClone);
             this.Controls.Add(this.label3);
@@ -119,6 +123,7 @@ namespace DB
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPathClone);
             this.Controls.Add(this.txtPathText);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Clone";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

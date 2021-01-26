@@ -29,17 +29,20 @@ namespace DB
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.datagrid = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.btnExe = new System.Windows.Forms.Button();
-            this.btnClone = new System.Windows.Forms.Button();
-            this.btnExportExcel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdnDelete = new System.Windows.Forms.RadioButton();
+            this.rdnTKQuyenSo = new System.Windows.Forms.RadioButton();
+            this.rdnQuyenSo = new System.Windows.Forms.RadioButton();
+            this.rdnKTBM2 = new System.Windows.Forms.RadioButton();
             this.rdnKetThuc = new System.Windows.Forms.RadioButton();
             this.rdnKTBM1 = new System.Windows.Forms.RadioButton();
             this.rdnBM = new System.Windows.Forms.RadioButton();
@@ -54,18 +57,27 @@ namespace DB
             this.rdnKT = new System.Windows.Forms.RadioButton();
             this.rdnKS = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.lbTong = new System.Windows.Forms.Label();
-            this.lbCMC = new System.Windows.Forms.Label();
-            this.lbKH = new System.Windows.Forms.Label();
-            this.lbKT = new System.Windows.Forms.Label();
-            this.lbKS = new System.Windows.Forms.Label();
             this.lbCount = new System.Windows.Forms.Label();
             this.txtNdk = new System.Windows.Forms.ComboBox();
             this.rtbSQL = new System.Windows.Forms.RichTextBox();
-            this.btnThongKe = new System.Windows.Forms.Button();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clonePDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.thốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.sốBảnGhiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tổngHợpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // datagrid
@@ -73,101 +85,86 @@ namespace DB
             this.datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.datagrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagrid.DefaultCellStyle = dataGridViewCellStyle10;
-            this.datagrid.Location = new System.Drawing.Point(12, 260);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.datagrid.Location = new System.Drawing.Point(18, 261);
             this.datagrid.Margin = new System.Windows.Forms.Padding(20);
             this.datagrid.Name = "datagrid";
             this.datagrid.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datagrid.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datagrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.datagrid.Size = new System.Drawing.Size(1115, 510);
             this.datagrid.TabIndex = 1000000003;
+            this.datagrid.TabStop = false;
             this.datagrid.Visible = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 48);
+            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(21, 49);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 19);
+            this.label4.Size = new System.Drawing.Size(39, 19);
             this.label4.TabIndex = 1000000005;
             this.label4.Text = "Năm";
             // 
             // txtYear
             // 
             this.txtYear.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtYear.Location = new System.Drawing.Point(60, 45);
+            this.txtYear.Location = new System.Drawing.Point(66, 46);
             this.txtYear.Multiline = true;
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(75, 28);
             this.txtYear.TabIndex = 1;
             this.txtYear.TextChanged += new System.EventHandler(this.txtYear_TextChanged);
+            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtYear_KeyDown);
             // 
             // btnExe
             // 
-            this.btnExe.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnExe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnExe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExe.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExe.Location = new System.Drawing.Point(669, 45);
+            this.btnExe.Location = new System.Drawing.Point(690, 46);
             this.btnExe.Name = "btnExe";
             this.btnExe.Size = new System.Drawing.Size(89, 28);
-            this.btnExe.TabIndex = 2;
+            this.btnExe.TabIndex = 100002;
+            this.btnExe.TabStop = false;
             this.btnExe.Text = "Thực hiện";
-            this.btnExe.UseVisualStyleBackColor = true;
+            this.btnExe.UseVisualStyleBackColor = false;
             this.btnExe.Visible = false;
             this.btnExe.Click += new System.EventHandler(this.btnExe_Click);
             // 
-            // btnClone
-            // 
-            this.btnClone.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClone.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnClone.Location = new System.Drawing.Point(859, 45);
-            this.btnClone.Name = "btnClone";
-            this.btnClone.Size = new System.Drawing.Size(89, 28);
-            this.btnClone.TabIndex = 5;
-            this.btnClone.Text = "Nhân bản";
-            this.btnClone.UseVisualStyleBackColor = true;
-            this.btnClone.Click += new System.EventHandler(this.btnClone_Click);
-            // 
-            // btnExportExcel
-            // 
-            this.btnExportExcel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportExcel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExportExcel.Location = new System.Drawing.Point(764, 45);
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(89, 28);
-            this.btnExportExcel.TabIndex = 3;
-            this.btnExportExcel.Text = "Xuất Excel";
-            this.btnExportExcel.UseVisualStyleBackColor = true;
-            this.btnExportExcel.Visible = false;
-            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rdnDelete);
+            this.groupBox1.Controls.Add(this.rdnTKQuyenSo);
+            this.groupBox1.Controls.Add(this.rdnQuyenSo);
+            this.groupBox1.Controls.Add(this.rdnKTBM2);
             this.groupBox1.Controls.Add(this.rdnKetThuc);
             this.groupBox1.Controls.Add(this.rdnKTBM1);
             this.groupBox1.Controls.Add(this.rdnBM);
@@ -177,51 +174,95 @@ namespace DB
             this.groupBox1.Controls.Add(this.rdnTrung);
             this.groupBox1.Controls.Add(this.rdnLoiTrangSo);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(173, 101);
+            this.groupBox1.Location = new System.Drawing.Point(110, 102);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(293, 151);
+            this.groupBox1.Size = new System.Drawing.Size(351, 151);
             this.groupBox1.TabIndex = 1000000020;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chọn câu lệnh để thực hiện";
             this.groupBox1.Visible = false;
             // 
+            // rdnDelete
+            // 
+            this.rdnDelete.AutoSize = true;
+            this.rdnDelete.Location = new System.Drawing.Point(108, 84);
+            this.rdnDelete.Name = "rdnDelete";
+            this.rdnDelete.Size = new System.Drawing.Size(101, 23);
+            this.rdnDelete.TabIndex = 12;
+            this.rdnDelete.Text = "Xóa dữ liệu";
+            this.rdnDelete.UseVisualStyleBackColor = true;
+            this.rdnDelete.CheckedChanged += new System.EventHandler(this.rdnDelete_CheckedChanged);
+            // 
+            // rdnTKQuyenSo
+            // 
+            this.rdnTKQuyenSo.AutoSize = true;
+            this.rdnTKQuyenSo.Location = new System.Drawing.Point(108, 55);
+            this.rdnTKQuyenSo.Name = "rdnTKQuyenSo";
+            this.rdnTKQuyenSo.Size = new System.Drawing.Size(128, 23);
+            this.rdnTKQuyenSo.TabIndex = 11;
+            this.rdnTKQuyenSo.Text = "Thống kê quyển";
+            this.rdnTKQuyenSo.UseVisualStyleBackColor = true;
+            this.rdnTKQuyenSo.CheckedChanged += new System.EventHandler(this.rdnTKQuyenSo_CheckedChanged);
+            // 
+            // rdnQuyenSo
+            // 
+            this.rdnQuyenSo.AutoSize = true;
+            this.rdnQuyenSo.Location = new System.Drawing.Point(108, 26);
+            this.rdnQuyenSo.Name = "rdnQuyenSo";
+            this.rdnQuyenSo.Size = new System.Drawing.Size(126, 23);
+            this.rdnQuyenSo.TabIndex = 10;
+            this.rdnQuyenSo.Text = "Quyển số trống";
+            this.rdnQuyenSo.UseVisualStyleBackColor = true;
+            this.rdnQuyenSo.CheckedChanged += new System.EventHandler(this.rdnQuyenSo_CheckedChanged);
+            // 
+            // rdnKTBM2
+            // 
+            this.rdnKTBM2.AutoSize = true;
+            this.rdnKTBM2.Location = new System.Drawing.Point(253, 84);
+            this.rdnKTBM2.Name = "rdnKTBM2";
+            this.rdnKTBM2.Size = new System.Drawing.Size(73, 23);
+            this.rdnKTBM2.TabIndex = 8;
+            this.rdnKTBM2.Text = "KTBM2";
+            this.rdnKTBM2.UseVisualStyleBackColor = true;
+            this.rdnKTBM2.CheckedChanged += new System.EventHandler(this.rdnKTBM2_CheckedChanged);
+            // 
             // rdnKetThuc
             // 
             this.rdnKetThuc.AutoSize = true;
-            this.rdnKetThuc.Location = new System.Drawing.Point(128, 84);
+            this.rdnKetThuc.Location = new System.Drawing.Point(253, 113);
             this.rdnKetThuc.Name = "rdnKetThuc";
-            this.rdnKetThuc.Size = new System.Drawing.Size(149, 23);
-            this.rdnKetThuc.TabIndex = 8;
-            this.rdnKetThuc.Text = "Chuyển về kết thúc";
+            this.rdnKetThuc.Size = new System.Drawing.Size(43, 23);
+            this.rdnKetThuc.TabIndex = 9;
+            this.rdnKetThuc.Text = "KT";
             this.rdnKetThuc.UseVisualStyleBackColor = true;
             this.rdnKetThuc.CheckedChanged += new System.EventHandler(this.rdnKetThuc_CheckedChanged);
             // 
             // rdnKTBM1
             // 
             this.rdnKTBM1.AutoSize = true;
-            this.rdnKTBM1.Location = new System.Drawing.Point(128, 55);
+            this.rdnKTBM1.Location = new System.Drawing.Point(254, 55);
             this.rdnKTBM1.Name = "rdnKTBM1";
-            this.rdnKTBM1.Size = new System.Drawing.Size(144, 23);
+            this.rdnKTBM1.Size = new System.Drawing.Size(73, 23);
             this.rdnKTBM1.TabIndex = 7;
-            this.rdnKTBM1.Text = "Chuyển về KTBM1";
+            this.rdnKTBM1.Text = "KTBM1";
             this.rdnKTBM1.UseVisualStyleBackColor = true;
             this.rdnKTBM1.CheckedChanged += new System.EventHandler(this.rdnKTBM1_CheckedChanged);
             // 
             // rdnBM
             // 
             this.rdnBM.AutoSize = true;
-            this.rdnBM.Location = new System.Drawing.Point(128, 26);
+            this.rdnBM.Location = new System.Drawing.Point(253, 26);
             this.rdnBM.Name = "rdnBM";
-            this.rdnBM.Size = new System.Drawing.Size(157, 23);
+            this.rdnBM.Size = new System.Drawing.Size(49, 23);
             this.rdnBM.TabIndex = 6;
-            this.rdnBM.Text = "Chuyển về biên mục";
+            this.rdnBM.Text = "BM";
             this.rdnBM.UseVisualStyleBackColor = true;
             this.rdnBM.CheckedChanged += new System.EventHandler(this.rdnBM_CheckedChanged);
             // 
             // rdnOther
             // 
             this.rdnOther.AutoSize = true;
-            this.rdnOther.Location = new System.Drawing.Point(128, 113);
+            this.rdnOther.Location = new System.Drawing.Point(108, 113);
             this.rdnOther.Name = "rdnOther";
             this.rdnOther.Size = new System.Drawing.Size(58, 23);
             this.rdnOther.TabIndex = 5;
@@ -245,9 +286,9 @@ namespace DB
             this.rdnId7.AutoSize = true;
             this.rdnId7.Location = new System.Drawing.Point(6, 84);
             this.rdnId7.Name = "rdnId7";
-            this.rdnId7.Size = new System.Drawing.Size(117, 23);
+            this.rdnId7.Size = new System.Drawing.Size(82, 23);
             this.rdnId7.TabIndex = 2;
-            this.rdnId7.Text = "Chưa kết thúc";
+            this.rdnId7.Text = "Chưa KT";
             this.rdnId7.UseVisualStyleBackColor = true;
             this.rdnId7.CheckedChanged += new System.EventHandler(this.rdnId7_CheckedChanged);
             // 
@@ -267,9 +308,9 @@ namespace DB
             this.rdnLoiTrangSo.AutoSize = true;
             this.rdnLoiTrangSo.Location = new System.Drawing.Point(6, 26);
             this.rdnLoiTrangSo.Name = "rdnLoiTrangSo";
-            this.rdnLoiTrangSo.Size = new System.Drawing.Size(116, 23);
+            this.rdnLoiTrangSo.Size = new System.Drawing.Size(69, 23);
             this.rdnLoiTrangSo.TabIndex = 0;
-            this.rdnLoiTrangSo.Text = "Lỗi ở trang số";
+            this.rdnLoiTrangSo.Text = "Lọc lỗi";
             this.rdnLoiTrangSo.UseVisualStyleBackColor = true;
             this.rdnLoiTrangSo.CheckedChanged += new System.EventHandler(this.rdnLoiTrangSo_CheckedChanged);
             // 
@@ -280,9 +321,9 @@ namespace DB
             this.groupBox2.Controls.Add(this.rdnKT);
             this.groupBox2.Controls.Add(this.rdnKS);
             this.groupBox2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 101);
+            this.groupBox2.Location = new System.Drawing.Point(18, 102);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(155, 151);
+            this.groupBox2.Size = new System.Drawing.Size(86, 151);
             this.groupBox2.TabIndex = 1000000021;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chọn loại";
@@ -293,9 +334,9 @@ namespace DB
             this.rdnCMC.AutoSize = true;
             this.rdnCMC.Location = new System.Drawing.Point(6, 113);
             this.rdnCMC.Name = "rdnCMC";
-            this.rdnCMC.Size = new System.Drawing.Size(139, 23);
+            this.rdnCMC.Size = new System.Drawing.Size(58, 23);
             this.rdnCMC.TabIndex = 3;
-            this.rdnCMC.Text = "Nhận cha mẹ con";
+            this.rdnCMC.Text = "CMC";
             this.rdnCMC.UseVisualStyleBackColor = true;
             this.rdnCMC.CheckedChanged += new System.EventHandler(this.rdnCMC_CheckedChanged);
             // 
@@ -304,9 +345,9 @@ namespace DB
             this.rdnKH.AutoSize = true;
             this.rdnKH.Location = new System.Drawing.Point(6, 84);
             this.rdnKH.Name = "rdnKH";
-            this.rdnKH.Size = new System.Drawing.Size(76, 23);
+            this.rdnKH.Size = new System.Drawing.Size(45, 23);
             this.rdnKH.TabIndex = 2;
-            this.rdnKH.Text = "Kết hôn";
+            this.rdnKH.Text = "KH";
             this.rdnKH.UseVisualStyleBackColor = true;
             this.rdnKH.CheckedChanged += new System.EventHandler(this.rdnKH_CheckedChanged);
             // 
@@ -315,9 +356,9 @@ namespace DB
             this.rdnKT.AutoSize = true;
             this.rdnKT.Location = new System.Drawing.Point(6, 55);
             this.rdnKT.Name = "rdnKT";
-            this.rdnKT.Size = new System.Drawing.Size(74, 23);
+            this.rdnKT.Size = new System.Drawing.Size(43, 23);
             this.rdnKT.TabIndex = 1;
-            this.rdnKT.Text = "Khai tử";
+            this.rdnKT.Text = "KT";
             this.rdnKT.UseVisualStyleBackColor = true;
             this.rdnKT.CheckedChanged += new System.EventHandler(this.rdnKT_CheckedChanged);
             // 
@@ -326,79 +367,27 @@ namespace DB
             this.rdnKS.AutoSize = true;
             this.rdnKS.Location = new System.Drawing.Point(6, 26);
             this.rdnKS.Name = "rdnKS";
-            this.rdnKS.Size = new System.Drawing.Size(86, 23);
-            this.rdnKS.TabIndex = 0;
-            this.rdnKS.Text = "Khai sinh";
+            this.rdnKS.Size = new System.Drawing.Size(42, 23);
+            this.rdnKS.TabIndex = 1000002;
+            this.rdnKS.Text = "KS";
             this.rdnKS.UseVisualStyleBackColor = true;
             this.rdnKS.CheckedChanged += new System.EventHandler(this.rdnKS_CheckedChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(171, 48);
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(177, 49);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 19);
+            this.label3.Size = new System.Drawing.Size(87, 19);
             this.label3.TabIndex = 1000000023;
             this.label3.Text = "Nơi đăng ký";
-            // 
-            // lbTong
-            // 
-            this.lbTong.AutoSize = true;
-            this.lbTong.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTong.ForeColor = System.Drawing.Color.Red;
-            this.lbTong.Location = new System.Drawing.Point(929, 4);
-            this.lbTong.Margin = new System.Windows.Forms.Padding(20);
-            this.lbTong.Name = "lbTong";
-            this.lbTong.Size = new System.Drawing.Size(0, 19);
-            this.lbTong.TabIndex = 1000000025;
-            // 
-            // lbCMC
-            // 
-            this.lbCMC.AutoSize = true;
-            this.lbCMC.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCMC.Location = new System.Drawing.Point(546, 4);
-            this.lbCMC.Margin = new System.Windows.Forms.Padding(20);
-            this.lbCMC.Name = "lbCMC";
-            this.lbCMC.Size = new System.Drawing.Size(0, 19);
-            this.lbCMC.TabIndex = 1000000026;
-            // 
-            // lbKH
-            // 
-            this.lbKH.AutoSize = true;
-            this.lbKH.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbKH.Location = new System.Drawing.Point(371, 4);
-            this.lbKH.Margin = new System.Windows.Forms.Padding(20);
-            this.lbKH.Name = "lbKH";
-            this.lbKH.Size = new System.Drawing.Size(0, 19);
-            this.lbKH.TabIndex = 1000000027;
-            // 
-            // lbKT
-            // 
-            this.lbKT.AutoSize = true;
-            this.lbKT.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbKT.Location = new System.Drawing.Point(188, 4);
-            this.lbKT.Margin = new System.Windows.Forms.Padding(20);
-            this.lbKT.Name = "lbKT";
-            this.lbKT.Size = new System.Drawing.Size(0, 19);
-            this.lbKT.TabIndex = 1000000028;
-            // 
-            // lbKS
-            // 
-            this.lbKS.AutoSize = true;
-            this.lbKS.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbKS.Location = new System.Drawing.Point(14, 4);
-            this.lbKS.Margin = new System.Windows.Forms.Padding(20);
-            this.lbKS.Name = "lbKS";
-            this.lbKS.Size = new System.Drawing.Size(0, 19);
-            this.lbKS.TabIndex = 1000000029;
-            this.lbKS.MouseHover += new System.EventHandler(this.lbKS_MouseHover);
             // 
             // lbCount
             // 
             this.lbCount.AutoSize = true;
             this.lbCount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCount.Location = new System.Drawing.Point(1043, 784);
+            this.lbCount.Location = new System.Drawing.Point(1049, 785);
             this.lbCount.Margin = new System.Windows.Forms.Padding(20);
             this.lbCount.Name = "lbCount";
             this.lbCount.Size = new System.Drawing.Size(0, 19);
@@ -409,38 +398,137 @@ namespace DB
             // 
             this.txtNdk.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNdk.FormattingEnabled = true;
-            this.txtNdk.Location = new System.Drawing.Point(264, 46);
+            this.txtNdk.Location = new System.Drawing.Point(270, 47);
+            this.txtNdk.Margin = new System.Windows.Forms.Padding(10, 10, 15, 15);
             this.txtNdk.Name = "txtNdk";
             this.txtNdk.Size = new System.Drawing.Size(381, 27);
-            this.txtNdk.TabIndex = 1000000031;
+            this.txtNdk.TabIndex = 2;
             this.txtNdk.DropDown += new System.EventHandler(this.txtNdk_DropDown);
             this.txtNdk.TextChanged += new System.EventHandler(this.txtNdk_TextChanged);
+            this.txtNdk.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNdk_KeyDown);
             // 
             // rtbSQL
             // 
-            this.rtbSQL.Enabled = false;
+            this.rtbSQL.BackColor = System.Drawing.Color.White;
+            this.rtbSQL.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbSQL.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbSQL.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.rtbSQL.Location = new System.Drawing.Point(474, 81);
+            this.rtbSQL.Location = new System.Drawing.Point(467, 102);
             this.rtbSQL.Margin = new System.Windows.Forms.Padding(5, 5, 10, 5);
             this.rtbSQL.Name = "rtbSQL";
-            this.rtbSQL.Size = new System.Drawing.Size(653, 171);
+            this.rtbSQL.ReadOnly = true;
+            this.rtbSQL.Size = new System.Drawing.Size(666, 151);
             this.rtbSQL.TabIndex = 4;
+            this.rtbSQL.TabStop = false;
             this.rtbSQL.Text = "";
             this.rtbSQL.Visible = false;
             // 
-            // btnThongKe
+            // menuStrip
             // 
-            this.btnThongKe.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThongKe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnThongKe.Location = new System.Drawing.Point(954, 45);
-            this.btnThongKe.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
-            this.btnThongKe.Name = "btnThongKe";
-            this.btnThongKe.Size = new System.Drawing.Size(89, 28);
-            this.btnThongKe.TabIndex = 1000000032;
-            this.btnThongKe.Text = "Thống kê";
-            this.btnThongKe.UseVisualStyleBackColor = true;
-            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
+            this.menuStrip.BackColor = System.Drawing.Color.White;
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.toolsToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1143, 27);
+            this.menuStrip.TabIndex = 1000000033;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.toolStripSeparator1});
+            this.fileToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 23);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
+            this.saveToolStripMenuItem.Text = "Lưu vào Excel";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clonePDFToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.toolStripSeparator6,
+            this.thốngKêToolStripMenuItem,
+            this.toolStripSeparator7});
+            this.toolsToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(55, 23);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // clonePDFToolStripMenuItem
+            // 
+            this.clonePDFToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clonePDFToolStripMenuItem.Name = "clonePDFToolStripMenuItem";
+            this.clonePDFToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.clonePDFToolStripMenuItem.Text = "Nhân bản PDF";
+            this.clonePDFToolStripMenuItem.Click += new System.EventHandler(this.clonePDFToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
+            // 
+            // thốngKêToolStripMenuItem
+            // 
+            this.thốngKêToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator3,
+            this.sốBảnGhiToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.tổngHợpToolStripMenuItem});
+            this.thốngKêToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thốngKêToolStripMenuItem.Name = "thốngKêToolStripMenuItem";
+            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.thốngKêToolStripMenuItem.Text = "Thống kê";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // sốBảnGhiToolStripMenuItem
+            // 
+            this.sốBảnGhiToolStripMenuItem.Name = "sốBảnGhiToolStripMenuItem";
+            this.sốBảnGhiToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.sốBảnGhiToolStripMenuItem.Text = "Số bản ghi";
+            this.sốBảnGhiToolStripMenuItem.Click += new System.EventHandler(this.sốBảnGhiToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
+            // tổngHợpToolStripMenuItem
+            // 
+            this.tổngHợpToolStripMenuItem.Name = "tổngHợpToolStripMenuItem";
+            this.tổngHợpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.tổngHợpToolStripMenuItem.Text = "Tổng hợp";
+            this.tổngHợpToolStripMenuItem.Click += new System.EventHandler(this.tổngHợpToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
             // 
             // Home
             // 
@@ -449,37 +537,35 @@ namespace DB
             this.AutoScrollMargin = new System.Drawing.Size(10, 10);
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1143, 811);
-            this.Controls.Add(this.btnThongKe);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(1143, 818);
             this.Controls.Add(this.txtNdk);
-            this.Controls.Add(this.lbTong);
-            this.Controls.Add(this.lbCMC);
-            this.Controls.Add(this.lbKH);
-            this.Controls.Add(this.lbKT);
-            this.Controls.Add(this.lbKS);
             this.Controls.Add(this.lbCount);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rtbSQL);
-            this.Controls.Add(this.btnExportExcel);
-            this.Controls.Add(this.btnClone);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtYear);
             this.Controls.Add(this.btnExe);
             this.Controls.Add(this.datagrid);
+            this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Home";
+            this.Text = "Trang chủ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Home_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,8 +576,6 @@ namespace DB
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.Button btnExe;
-        private System.Windows.Forms.Button btnClone;
-        private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdnLoiTrangSo;
         private System.Windows.Forms.RadioButton rdnTrung;
@@ -504,18 +588,30 @@ namespace DB
         private System.Windows.Forms.RadioButton rdnKS;
         private System.Windows.Forms.RadioButton rdnOther;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lbTong;
-        private System.Windows.Forms.Label lbCMC;
-        private System.Windows.Forms.Label lbKH;
-        private System.Windows.Forms.Label lbKT;
-        private System.Windows.Forms.Label lbKS;
         private System.Windows.Forms.Label lbCount;
         private System.Windows.Forms.ComboBox txtNdk;
         private System.Windows.Forms.RichTextBox rtbSQL;
         private System.Windows.Forms.RadioButton rdnKetThuc;
         private System.Windows.Forms.RadioButton rdnKTBM1;
         private System.Windows.Forms.RadioButton rdnBM;
-        private System.Windows.Forms.Button btnThongKe;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clonePDFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
+        private System.Windows.Forms.RadioButton rdnKTBM2;
+        private System.Windows.Forms.ToolStripMenuItem sốBảnGhiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tổngHợpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.RadioButton rdnQuyenSo;
+        private System.Windows.Forms.RadioButton rdnTKQuyenSo;
+        private System.Windows.Forms.RadioButton rdnDelete;
     }
 }
 

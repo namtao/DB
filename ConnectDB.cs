@@ -17,8 +17,9 @@ namespace DB
 
         public SqlConnection getConnect()
         {
-            return new SqlConnection(@"Data Source=" + txtServer.Text.Trim() + ";Initial Catalog=HoTich;" +
-                    "User ID=" + txtUserName.Text.Trim() + " ;Password=" + txtPassword.Text.Trim());
+            return new SqlConnection(@"Data Source=" + txtServer.Text.Trim() + ";Initial Catalog = HoTich;"
+                    + "User ID=" + txtUserName.Text.Trim() + " ;Password=" + txtPassword.Text.Trim()
+                    ) ;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
