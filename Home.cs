@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Windows.Forms;
@@ -28,234 +29,235 @@ namespace DB
         int khDuoi16 = 0, khTren16 = 0;
         int cmcDuoi16 = 0, cmcTren16 = 0;
         Thread threadKS, threadKT, threadKH, threadCMC;
-        int ag = 0;
         Thread threadAG, threadAG1, threadAG2;
         DataTable dt;
+        List<XuLy> listXuLyKS, listXuLyKT, listXuLyKH, listXuLyCMC, listKS, listKT, listKH, listCMC;
+        Thread threadXuLyKS, threadXuLyKT, threadXuLyKH, threadXuLyCMC;
 
         public void AG()
         {
-                //thread An Giang
-                threadAG = new Thread(() =>
+            //thread An Giang
+            /*threadAG = new Thread(() =>
+            {
+                using (SqlConnection con = new SqlConnection(sqlConnect))
                 {
-                    using (SqlConnection con = new SqlConnection(sqlConnect))
+                    string sql = "use UBND_Tp_Long_Xuyen_tinh_An_Giang_1975_2011; " +
+                    "SELECT TENDONVIPHATHANH, NGAYLAP, HOSOSO, KYHIEU, TRICHYEU, TOSO, TIEUDE, " +
+                    "THOIHANBAOQUAN, THOIGIANBATDAU,  vb.THOIGIANKETTHUC, hs.THOIGIANKETTHUC," +
+                    "vb.GHICHU1, vb.GHICHU2, hs.GHICHU1, hs.GHICHU2, SOTO, TENLOAIVANBAN, TENPHONG " +
+                    "FROM VANBAN vb " +
+                    "left join DONVIPHATHANH dvph on vb.MADONVIPHATHANH = dvph.MADONVIPHATHANH " +
+                    "left join HOSO hs on vb.MAHOSO = hs.MAHOSO " +
+                    "left join LOAIVANBAN lvb on vb.MALOAIVANBAN = lvb.MALOAIVANBAN " +
+                    "left join PHONG p on hs.MAPHONG = p.MAPHONG";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
-                        string sql = "use UBND_Tp_Long_Xuyen_tinh_An_Giang_1975_2011; " +
-                        "SELECT TENDONVIPHATHANH, NGAYLAP, HOSOSO, KYHIEU, TRICHYEU, TOSO, TIEUDE, " +
-                        "THOIHANBAOQUAN, THOIGIANBATDAU,  vb.THOIGIANKETTHUC, hs.THOIGIANKETTHUC," +
-                        "vb.GHICHU1, vb.GHICHU2, hs.GHICHU1, hs.GHICHU2, SOTO, TENLOAIVANBAN, TENPHONG " +
-                        "FROM VANBAN vb " +
-                        "left join DONVIPHATHANH dvph on vb.MADONVIPHATHANH = dvph.MADONVIPHATHANH " +
-                        "left join HOSO hs on vb.MAHOSO = hs.MAHOSO " +
-                        "left join LOAIVANBAN lvb on vb.MALOAIVANBAN = lvb.MALOAIVANBAN " +
-                        "left join PHONG p on hs.MAPHONG = p.MAPHONG";
-                        using (SqlCommand cmd = new SqlCommand(sql, con))
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
                         {
-                            cmd.CommandType = CommandType.Text;
-                            con.Open();
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            while (dr.Read())
+                            for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
+                                Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
                             {
-                                for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
-                                    Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
+                                if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
+                                    ag++;
+                            }
+                        }
+                        MessageBox.Show(ag + "", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        con.Close();
+                    }
+                }
+
+            });
+            threadAG.Start();
+
+
+            threadAG1 = new Thread(() =>
+            {
+                using (SqlConnection con = new SqlConnection(sqlConnect))
+                {
+                    string sql = "use ADDJ_AnGiang; " +
+                    "select top(178456) METADATA from meta order by METADATA asc";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            if (dr[0].ToString().Trim().Length > 0 && dr[0] != null && !dr[0].ToString().Trim().Equals(""))
+                            {
+                                string tieuDe = "", trichYeu = "", kyHieu = "";
+
+                                JsonDocument doc = JsonDocument.Parse(dr[0].ToString());
+                                JsonElement root = doc.RootElement;
+                                for (int i = 0; i < root.GetArrayLength(); i++)
                                 {
-                                    if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
+                                    //đếm số trường
+                                    var indexName = root[i].GetProperty("indexName").ToString().Trim();
+                                    var indexValue = root[i].GetProperty("indexValue").ToString().Trim();
+                                    var indexValue2 = root[i].GetProperty("indexValue2").ToString().Trim();
+                                    var indexValueQC = root[i].GetProperty("indexValueQC").ToString().Trim();
+
+                                    if ((indexValue != null && indexValue != "")
+                                        || (indexValue2 != null && indexValue2 != "")
+                                        || (indexValueQC != null && indexValueQC != ""))
+                                    {
                                         ag++;
-                                }
-                            }
-                            MessageBox.Show(ag + "", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            con.Close();
-                        }
-                    }
 
-                });
-                threadAG.Start();
-
-
-                threadAG1 = new Thread(() =>
-                {
-                    using (SqlConnection con = new SqlConnection(sqlConnect))
-                    {
-                        string sql = "use ADDJ_AnGiang; " +
-                        "select top(178456) METADATA from meta order by METADATA asc";
-                        using (SqlCommand cmd = new SqlCommand(sql, con))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            con.Open();
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            while (dr.Read())
-                            {
-                                if (dr[0].ToString().Trim().Length > 0 && dr[0] != null && !dr[0].ToString().Trim().Equals(""))
-                                {
-                                    string tieuDe = "", trichYeu = "" , kyHieu = "";
-
-                                    JsonDocument doc = JsonDocument.Parse(dr[0].ToString());
-                                    JsonElement root = doc.RootElement;
-                                    for(int i = 0; i < root.GetArrayLength(); i++)
-                                    {
-                                        //đếm số trường
-                                        var indexName = root[i].GetProperty("indexName").ToString().Trim();
-                                        var indexValue = root[i].GetProperty("indexValue").ToString().Trim();
-                                        var indexValue2 = root[i].GetProperty("indexValue2").ToString().Trim();
-                                        var indexValueQC = root[i].GetProperty("indexValueQC").ToString().Trim();
-
-                                        if((indexValue != null && indexValue != "")
-                                            || (indexValue2 != null && indexValue2 != "")
-                                            || (indexValueQC != null && indexValueQC != ""))
+                                        //lọc bản ghi
+                                        if (indexName.ToString().Trim().Equals("TENHOSO"))
                                         {
-                                            ag++;
-
-                                            //lọc bản ghi
-                                            if (indexName.ToString().Trim().Equals("TENHOSO"))
-                                            {
-                                                if(indexValue!=null && indexValue !="") tieuDe = indexValue.ToString().Trim();
-                                                else if(indexValue2 != null && indexValue2 != "") tieuDe = indexValue2.ToString().Trim();
-                                                else tieuDe = indexValueQC.ToString().Trim();
-                                            }
-
-                                            if (indexName.ToString().Trim().Equals("SOKYHIEU"))
-                                            {
-                                                if (indexValue != null && indexValue != "") kyHieu = indexValue.ToString().Trim();
-                                                else if (indexValue2 != null && indexValue2 != "") kyHieu = indexValue2.ToString().Trim();
-                                                else kyHieu = indexValueQC.ToString().Trim();
-                                            }
-
-                                            if (indexName.ToString().Trim().Equals("TRICHYEU"))
-                                            {
-                                                if (indexValue != null && indexValue != "") trichYeu = indexValue.ToString().Trim();
-                                                else if (indexValue2 != null && indexValue2 != "") kyHieu = indexValue2.ToString().Trim();
-                                                else tieuDe = indexValueQC.ToString().Trim();
-                                            }
-
-                                            if (!tieuDe.Equals("") && !kyHieu.Equals("") && !trichYeu.Equals(""))
-                                            {
-                                                tieuDe = Utils.format(tieuDe);
-                                                kyHieu = Utils.format(kyHieu);
-                                                trichYeu = Utils.format(trichYeu);
-
-                                                SqlConnection sqlConnection = new SqlConnection(sqlConnect);
-                                                sqlConnection.Open();
-                                                string sqlQuery = "use  UBND_tinh_An_Giang; " +
-                                                "insert into ThongKe " +
-                                                "select TENDONVIPHATHANH, NGAYLAP, HOSOSO, KYHIEU, TRICHYEU, " +
-                                                "TOSO, TIEUDE, THOIHANBAOQUAN, THOIGIANBATDAU, vb.NGAYKY, " +
-                                                "hs.THOIGIANKETTHUC as 'ThoiGianKetThucHS', vb.GHICHU1 as 'GhiChuVB1', vb.GHICHU2 as 'GhiChuVB2', " +
-                                                "hs.GHICHU1 as 'GhiChuHS1', hs.GHICHU2 as 'GhiChuHS2', SOTO, TENLOAIVANBAN, TENPHONG, HOPSO " +
-                                                "from VANBAN vb left join DONVIPHATHANH dvph on vb.MADONVIPHATHANH = dvph.MADONVIPHATHANH " +
-                                                "left join HOSO hs on vb.MAHOSO = hs.MAHOSO left join LOAIVANBAN lvb on vb.MALOAIVANBAN = lvb.MALOAIVANBAN " +
-                                                "left join PHONG p on hs.MAPHONG = p.MAPHONG " +
-                                                "where TIEUDE like N'%" + tieuDe.Substring(5, tieuDe.Length -5) + "%' and KYHIEU like '%" + kyHieu + "%'";
-                                                SqlCommand cmd2 = new SqlCommand(sqlQuery, sqlConnection);
-                                                cmd2.ExecuteNonQuery();
-                                                sqlConnection.Close();
-                                                tieuDe = "";
-                                                trichYeu = "";
-                                                kyHieu = "";
-                                            }
+                                            if (indexValue != null && indexValue != "") tieuDe = indexValue.ToString().Trim();
+                                            else if (indexValue2 != null && indexValue2 != "") tieuDe = indexValue2.ToString().Trim();
+                                            else tieuDe = indexValueQC.ToString().Trim();
                                         }
 
-                                    }
-                                }
-                            }
-                            //MessageBox.Show("Có " +ag + " trường thông tin"+ "", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            con.Close();
-                        }
-                    }
-
-                });
-                threadAG1.Start();
-
-                threadAG2 = new Thread(() =>
-                {
-                    using (SqlConnection con = new SqlConnection(sqlConnect))
-                    {
-                        string sql = "use ADDJ_AnGiang; " +
-                        "select top(180000) METADATA from meta order by METADATA desc";
-                        using (SqlCommand cmd = new SqlCommand(sql, con))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            con.Open();
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            while (dr.Read())
-                            {
-                                if (dr[0].ToString().Trim().Length > 0 && dr[0] != null && !dr[0].ToString().Trim().Equals(""))
-                                {
-                                    string tieuDe = "", trichYeu = "", kyHieu = "";
-
-                                    JsonDocument doc = JsonDocument.Parse(dr[0].ToString());
-                                    JsonElement root = doc.RootElement;
-                                    for (int i = 0; i < root.GetArrayLength(); i++)
-                                    {
-                                        //đếm số trường
-                                        var indexName = root[i].GetProperty("indexName").ToString().Trim();
-                                        var indexValue = root[i].GetProperty("indexValue").ToString().Trim();
-                                        var indexValue2 = root[i].GetProperty("indexValue2").ToString().Trim();
-                                        var indexValueQC = root[i].GetProperty("indexValueQC").ToString().Trim();
-
-                                        if ((indexValue != null && indexValue != "")
-                                            || (indexValue2 != null && indexValue2 != "")
-                                            || (indexValueQC != null && indexValueQC != ""))
+                                        if (indexName.ToString().Trim().Equals("SOKYHIEU"))
                                         {
-                                            ag++;
-
-                                            //lọc bản ghi
-                                            if (indexName.ToString().Trim().Equals("TENHOSO"))
-                                            {
-                                                if (indexValue != null && indexValue != "") tieuDe = indexValue.ToString().Trim();
-                                                else if (indexValue2 != null && indexValue2 != "") tieuDe = indexValue2.ToString().Trim();
-                                                else tieuDe = indexValueQC.ToString().Trim();
-                                            }
-
-                                            if (indexName.ToString().Trim().Equals("SOKYHIEU"))
-                                            {
-                                                if (indexValue != null && indexValue != "") kyHieu = indexValue.ToString().Trim();
-                                                else if (indexValue2 != null && indexValue2 != "") kyHieu = indexValue2.ToString().Trim();
-                                                else kyHieu = indexValueQC.ToString().Trim();
-                                            }
-
-                                            if (indexName.ToString().Trim().Equals("TRICHYEU"))
-                                            {
-                                                if (indexValue != null && indexValue != "") trichYeu = indexValue.ToString().Trim();
-                                                else if (indexValue2 != null && indexValue2 != "") kyHieu = indexValue2.ToString().Trim();
-                                                else tieuDe = indexValueQC.ToString().Trim();
-                                            }
-
-                                            if (!tieuDe.Equals("") && !kyHieu.Equals("") && !trichYeu.Equals(""))
-                                            {
-                                                tieuDe = Utils.format(tieuDe);
-                                                kyHieu = Utils.format(kyHieu);
-                                                trichYeu = Utils.format(trichYeu);
-
-                                                SqlConnection sqlConnection = new SqlConnection(sqlConnect);
-                                                sqlConnection.Open();
-                                                string sqlQuery = "use UBND_tinh_An_Giang; " +
-                                                "insert into ThongKe " +
-                                                "select TENDONVIPHATHANH, NGAYLAP, HOSOSO, KYHIEU, TRICHYEU, " +
-                                                "TOSO, TIEUDE, THOIHANBAOQUAN, THOIGIANBATDAU, vb.NGAYKY, " +
-                                                "hs.THOIGIANKETTHUC as 'ThoiGianKetThucHS', vb.GHICHU1 as 'GhiChuVB1', vb.GHICHU2 as 'GhiChuVB2', " +
-                                                "hs.GHICHU1 as 'GhiChuHS1', hs.GHICHU2 as 'GhiChuHS2', SOTO, TENLOAIVANBAN, TENPHONG, HOPSO " +
-                                                "from VANBAN vb left join DONVIPHATHANH dvph on vb.MADONVIPHATHANH = dvph.MADONVIPHATHANH " +
-                                                "left join HOSO hs on vb.MAHOSO = hs.MAHOSO left join LOAIVANBAN lvb on vb.MALOAIVANBAN = lvb.MALOAIVANBAN " +
-                                                "left join PHONG p on hs.MAPHONG = p.MAPHONG " +
-                                                "where TIEUDE like N'%" + tieuDe.Substring(5, tieuDe.Length - 5) + "%' and KYHIEU like '%" + kyHieu + "%'";
-                                                SqlCommand cmd2 = new SqlCommand(sqlQuery, sqlConnection);
-                                                cmd2.ExecuteNonQuery();
-                                                sqlConnection.Close();
-                                                tieuDe = "";
-                                                trichYeu = "";
-                                                kyHieu = "";
-                                            }
+                                            if (indexValue != null && indexValue != "") kyHieu = indexValue.ToString().Trim();
+                                            else if (indexValue2 != null && indexValue2 != "") kyHieu = indexValue2.ToString().Trim();
+                                            else kyHieu = indexValueQC.ToString().Trim();
                                         }
 
+                                        if (indexName.ToString().Trim().Equals("TRICHYEU"))
+                                        {
+                                            if (indexValue != null && indexValue != "") trichYeu = indexValue.ToString().Trim();
+                                            else if (indexValue2 != null && indexValue2 != "") kyHieu = indexValue2.ToString().Trim();
+                                            else tieuDe = indexValueQC.ToString().Trim();
+                                        }
+
+                                        if (!tieuDe.Equals("") && !kyHieu.Equals("") && !trichYeu.Equals(""))
+                                        {
+                                            tieuDe = Utils.format(tieuDe);
+                                            kyHieu = Utils.format(kyHieu);
+                                            trichYeu = Utils.format(trichYeu);
+
+                                            SqlConnection sqlConnection = new SqlConnection(sqlConnect);
+                                            sqlConnection.Open();
+                                            string sqlQuery = "use  UBND_tinh_An_Giang; " +
+                                            "insert into ThongKe " +
+                                            "select TENDONVIPHATHANH, NGAYLAP, HOSOSO, KYHIEU, TRICHYEU, " +
+                                            "TOSO, TIEUDE, THOIHANBAOQUAN, THOIGIANBATDAU, vb.NGAYKY, " +
+                                            "hs.THOIGIANKETTHUC as 'ThoiGianKetThucHS', vb.GHICHU1 as 'GhiChuVB1', vb.GHICHU2 as 'GhiChuVB2', " +
+                                            "hs.GHICHU1 as 'GhiChuHS1', hs.GHICHU2 as 'GhiChuHS2', SOTO, TENLOAIVANBAN, TENPHONG, HOPSO " +
+                                            "from VANBAN vb left join DONVIPHATHANH dvph on vb.MADONVIPHATHANH = dvph.MADONVIPHATHANH " +
+                                            "left join HOSO hs on vb.MAHOSO = hs.MAHOSO left join LOAIVANBAN lvb on vb.MALOAIVANBAN = lvb.MALOAIVANBAN " +
+                                            "left join PHONG p on hs.MAPHONG = p.MAPHONG " +
+                                            "where TIEUDE like N'%" + tieuDe.Substring(5, tieuDe.Length - 5) + "%' and KYHIEU like '%" + kyHieu + "%'";
+                                            SqlCommand cmd2 = new SqlCommand(sqlQuery, sqlConnection);
+                                            cmd2.ExecuteNonQuery();
+                                            sqlConnection.Close();
+                                            tieuDe = "";
+                                            trichYeu = "";
+                                            kyHieu = "";
+                                        }
                                     }
+
                                 }
                             }
-                            MessageBox.Show("Có " + ag + " trường thông tin" + "", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            con.Close();
                         }
+                        //MessageBox.Show("Có " +ag + " trường thông tin"+ "", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        con.Close();
                     }
+                }
 
-                });
-                threadAG2.Start();
+            });
+            threadAG1.Start();
+
+            threadAG2 = new Thread(() =>
+            {
+                using (SqlConnection con = new SqlConnection(sqlConnect))
+                {
+                    string sql = "use ADDJ_AnGiang; " +
+                    "select top(180000) METADATA from meta order by METADATA desc";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            if (dr[0].ToString().Trim().Length > 0 && dr[0] != null && !dr[0].ToString().Trim().Equals(""))
+                            {
+                                string tieuDe = "", trichYeu = "", kyHieu = "";
+
+                                JsonDocument doc = JsonDocument.Parse(dr[0].ToString());
+                                JsonElement root = doc.RootElement;
+                                for (int i = 0; i < root.GetArrayLength(); i++)
+                                {
+                                    //đếm số trường
+                                    var indexName = root[i].GetProperty("indexName").ToString().Trim();
+                                    var indexValue = root[i].GetProperty("indexValue").ToString().Trim();
+                                    var indexValue2 = root[i].GetProperty("indexValue2").ToString().Trim();
+                                    var indexValueQC = root[i].GetProperty("indexValueQC").ToString().Trim();
+
+                                    if ((indexValue != null && indexValue != "")
+                                        || (indexValue2 != null && indexValue2 != "")
+                                        || (indexValueQC != null && indexValueQC != ""))
+                                    {
+                                        ag++;
+
+                                        //lọc bản ghi
+                                        if (indexName.ToString().Trim().Equals("TENHOSO"))
+                                        {
+                                            if (indexValue != null && indexValue != "") tieuDe = indexValue.ToString().Trim();
+                                            else if (indexValue2 != null && indexValue2 != "") tieuDe = indexValue2.ToString().Trim();
+                                            else tieuDe = indexValueQC.ToString().Trim();
+                                        }
+
+                                        if (indexName.ToString().Trim().Equals("SOKYHIEU"))
+                                        {
+                                            if (indexValue != null && indexValue != "") kyHieu = indexValue.ToString().Trim();
+                                            else if (indexValue2 != null && indexValue2 != "") kyHieu = indexValue2.ToString().Trim();
+                                            else kyHieu = indexValueQC.ToString().Trim();
+                                        }
+
+                                        if (indexName.ToString().Trim().Equals("TRICHYEU"))
+                                        {
+                                            if (indexValue != null && indexValue != "") trichYeu = indexValue.ToString().Trim();
+                                            else if (indexValue2 != null && indexValue2 != "") kyHieu = indexValue2.ToString().Trim();
+                                            else tieuDe = indexValueQC.ToString().Trim();
+                                        }
+
+                                        if (!tieuDe.Equals("") && !kyHieu.Equals("") && !trichYeu.Equals(""))
+                                        {
+                                            tieuDe = Utils.format(tieuDe);
+                                            kyHieu = Utils.format(kyHieu);
+                                            trichYeu = Utils.format(trichYeu);
+
+                                            SqlConnection sqlConnection = new SqlConnection(sqlConnect);
+                                            sqlConnection.Open();
+                                            string sqlQuery = "use UBND_tinh_An_Giang; " +
+                                            "insert into ThongKe " +
+                                            "select TENDONVIPHATHANH, NGAYLAP, HOSOSO, KYHIEU, TRICHYEU, " +
+                                            "TOSO, TIEUDE, THOIHANBAOQUAN, THOIGIANBATDAU, vb.NGAYKY, " +
+                                            "hs.THOIGIANKETTHUC as 'ThoiGianKetThucHS', vb.GHICHU1 as 'GhiChuVB1', vb.GHICHU2 as 'GhiChuVB2', " +
+                                            "hs.GHICHU1 as 'GhiChuHS1', hs.GHICHU2 as 'GhiChuHS2', SOTO, TENLOAIVANBAN, TENPHONG, HOPSO " +
+                                            "from VANBAN vb left join DONVIPHATHANH dvph on vb.MADONVIPHATHANH = dvph.MADONVIPHATHANH " +
+                                            "left join HOSO hs on vb.MAHOSO = hs.MAHOSO left join LOAIVANBAN lvb on vb.MALOAIVANBAN = lvb.MALOAIVANBAN " +
+                                            "left join PHONG p on hs.MAPHONG = p.MAPHONG " +
+                                            "where TIEUDE like N'%" + tieuDe.Substring(5, tieuDe.Length - 5) + "%' and KYHIEU like '%" + kyHieu + "%'";
+                                            SqlCommand cmd2 = new SqlCommand(sqlQuery, sqlConnection);
+                                            cmd2.ExecuteNonQuery();
+                                            sqlConnection.Close();
+                                            tieuDe = "";
+                                            trichYeu = "";
+                                            kyHieu = "";
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                        MessageBox.Show("Có " + ag + " trường thông tin" + "", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        con.Close();
+                    }
+                }
+
+            });
+            threadAG2.Start();*/
         }
 
         public Home()
@@ -264,205 +266,378 @@ namespace DB
             form1 = this;
         }
 
+        public void thongKe()
+        {
+            // thread thống kê khai sinh
+            threadKS = new Thread(() =>
+            {
+                using (SqlConnection con = new SqlConnection(sqlConnect))
+                {
+                    string sql = "SELECT so, quyenSo, trangSo, ngayDangKy, TenLoaiDangKy, " +
+                        "TenNoiDangKy, nksHoTen, TenGioiTinh, nksNgaySinh, dt.TenDanToc, qt.TenQuocTich, " +
+                        "meHoTen, meNgaySinh, dtm.TenDanToc, qtm.TenQuocTich, lctm.TenLoaiCuTru, chaHoTen, " +
+                        "chaNgaySinh, dtc.TenDanToc, qtc.TenQuocTich, lctc.TenLoaiCuTru, GhiChu, nksNoiSinh, " +
+                        "meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, NguoiThucHien, " +
+                        "lks.TenLoaiKhaiSinh, nsdvhc.ten, nksQueQuan, lgtnk.TenLoaiGiayTo, nycSoGiayToTuyThan, " +
+                        "nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu FROM HT_KHAISINH " +
+                        "ks left join  HT_KS_LOAIDANGKY ldk on ks.loaiDangKy = ldk.MaLoaiDangKy " +
+                        "left join  DM_GIOITINH gt on  ks.nksGioiTinh = gt.MaGioiTinh " +
+                        "left join  DM_DANTOC dt on ks.nksDanToc = dt.MaDanToc " +
+                        "left join  DM_DANTOC dtm on ks.meDanToc = dtm.MaDanToc " +
+                        "left join  DM_DANTOC dtc on ks.chaDanToc = dtc.MaDanToc " +
+                        "left join  DM_QUOCTICH qt on ks.nksQuocTich = qt.MaQuocTich " +
+                        "left join  DM_QUOCTICH qtm on ks.meQuocTich = qtm.MaQuocTich " +
+                        "left join  DM_QUOCTICH qtc on ks.chaQuocTich = qtc.MaQuocTich " +
+                        "left join  HT_NOIDANGKY ndk on ks.noiDangKy = ndk.MaNoiDangKy " +
+                        "left join  DM_LOAICUTRU lctm on ks.meLoaiCuTru = lctm.MaLoaiCuTru " +
+                        "left join  DM_LOAICUTRU lctc on ks.chaLoaiCuTru = lctc.MaLoaiCuTru " +
+                        "left join  HT_KS_LOAIKHAISINH lks on ks.nksLoaiKhaiSinh = lks.MaLoaiKhaiSinh " +
+                        "left join  HT_LOAIGIAYTO lgtnk on ks.nycLoaiGiayToTuyThan = lgtnk.MaLoaiGiayTo " +
+                        "left join  HT_Tinh_NoiSinh nsdvhc on ks.nksNoiSinhDVHC = nsdvhc.Ma " +
+                        "WHERE quyenSo NOT LIKE '%2016' AND quyenSo NOT LIKE '%2017' AND quyenSo NOT LIKE '%2018' AND quyenSo NOT LIKE '%2019'";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        //duyệt từng bản ghi
+                        while (dr.Read())
+                        {
+                            for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
+                                Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
+                            {
+                                //duyệt từng cột
+                                if (dr[i].ToString().Trim().Length >= 16)
+                                    ksTren16++;
+                                else if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
+                                    ksDuoi16++;
+
+                            }
+                        }
+                        MessageBox.Show("Sẵn sàng thống kê!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        con.Close();
+                    }
+                }
+
+            });
+
+            //thread thống kê khai tử
+            threadKT = new Thread(() =>
+            {
+                using (SqlConnection con = new SqlConnection(sqlConnect))
+                {
+                    string sql = "SELECT So, quyenSo, trangSo, ngayDangKy, TenLoaiDangKy, TenNoiDangKy, nktHoTen,  TenGioiTinh, " +
+                        "nktNgaySinh, dt.TenDanToc, qt.TenQuocTich, TenLoaiCuTru, lgt.TenLoaiGiayTo,  nktSoGiayToTuyThan, " +
+                        "nktNgayChet, GhiChu, nktGioPhutChet, nktNoiChet, nktNguyenNhanChet,  nktNoiCuTru, nycHoTen, nycQuanHe, " +
+                        "nguoiKy, chucVuNguoiKy, nguoiThucHien,  nktNgayCapGiayToTuyThan, nktNoiCapGiayToTuyThan, gbt.TenLoai, " +
+                        "gbtSo, gbtNgay,  gbtCoQuanCap, lgtnk.TenLoaiGiayTo, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, " +
+                        "nycNoiCapGiayToTuyThan FROM HT_KHAITU kt  left join HT_KT_LOAIDANGKY ldk on kt.loaiDangKy = ldk.MaLoaiDangKy " +
+                        "left join HT_NOIDANGKY ndk on kt.noiDangKy = ndk.MaNoiDangKy " +
+                        "left join DM_GIOITINH gt on kt.nktGioiTinh = gt.MaGioiTinh " +
+                        "left join DM_DANTOC dt on kt.nktDanToc = dt.MaDanToc " +
+                        "left join DM_QUOCTICH qt on kt.nktQuocTich = qt.MaQuocTich " +
+                        "left join DM_LOAICUTRU lct on kt.nktLoaiCuTru = lct.MaLoaiCuTru " +
+                        "left join HT_LOAIGIAYTO lgt on kt.nktLoaiGiayToTuyThan = lgt.MaLoaiGiayTo " +
+                        "left join HT_KT_LOAI_GIAY_BAO_TU gbt on kt.gbtLoai = gbt.MaLoai " +
+                        "left join HT_LOAIGIAYTO lgtnk on kt.nktLoaiGiayToTuyThan = lgtnk.MaLoaiGiayTo " +
+                        "WHERE quyenSo NOT LIKE '%2016' AND quyenSo NOT LIKE '%2017' AND quyenSo NOT LIKE '%2018' AND quyenSo NOT LIKE '%2019'";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
+                                Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
+                            {
+
+                                if (dr[i].ToString().Trim().Length >= 16)
+                                    ktTren16++;
+                                else if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
+                                    ktDuoi16++;
+
+                            }
+                        }
+
+                        con.Close();
+                    }
+                }
+            });
+
+            //thread thống kê kết hôn
+            threadKH = new Thread(() =>
+            {
+                using (SqlConnection con = new SqlConnection(sqlConnect))
+                {
+                    string sql = "SELECT So, quyenSo, trangSo, ngayDangKy, TenLoaiDangKy, TenNoiDangKy, chongHoTen,  " +
+                        "chongNgaySinh, dtc.TenDanToc, qtc.TenQuocTich, lctc.TenLoaiCuTru, lgtc.TenLoaiGiayTo, " +
+                        " chongSoGiayToTuyThan, voHoTen, voNgaySinh, dtv.TenDanToc, qtv.TenQuocTich, lctv.TenLoaiCuTru,  " +
+                        "lgtv.TenLoaiGiayTo, voSoGiayToTuyThan, GhiChu, chongNoiCuTru, voNoiCuTru, nguoiKy,  chucVuNguoiKy, " +
+                        "nguoiThucHien, chongNgayCapGiayToTuyThan, chongNoiCapGiayToTuyThan,  voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan " +
+                        "FROM HT_KETHON kh left join HT_KH_LOAIDANGKY ldk on kh.loaiDangKy = ldk.MaLoaiDangKy " +
+                        "left join HT_NOIDANGKY ndk on kh.noiDangKy = ndk.MaNoiDangKy " +
+                        "left join DM_DANTOC dtc on kh.chongDanToc = dtc.MaDanToc " +
+                        "left join DM_QUOCTICH qtc on kh.chongQuocTich = qtc.MaQuocTich " +
+                        "left join DM_LOAICUTRU lctc on kh.chongLoaiCuTru = lctc.MaLoaiCuTru " +
+                        "left join HT_LOAIGIAYTO lgtc on kh.chongLoaiGiayToTuyThan = lgtc.MaLoaiGiayTo " +
+                        "left join DM_DANTOC dtv on kh.voDanToc = dtv.MaDanToc " +
+                        "left join DM_QUOCTICH qtv on kh.voQuocTich = qtv.MaQuocTich " +
+                        "left join DM_LOAICUTRU lctv on kh.voLoaiCuTru = lctv.MaLoaiCuTru " +
+                        "left join HT_LOAIGIAYTO lgtv on kh.voLoaiGiayToTuyThan = lgtv.MaLoaiGiayTo " +
+                        "WHERE quyenSo NOT LIKE '%2016' AND quyenSo NOT LIKE '%2017' AND quyenSo NOT LIKE '%2018' AND quyenSo NOT LIKE '%2019'";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
+                                Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
+                            {
+
+                                if (dr[i].ToString().Trim().Length >= 16)
+                                    khTren16++;
+                                else if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
+                                    khDuoi16++;
+
+                            }
+                        }
+
+                        con.Close();
+                    }
+                }
+            });
+
+            //thread thống kê cha mẹ con
+            threadCMC = new Thread(() =>
+            {
+                using (SqlConnection con = new SqlConnection(sqlConnect))
+                {
+                    string sql = "SELECT So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, TenLoaiDangKy, " +
+                        "TenLoaiXacNhan,  TenNoiDangKy, cmHoTen, cmNgaySinh, dtcm.TenDanToc, qtcm.TenQuocTich, " +
+                        "lctcm.TenLoaiCuTru, lgtcm.TenLoaiGiayTo,  cmSoGiayToTuyThan, ncHoTen, ncNgaySinh, " +
+                        "dtnc.TenDanToc, qtnc.TenQuocTich, lctnc.TenLoaiCuTru, lgtnc.TenLoaiGiayTo,  " +
+                        "ncSoGiayToTuyThan, GhiChu, cmNoiCuTru, ncNoiCuTru, nycHoTen, nycQHNguoiDuocNhan,  " +
+                        "nguoiKy, chucVuNguoiKy, nguoiThucHien, cmQueQuan, cmNgayCapGiayToTuyThan,  " +
+                        "cmNoiCapGiayToTuyThan, ncQueQuan, ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan,  " +
+                        "lgtnk.TenLoaiGiayTo, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan " +
+                        "FROM HT_NHANCHAMECON cmc left join HT_NCM_LOAIDANGKY ldk on cmc.loaiDangKy = ldk.MaLoaiDangKy " +
+                        "left join DM_LOAIXACNHAN lxn on cmc.loaiXacNhan = lxn.MaLoaiXacNhan " +
+                        "left join HT_NOIDANGKY ndk on cmc.noiDangKy = ndk.MaNoiDangKy " +
+                        "left join DM_DANTOC dtcm on cmc.cmDanToc = dtcm.MaDanToc " +
+                        "left join DM_QUOCTICH qtcm on cmc.cmQuocTich = qtcm.MaQuocTich " +
+                        "left join DM_LOAICUTRU lctcm on cmc.cmLoaiCuTru = lctcm.MaLoaiCuTru " +
+                        "left join HT_LOAIGIAYTO lgtcm on cmc.cmLoaiGiayToTuyThan = lgtcm.MaLoaiGiayTo " +
+                        "left join DM_DANTOC dtnc on cmc.ncDanToc = dtnc.MaDanToc " +
+                        "left join DM_QUOCTICH qtnc on cmc.ncQuocTich = qtnc.MaQuocTich " +
+                        "left join DM_LOAICUTRU lctnc on cmc.ncLoaiCuTru = lctnc.MaLoaiCuTru " +
+                        "left join HT_LOAIGIAYTO lgtnc on cmc.ncLoaiGiayToTuyThan = lgtnc.MaLoaiGiayTo " +
+                        "left join HT_LOAIGIAYTO lgtnk on cmc.nycLoaiGiayToTuyThan = lgtnk.MaLoaiGiayTo " +
+                        "WHERE quyenSo NOT LIKE '%2016' AND quyenSo NOT LIKE '%2017' AND quyenSo NOT LIKE '%2018' AND quyenSo NOT LIKE '%2019'";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
+                                Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
+                            {
+
+                                if (dr[i].ToString().Trim().Length >= 16)
+                                    cmcTren16++;
+                                else if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
+                                    cmcDuoi16++;
+
+                            }
+                        }
+                        con.Close();
+                    }
+                }
+            });
+        }
+
+        public void quaTrinhXuLyKS(SqlConnection sqlConnection)
+        {
+            listXuLyKS = new List<XuLy>();
+
+            listKS = new List<XuLy>();
+
+            //thêm phần tử vào list xử lý (bảng QTXLKS lưu tất cả các trạng thái)
+            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLKS", sqlConnection);
+            command.CommandType = CommandType.Text;
+            SqlDataReader dr1 = command.ExecuteReader();
+            while (dr1.Read())
+            {
+                listXuLyKS.Add(new XuLy(dr1[0].ToString().Trim(), dr1[1].ToString().Trim()));
+            }
+            dr1.Close();
+            dr1.Dispose();
+
+            //thêm phẩn tử vào list KS (bảng KS lưu bản ghi)
+            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_KHAISINH", sqlConnection);
+            command2.CommandType = CommandType.Text;
+            SqlDataReader dr2 = command2.ExecuteReader();
+            while (dr2.Read())
+            {
+                listKS.Add(new XuLy(dr2[0].ToString().Trim(), dr2[1].ToString().Trim()));
+            }
+            dr2.Close();
+            dr2.Dispose();
+
+
+            // thread xử lý khai sinh
+            threadXuLyKS = new Thread(() =>
+            {
+                for (int i = 0; i < listKS.Count; i++)
+                {
+                    if (!listXuLyKS.Contains(listKS[i])) insertXuLyKS(listKS[i].Id);
+                }
+                MessageBox.Show("Hoàn tất quá trình xử lý!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            });
+        }
+
+        public void quaTrinhXuLyKT(SqlConnection sqlConnection)
+        {
+            listXuLyKT = new List<XuLy>();
+
+            listKT = new List<XuLy>();
+
+            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLKT", sqlConnection);
+            command.CommandType = CommandType.Text;
+            SqlDataReader dr1 = command.ExecuteReader();
+            while (dr1.Read())
+            {
+                listXuLyKT.Add(new XuLy(dr1[0].ToString().Trim(), dr1[1].ToString().Trim()));
+            }
+            dr1.Close();
+            dr1.Dispose();
+
+            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_KHAITU", sqlConnection);
+            command2.CommandType = CommandType.Text;
+            SqlDataReader dr2 = command2.ExecuteReader();
+            while (dr2.Read())
+            {
+                listKT.Add(new XuLy(dr2[0].ToString().Trim(), dr2[1].ToString().Trim()));
+            }
+            dr2.Close();
+            dr2.Dispose();
+
+            threadXuLyKT = new Thread(() =>
+            {
+                for (int i = 0; i < listKT.Count; i++)
+                {
+                    if (!listXuLyKT.Contains(listKT[i])) insertXuLyKT(listKT[i].Id);
+                }
+            });
+        }
+
+        public void quaTrinhXuLyKH(SqlConnection sqlConnection)
+        {
+            listXuLyKH = new List<XuLy>();
+
+            listKH = new List<XuLy>();
+
+            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLKH", sqlConnection);
+            command.CommandType = CommandType.Text;
+            SqlDataReader dr1 = command.ExecuteReader();
+            while (dr1.Read())
+            {
+                listXuLyKH.Add(new XuLy(dr1[0].ToString().Trim(), dr1[1].ToString().Trim()));
+            }
+            dr1.Close();
+            dr1.Dispose();
+
+            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_KETHON", sqlConnection);
+            command2.CommandType = CommandType.Text;
+            SqlDataReader dr2 = command2.ExecuteReader();
+            while (dr2.Read())
+            {
+                listKH.Add(new XuLy(dr2[0].ToString().Trim(), dr2[1].ToString().Trim()));
+            }
+            dr2.Close();
+            dr2.Dispose();
+
+            threadXuLyKH = new Thread(() =>
+            {
+                for (int i = 0; i < listKH.Count; i++)
+                {
+                    if (!listXuLyKH.Contains(listKH[i])) insertXuLyKH(listKH[i].Id);
+                }
+            });
+        }
+
+        public void quaTrinhXuLyCMC(SqlConnection sqlConnection)
+        {
+            listXuLyCMC = new List<XuLy>();
+
+            listCMC = new List<XuLy>();
+
+            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLCMC", sqlConnection);
+            command.CommandType = CommandType.Text;
+            SqlDataReader dr1 = command.ExecuteReader();
+            while (dr1.Read())
+            {
+                listXuLyCMC.Add(new XuLy(dr1[0].ToString().Trim(), dr1[1].ToString().Trim()));
+            }
+            dr1.Close();
+            dr1.Dispose();
+
+            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_NHANCHAMECON", sqlConnection);
+            command2.CommandType = CommandType.Text;
+            SqlDataReader dr2 = command2.ExecuteReader();
+            while (dr2.Read())
+            {
+                listCMC.Add(new XuLy(dr2[0].ToString().Trim(), dr2[1].ToString().Trim()));
+            }
+            dr2.Close();
+            dr2.Dispose();
+
+            threadXuLyCMC = new Thread(() =>
+            {
+                for (int i = 0; i < listCMC.Count; i++)
+                {
+                    if (!listXuLyCMC.Contains(listCMC[i])) insertXuLyCMC(listCMC[i].Id);
+                }
+            });
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            SqlConnection sqlConnection = null;
             try
             {
-                // thread khai sinh
-                threadKS = new Thread(() =>
+                using (sqlConnection = new SqlConnection(@"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword"))
                 {
-                    using (SqlConnection con = new SqlConnection(sqlConnect))
+                    sqlConnection.Open();
+                    if (sqlConnection.State == ConnectionState.Open)
                     {
-                        string sql = "SELECT so, quyenSo, trangSo, ngayDangKy, TenLoaiDangKy, " +
-                            "TenNoiDangKy, nksHoTen, TenGioiTinh, nksNgaySinh, dt.TenDanToc, qt.TenQuocTich, " +
-                            "meHoTen, meNgaySinh, dtm.TenDanToc, qtm.TenQuocTich, lctm.TenLoaiCuTru, chaHoTen, " +
-                            "chaNgaySinh, dtc.TenDanToc, qtc.TenQuocTich, lctc.TenLoaiCuTru, GhiChu, nksNoiSinh, " +
-                            "meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, NguoiThucHien, " +
-                            "lgt.TenLoaiGiayTo, nsdvhc.ten, nksQueQuan, lgtnk.TenLoaiGiayTo, nycSoGiayToTuyThan, " +
-                            "nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu FROM HT_KHAISINH " +
-                            "ks left join  HT_KS_LOAIDANGKY ldk on ks.loaiDangKy = ldk.MaLoaiDangKy " +
-                            "left join  DM_GIOITINH gt on  ks.nksGioiTinh = gt.MaGioiTinh " +
-                            "left join  DM_DANTOC dt on ks.nksDanToc = dt.MaDanToc " +
-                            "left join  DM_DANTOC dtm on ks.meDanToc = dtm.MaDanToc " +
-                            "left join  DM_DANTOC dtc on ks.chaDanToc = dtc.MaDanToc " +
-                            "left join  DM_QUOCTICH qt on ks.nksQuocTich = qt.MaQuocTich " +
-                            "left join  DM_QUOCTICH qtm on ks.meQuocTich = qtm.MaQuocTich " +
-                            "left join  DM_QUOCTICH qtc on ks.chaQuocTich = qtc.MaQuocTich " +
-                            "left join  HT_NOIDANGKY ndk on ks.noiDangKy = ndk.MaNoiDangKy " +
-                            "left join  DM_LOAICUTRU lctm on ks.meLoaiCuTru = lctm.MaLoaiCuTru " +
-                            "left join  DM_LOAICUTRU lctc on ks.chaLoaiCuTru = lctc.MaLoaiCuTru " +
-                            "left join  HT_LOAIGIAYTO lgt on ks.nycLoaiGiayToTuyThan = lgt.MaLoaiGiayTo " +
-                            "left join  HT_LOAIGIAYTO lgtnk on ks.nycLoaiGiayToTuyThan = lgtnk.MaLoaiGiayTo " +
-                            "left join  HT_Tinh_NoiSinh nsdvhc on ks.nksNoiSinhDVHC = nsdvhc.Ma " +
-                            "WHERE quyenSo NOT LIKE '%2016' AND quyenSo NOT LIKE '%2017' AND quyenSo NOT LIKE '%2018' AND quyenSo NOT LIKE '%2019'";
-                        using (SqlCommand cmd = new SqlCommand(sql, con))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            con.Open();
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            while (dr.Read())
-                            {
-                                for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
-                                    Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
-                                {
+                        //nếu connection mở thì gán chuỗi sql string
+                        Home.sqlConnect = @"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword";
 
-                                    if (dr[i].ToString().Trim().Length >= 16)
-                                        ksTren16++;
-                                    else if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
-                                        ksDuoi16++;
+                        quaTrinhXuLyKS(sqlConnection);
+                        quaTrinhXuLyKT(sqlConnection);
+                        quaTrinhXuLyKH(sqlConnection);
+                        quaTrinhXuLyCMC(sqlConnection);
 
-                                }
-                            }
-                            MessageBox.Show("Sẵn sàng thống kê!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            con.Close();
-                        }
+                        sqlConnection.Close();
+
+                        thongKe();
                     }
-
-                });
-
-                //thread khai tử
-                threadKT = new Thread(() =>
-                {
-                    using (SqlConnection con = new SqlConnection(sqlConnect))
+                    else
                     {
-                        string sql = "SELECT So, quyenSo, trangSo, ngayDangKy, TenLoaiDangKy, TenNoiDangKy, nktHoTen,  TenGioiTinh, " +
-                            "nktNgaySinh, dt.TenDanToc, qt.TenQuocTich, TenLoaiCuTru, lgt.TenLoaiGiayTo,  nktSoGiayToTuyThan, " +
-                            "nktNgayChet, GhiChu, nktGioPhutChet, nktNoiChet, nktNguyenNhanChet,  nktNoiCuTru, nycHoTen, nycQuanHe, " +
-                            "nguoiKy, chucVuNguoiKy, nguoiThucHien,  nktNgayCapGiayToTuyThan, nktNoiCapGiayToTuyThan, gbt.TenLoai, " +
-                            "gbtSo, gbtNgay,  gbtCoQuanCap, lgtnk.TenLoaiGiayTo, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, " +
-                            "nycNoiCapGiayToTuyThan FROM HT_KHAITU kt  left join HT_KT_LOAIDANGKY ldk on kt.loaiDangKy = ldk.MaLoaiDangKy " +
-                            "left join HT_NOIDANGKY ndk on kt.noiDangKy = ndk.MaNoiDangKy " +
-                            "left join DM_GIOITINH gt on kt.nktGioiTinh = gt.MaGioiTinh " +
-                            "left join DM_DANTOC dt on kt.nktDanToc = dt.MaDanToc " +
-                            "left join DM_QUOCTICH qt on kt.nktQuocTich = qt.MaQuocTich " +
-                            "left join DM_LOAICUTRU lct on kt.nktLoaiCuTru = lct.MaLoaiCuTru " +
-                            "left join HT_LOAIGIAYTO lgt on kt.nktLoaiGiayToTuyThan = lgt.MaLoaiGiayTo " +
-                            "left join HT_KT_LOAI_GIAY_BAO_TU gbt on kt.gbtLoai = gbt.MaLoai " +
-                            "left join HT_LOAIGIAYTO lgtnk on kt.nktLoaiGiayToTuyThan = lgtnk.MaLoaiGiayTo " +
-                            "WHERE quyenSo NOT LIKE '%2016' AND quyenSo NOT LIKE '%2017' AND quyenSo NOT LIKE '%2018' AND quyenSo NOT LIKE '%2019'";
-                        using (SqlCommand cmd = new SqlCommand(sql, con))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            con.Open();
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            while (dr.Read())
-                            {
-                                for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
-                                    Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
-                                {
-
-                                    if (dr[i].ToString().Trim().Length >= 16)
-                                        ktTren16++;
-                                    else if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
-                                        ktDuoi16++;
-
-                                }
-                            }
-
-                            con.Close();
-                        }
+                        ConnectDB connectDB = new ConnectDB();
+                        connectDB.Show();
                     }
-                });
-
-                //thread kết hôn
-                threadKH = new Thread(() =>
-                {
-                    using (SqlConnection con = new SqlConnection(sqlConnect))
-                    {
-                        string sql = "SELECT So, quyenSo, trangSo, ngayDangKy, TenLoaiDangKy, TenNoiDangKy, chongHoTen,  " +
-                            "chongNgaySinh, dtc.TenDanToc, qtc.TenQuocTich, lctc.TenLoaiCuTru, lgtc.TenLoaiGiayTo, " +
-                            " chongSoGiayToTuyThan, voHoTen, voNgaySinh, dtv.TenDanToc, qtv.TenQuocTich, lctv.TenLoaiCuTru,  " +
-                            "lgtv.TenLoaiGiayTo, voSoGiayToTuyThan, GhiChu, chongNoiCuTru, voNoiCuTru, nguoiKy,  chucVuNguoiKy, " +
-                            "nguoiThucHien, chongNgayCapGiayToTuyThan, chongNoiCapGiayToTuyThan,  voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan " +
-                            "FROM HT_KETHON kh left join HT_KH_LOAIDANGKY ldk on kh.loaiDangKy = ldk.MaLoaiDangKy " +
-                            "left join HT_NOIDANGKY ndk on kh.noiDangKy = ndk.MaNoiDangKy " +
-                            "left join DM_DANTOC dtc on kh.chongDanToc = dtc.MaDanToc " +
-                            "left join DM_QUOCTICH qtc on kh.chongQuocTich = qtc.MaQuocTich " +
-                            "left join DM_LOAICUTRU lctc on kh.chongLoaiCuTru = lctc.MaLoaiCuTru " +
-                            "left join HT_LOAIGIAYTO lgtc on kh.chongLoaiGiayToTuyThan = lgtc.MaLoaiGiayTo " +
-                            "left join DM_DANTOC dtv on kh.voDanToc = dtv.MaDanToc " +
-                            "left join DM_QUOCTICH qtv on kh.voQuocTich = qtv.MaQuocTich " +
-                            "left join DM_LOAICUTRU lctv on kh.voLoaiCuTru = lctv.MaLoaiCuTru " +
-                            "left join HT_LOAIGIAYTO lgtv on kh.voLoaiGiayToTuyThan = lgtv.MaLoaiGiayTo " +
-                            "WHERE quyenSo NOT LIKE '%2016' AND quyenSo NOT LIKE '%2017' AND quyenSo NOT LIKE '%2018' AND quyenSo NOT LIKE '%2019'";
-                        using (SqlCommand cmd = new SqlCommand(sql, con))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            con.Open();
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            while (dr.Read())
-                            {
-                                for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
-                                    Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
-                                {
-
-                                    if (dr[i].ToString().Trim().Length >= 16)
-                                        khTren16++;
-                                    else if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
-                                        khDuoi16++;
-
-                                }
-                            }
-
-                            con.Close();
-                        }
-                    }
-                });
-
-                //thread cha mẹ con
-                threadCMC = new Thread(() =>
-                {
-                    using (SqlConnection con = new SqlConnection(sqlConnect))
-                    {
-                        string sql = "SELECT So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, TenLoaiDangKy, " +
-                            "TenLoaiXacNhan,  TenNoiDangKy, cmHoTen, cmNgaySinh, dtcm.TenDanToc, qtcm.TenQuocTich, " +
-                            "lctcm.TenLoaiCuTru, lgtcm.TenLoaiGiayTo,  cmSoGiayToTuyThan, ncHoTen, ncNgaySinh, " +
-                            "dtnc.TenDanToc, qtnc.TenQuocTich, lctnc.TenLoaiCuTru, lgtnc.TenLoaiGiayTo,  " +
-                            "ncSoGiayToTuyThan, GhiChu, cmNoiCuTru, ncNoiCuTru, nycHoTen, nycQHNguoiDuocNhan,  " +
-                            "nguoiKy, chucVuNguoiKy, nguoiThucHien, cmQueQuan, cmNgayCapGiayToTuyThan,  " +
-                            "cmNoiCapGiayToTuyThan, ncQueQuan, ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan,  " +
-                            "lgtnk.TenLoaiGiayTo, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan " +
-                            "FROM HT_NHANCHAMECON cmc left join HT_NCM_LOAIDANGKY ldk on cmc.loaiDangKy = ldk.MaLoaiDangKy " +
-                            "left join DM_LOAIXACNHAN lxn on cmc.loaiXacNhan = lxn.MaLoaiXacNhan " +
-                            "left join HT_NOIDANGKY ndk on cmc.noiDangKy = ndk.MaNoiDangKy " +
-                            "left join DM_DANTOC dtcm on cmc.cmDanToc = dtcm.MaDanToc " +
-                            "left join DM_QUOCTICH qtcm on cmc.cmQuocTich = qtcm.MaQuocTich " +
-                            "left join DM_LOAICUTRU lctcm on cmc.cmLoaiCuTru = lctcm.MaLoaiCuTru " +
-                            "left join HT_LOAIGIAYTO lgtcm on cmc.cmLoaiGiayToTuyThan = lgtcm.MaLoaiGiayTo " +
-                            "left join DM_DANTOC dtnc on cmc.ncDanToc = dtnc.MaDanToc " +
-                            "left join DM_QUOCTICH qtnc on cmc.ncQuocTich = qtnc.MaQuocTich " +
-                            "left join DM_LOAICUTRU lctnc on cmc.ncLoaiCuTru = lctnc.MaLoaiCuTru " +
-                            "left join HT_LOAIGIAYTO lgtnc on cmc.ncLoaiGiayToTuyThan = lgtnc.MaLoaiGiayTo " +
-                            "left join HT_LOAIGIAYTO lgtnk on cmc.nycLoaiGiayToTuyThan = lgtnk.MaLoaiGiayTo " +
-                            "WHERE quyenSo NOT LIKE '%2016' AND quyenSo NOT LIKE '%2017' AND quyenSo NOT LIKE '%2018' AND quyenSo NOT LIKE '%2019'";
-                        using (SqlCommand cmd = new SqlCommand(sql, con))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            con.Open();
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            while (dr.Read())
-                            {
-                                for (int i = 0; i < sql.Split(new string[] { "FROM" }, StringSplitOptions.None)[0].
-                                    Split(new string[] { "SELECT" }, StringSplitOptions.None)[1].Trim().Split(',').Length; i++)
-                                {
-
-                                    if (dr[i].ToString().Trim().Length >= 16)
-                                        cmcTren16++;
-                                    else if (dr[i].ToString().Trim().Length > 0 && dr[i] != null && !dr[i].ToString().Trim().Equals(""))
-                                        cmcDuoi16++;
-
-                                }
-                            }
-                            con.Close();
-                        }
-                    }
-                });
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         public void fillDgv(string sqlQuery)
@@ -703,6 +878,9 @@ namespace DB
 
         private void txtYear_KeyDown(object sender, KeyEventArgs e)
         {
+            //SendKeys.Send("{A}");
+            //SendKeys.SendWait("{A}");
+
             if (e.Control && e.KeyCode == Keys.S)
             {
                 dt = (DataTable)datagrid.DataSource;
@@ -793,6 +971,183 @@ namespace DB
         private void Home_FormClosed(object sender, FormClosedEventArgs e)
         {
 
+        }
+
+        private void insertXuLyKS(string id)
+        {
+            using (SqlConnection con = new SqlConnection(sqlConnect))
+            {
+                string sql = "SET IDENTITY_INSERT QTXLKS ON;" +
+                    "insert into QTXLKS(ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, " +
+                    "meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, " +
+                    "chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, " +
+                    "nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, " +
+                    "NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu)" +
+                    " SELECT ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, " +
+                    "meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, " +
+                    "chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, " +
+                    "nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, " +
+                    "NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu" +
+                    " FROM HT_KHAISINH" +
+                    " where id = " + id + ";" +
+                    " SET IDENTITY_INSERT QTXLKS OFF; ";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        private void insertXuLyKT(string id)
+        {
+            using (SqlConnection con = new SqlConnection(sqlConnect))
+            {
+                string sql = "SET IDENTITY_INSERT QTXLKT ON;" +
+                    "insert into QTXLKT(ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, " +
+                    "noiDangKy, nktHoTen, nktGioiTinh, nktNgaySinh, nktDanToc, nktQuocTich, " +
+                    "nktLoaiCuTru, nktLoaiGiayToTuyThan, nktSoGiayToTuyThan, nktNgayChet, " +
+                    "TinhTrangID, TenFile, TenFileSauUpload, URLTapTinDinhKem, NamMoSo, " +
+                    "LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, nktGioPhutChet, " +
+                    "nktNoiChet, nktNguyenNhanChet, nktNoiCuTru, nycHoTen, nycQuanHe, " +
+                    "nguoiKy, chucVuNguoiKy, nguoiThucHien, nktNgayCapGiayToTuyThan, " +
+                    "nktNoiCapGiayToTuyThan, gbtLoai, gbtSo, gbtNgay, gbtCoQuanCap, " +
+                    "nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan)" +
+                    " SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nktHoTen, nktGioiTinh, nktNgaySinh, nktDanToc, nktQuocTich, nktLoaiCuTru, " +
+                    "nktLoaiGiayToTuyThan, nktSoGiayToTuyThan, nktNgayChet, TinhTrangID, TenFile, " +
+                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
+                    "urlAnhCu, GhiChu, nktGioPhutChet, nktNoiChet, nktNguyenNhanChet, nktNoiCuTru, " +
+                    "nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, nguoiThucHien, nktNgayCapGiayToTuyThan, " +
+                    "nktNoiCapGiayToTuyThan, gbtLoai, gbtSo, gbtNgay, gbtCoQuanCap, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan" +
+                    " FROM HT_KHAITU" +
+                    " where id = " + id + ";" +
+                    " SET IDENTITY_INSERT QTXLKT OFF; ";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        private void insertXuLyKH(string id)
+        {
+            using (SqlConnection con = new SqlConnection(sqlConnect))
+            {
+                string sql = "SET IDENTITY_INSERT QTXLKH ON;" +
+                    "insert into QTXLKH(ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, " +
+                    "noiDangKy, chongHoTen, chongNgaySinh, chongDanToc, chongQuocTich, " +
+                    "chongLoaiCuTru, chongLoaiGiayToTuyThan, chongSoGiayToTuyThan, voHoTen, " +
+                    "voNgaySinh, voDanToc, voQuocTich, voLoaiCuTru, voLoaiGiayToTuyThan, " +
+                    "voSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpLoad, URLTapTinDinhKem, " +
+                    "NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, chongNoiCuTru, " +
+                    "voNoiCuTru, nguoiKy, chucVuNguoiKy, nguoiThucHien, chongNgayCapGiayToTuyThan, " +
+                    "chongNoiCapGiayToTuyThan, voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan)" +
+                    " SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, chongHoTen, " +
+                    "chongNgaySinh, chongDanToc, chongQuocTich, chongLoaiCuTru, chongLoaiGiayToTuyThan, " +
+                    "chongSoGiayToTuyThan, voHoTen, voNgaySinh, voDanToc, voQuocTich, voLoaiCuTru, " +
+                    "voLoaiGiayToTuyThan, voSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, " +
+                    "chongNoiCuTru, voNoiCuTru, nguoiKy, chucVuNguoiKy, nguoiThucHien, chongNgayCapGiayToTuyThan, " +
+                    "chongNoiCapGiayToTuyThan, voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan" +
+                    " FROM HT_KETHON" +
+                    " where id = " + id + ";" +
+                    " SET IDENTITY_INSERT QTXLKH OFF; ";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        private void insertXuLyCMC(string id)
+        {
+            using (SqlConnection con = new SqlConnection(sqlConnect))
+            {
+                string sql = "SET IDENTITY_INSERT QTXLCMC ON;" +
+                    "insert into QTXLCMC(ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, " +
+                    "loaiDangKy, loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, " +
+                    "cmQuocTich, cmLoaiCuTru, cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, " +
+                    "ncNgaySinh, ncDanToc, ncQuocTich, ncLoaiCuTru, ncLoaiGiayToTuyThan, " +
+                    "ncSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpload, URLTapTinDinhKem, " +
+                    "NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, GhiChu, cmNoiCuTru, ncNoiCuTru, " +
+                    "nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, nguoiThucHien, " +
+                    "cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, " +
+                    "ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan)" +
+                    " SELECT ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, loaiDangKy, " +
+                    "loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, cmQuocTich, cmLoaiCuTru, " +
+                    "cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, ncNgaySinh, ncDanToc, ncQuocTich, " +
+                    "ncLoaiCuTru, ncLoaiGiayToTuyThan, ncSoGiayToTuyThan, TinhTrangID, TenFile, " +
+                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
+                    "GhiChu, cmNoiCuTru, ncNoiCuTru, nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, " +
+                    "nguoiThucHien, cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, " +
+                    "ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, " +
+                    "nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan" +
+                    " FROM HT_NHANCHAMECON" +
+                    " where id = " + id + ";" +
+                    " SET IDENTITY_INSERT QTXLCMC OFF; ";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        private void xửLýToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuaTrinhXuLy qtxl = new QuaTrinhXuLy();
+            qtxl.Show();
+            this.Hide();
+
+            using (SqlConnection sqlConnection = new SqlConnection(@"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword"))
+            {
+                sqlConnection.Open();
+                if (sqlConnection.State == ConnectionState.Open)
+                {
+                    //nếu connection mở thì gán chuỗi sql string
+                    Home.sqlConnect = @"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword";
+
+                    quaTrinhXuLyKS(sqlConnection);
+                    quaTrinhXuLyKT(sqlConnection);
+                    quaTrinhXuLyKH(sqlConnection);
+                    quaTrinhXuLyCMC(sqlConnection);
+
+                    if (threadXuLyKS.ThreadState == ThreadState.Running &&
+                        threadXuLyKT.ThreadState == ThreadState.Running &&
+                        threadXuLyKH.ThreadState == ThreadState.Running &&
+                        threadXuLyCMC.ThreadState == ThreadState.Running)
+                        MessageBox.Show("Đang chạy, xin vui lòng chờ trong giây lát!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    {
+                        threadXuLyKS.Start();
+                        threadXuLyKT.Start();
+                        threadXuLyKH.Start();
+                        threadXuLyCMC.Start();
+                    }
+
+                    sqlConnection.Close();
+
+                    thongKe();
+                }
+            }
         }
 
         private void rdnTKQuyenSo_CheckedChanged(object sender, EventArgs e)
@@ -916,7 +1271,7 @@ namespace DB
             else if (rdnTKQuyenSo.Checked)
             {
                 strCommandSql = dbName + "select TenNoiDangKy, quyenSo, count(*) as N'Sum'\n" +
-                    "from "+ table+ " kt join HT_NOIDANGKY ndk on kt.noiDangKy = ndk.MaNoiDangKy \n" +
+                    "from " + table + " kt join HT_NOIDANGKY ndk on kt.noiDangKy = ndk.MaNoiDangKy \n" +
                     "where quyenSo like '%" + txtYear.Text.Trim() + "%' and noiDangKy LIKE '%" + txtNdk.SelectedValue + "%' \n" +
                     "group by TenNoiDangKy, quyenSo \n" +
                     "order by TenNoiDangKy, quyenSo";
@@ -925,7 +1280,7 @@ namespace DB
             {
                 strCommandSql = dbName + "SELECT SO, QUYENSO, noiDangKy, " + hoten +
                     " , TENFILESAUUPLOAD\n FROM " + table + " " +
-                    "\nwhere so is null or so ='' or quyenSo is null or quyenSo = '' or noiDangKy is null or noiDangKy = ''";            
+                    "\nwhere so is null or so ='' or quyenSo is null or quyenSo = '' or noiDangKy is null or noiDangKy = ''";
             }
             else if (rdnDelete.Checked)
             {
@@ -958,7 +1313,7 @@ namespace DB
 
         private void lbKS_MouseHover(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnGetSources_Click(object sender, EventArgs e)

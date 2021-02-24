@@ -74,6 +74,8 @@ namespace DB
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tổngHợpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.xửLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -465,7 +467,9 @@ namespace DB
             this.toolStripSeparator2,
             this.toolStripSeparator6,
             this.thốngKêToolStripMenuItem,
-            this.toolStripSeparator7});
+            this.toolStripSeparator7,
+            this.toolStripSeparator5,
+            this.xửLýToolStripMenuItem});
             this.toolsToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(55, 23);
@@ -529,6 +533,19 @@ namespace DB
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            // 
+            // xửLýToolStripMenuItem
+            // 
+            this.xửLýToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xửLýToolStripMenuItem.Name = "xửLýToolStripMenuItem";
+            this.xửLýToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.xửLýToolStripMenuItem.Text = "Xử lý";
+            this.xửLýToolStripMenuItem.Click += new System.EventHandler(this.xửLýToolStripMenuItem_Click);
             // 
             // Home
             // 
@@ -612,6 +629,8 @@ namespace DB
         private System.Windows.Forms.RadioButton rdnQuyenSo;
         private System.Windows.Forms.RadioButton rdnTKQuyenSo;
         private System.Windows.Forms.RadioButton rdnDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem xửLýToolStripMenuItem;
     }
 }
 
