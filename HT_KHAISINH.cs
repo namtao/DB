@@ -4,7 +4,7 @@ namespace DB
 {
     class HT_KHAISINH
     {
-        string ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu;
+        public string ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu;
 
         public HT_KHAISINH(string iD, string so, string quyenSo, string trangSo, string ngayDangKy, string loaiDangKy, string noiDangKy, string nksHoTen, string nksGioiTinh, string nksNgaySinh, string nksDanToc, string nksQuocTich, string meHoTen, string meNgaySinh, string meDanToc, string meQuocTich, string meLoaiCuTru, string chaHoTen, string chaNgaySinh, string chaDanToc, string chaQuocTich, string chaLoaiCuTru, string tinhTrangID, string tenFile, string tenFileSauUpLoad, string uRLTapTinDinhKem, string namMoSo, string duLieuCu, string ngayCapNhat, string loaiGiay, string uRLAnhCu, string ghiChu, string nksNoiSinh, string meNoiCuTru, string chaNoiCuTru, string nycHoTen, string nycQuanHe, string nguoiKy, string chucVuNguoiKy, string nguoiThucHien, string nksLoaiKhaiSinh, string nksNoiSinhDVHC, string nksQueQuan, string nycLoaiGiayToTuyThan, string nycSoGiayToTuyThan, string nycNgayCapGiayToTuyThan, string nycNoiCapGiayToTuyThan, string nksNgaySinhBangChu)
         {
@@ -111,6 +111,10 @@ namespace DB
                 nycNgayCapGiayToTuyThan.Equals(ks.nycNgayCapGiayToTuyThan) &&
                 nycNoiCapGiayToTuyThan.Equals(ks.nycNoiCapGiayToTuyThan) &&
                 nksNgaySinhBangChu.Equals(ks.nksNgaySinhBangChu);
+        }
+
+        public HT_KHAISINH()
+        {
         }
 
         public override int GetHashCode()
