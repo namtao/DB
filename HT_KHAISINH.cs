@@ -7,7 +7,7 @@ namespace DB
         private string ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu;
 
         public string ID1 { get => ID; set => ID = value; }
-        public string So { get => so; set => so = value; }
+        public string So1 { get => so; set => so = value; }
         public string QuyenSo { get => quyenSo; set => quyenSo = value; }
         public string TrangSo { get => trangSo; set => trangSo = value; }
         public string NgayDangKy { get => ngayDangKy; set => ngayDangKy = value; }

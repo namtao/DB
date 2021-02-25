@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace DB
 {
@@ -264,6 +265,9 @@ namespace DB
         {
             InitializeComponent();
             form1 = this;
+
+            timer.Interval = 600000;
+            timer.Start();
         }
 
         public void thongKe()
@@ -672,12 +676,20 @@ namespace DB
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //ConnectDB.connect.Show();
-            if (threadKS.ThreadState == ThreadState.Running) threadKS.Abort();
-            if (threadKT.ThreadState == ThreadState.Running) threadKT.Abort();
-            if (threadKH.ThreadState == ThreadState.Running) threadKH.Abort();
-            if (threadCMC.ThreadState == ThreadState.Running) threadCMC.Abort();
-            Application.Exit();
+            DialogResult dialogResult = MessageBox.Show("Đóng chương trình sẽ dừng tất cả các hoạt động thống kê, bạn có muốn đóng không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //ConnectDB.connect.Show();
+                if (threadKS.ThreadState == ThreadState.Running) threadKS.Abort();
+                if (threadKT.ThreadState == ThreadState.Running) threadKT.Abort();
+                if (threadKH.ThreadState == ThreadState.Running) threadKH.Abort();
+                if (threadCMC.ThreadState == ThreadState.Running) threadCMC.Abort();
+                Application.Exit();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void rdnLoiTrangSo_CheckedChanged(object sender, EventArgs e)
@@ -876,6 +888,58 @@ namespace DB
             xuLyLenh();
         }
 
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if ((threadXuLyKS.ThreadState == ThreadState.Stopped &&
+                        threadXuLyKT.ThreadState == ThreadState.Stopped &&
+                        threadXuLyKH.ThreadState == ThreadState.Stopped &&
+                        threadXuLyCMC.ThreadState == ThreadState.Stopped) ||
+                        (threadXuLyKS.ThreadState == ThreadState.Unstarted &&
+                        threadXuLyKT.ThreadState == ThreadState.Unstarted &&
+                        threadXuLyKH.ThreadState == ThreadState.Unstarted &&
+                        threadXuLyCMC.ThreadState == ThreadState.Unstarted))
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(@"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword"))
+                {
+                    sqlConnection.Open();
+                    if (sqlConnection.State == ConnectionState.Open)
+                    {
+                        quaTrinhXuLyKS(sqlConnection);
+                        quaTrinhXuLyKT(sqlConnection);
+                        quaTrinhXuLyKH(sqlConnection);
+                        quaTrinhXuLyCMC(sqlConnection);
+
+                        threadXuLyKS.Start();
+                        threadXuLyKT.Start();
+                        threadXuLyKH.Start();
+                        threadXuLyCMC.Start();
+
+                        sqlConnection.Close();
+                    }
+                }
+            }
+        }
+
+        private void Home_SizeChanged(object sender, EventArgs e)
+        {
+            bool MousePointerNotOnTaskBar = Screen.GetWorkingArea(this).Contains(Cursor.Position);
+
+            if (this.WindowState == FormWindowState.Minimized && MousePointerNotOnTaskBar)
+            {
+                this.ShowInTaskbar = false;
+                notifyIcon.Visible = true;
+            }
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            if (this.WindowState == FormWindowState.Normal)
+                this.ShowInTaskbar = true;
+            notifyIcon.Visible = false;
+            this.Show();
+        }
+
         private void txtYear_KeyDown(object sender, KeyEventArgs e)
         {
             //SendKeys.Send("{A}");
@@ -921,6 +985,8 @@ namespace DB
                 threadKT.ThreadState == ThreadState.Stopped &&
                 threadKH.ThreadState == ThreadState.Stopped)
             {
+                thongKe();
+
                 //gán dữ liệu vào datagridview
                 datagrid.Visible = true;
                 datagrid.Visible = true;
@@ -1144,8 +1210,6 @@ namespace DB
                     }
 
                     sqlConnection.Close();
-
-                    thongKe();
                 }
             }
         }
@@ -1321,5 +1385,7 @@ namespace DB
             GetSources getSources = new GetSources();
             getSources.getSources();
         }
+
+        
     }
 }

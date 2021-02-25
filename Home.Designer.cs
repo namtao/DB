@@ -29,6 +29,7 @@ namespace DB
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -76,6 +77,8 @@ namespace DB
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.xửLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -479,19 +482,19 @@ namespace DB
             // 
             this.clonePDFToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clonePDFToolStripMenuItem.Name = "clonePDFToolStripMenuItem";
-            this.clonePDFToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.clonePDFToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.clonePDFToolStripMenuItem.Text = "Nhân bản PDF";
             this.clonePDFToolStripMenuItem.Click += new System.EventHandler(this.clonePDFToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(166, 6);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(166, 6);
             // 
             // thốngKêToolStripMenuItem
             // 
@@ -502,50 +505,61 @@ namespace DB
             this.tổngHợpToolStripMenuItem});
             this.thốngKêToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thốngKêToolStripMenuItem.Name = "thốngKêToolStripMenuItem";
-            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.thốngKêToolStripMenuItem.Text = "Thống kê";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(142, 6);
             // 
             // sốBảnGhiToolStripMenuItem
             // 
             this.sốBảnGhiToolStripMenuItem.Name = "sốBảnGhiToolStripMenuItem";
-            this.sốBảnGhiToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.sốBảnGhiToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.sốBảnGhiToolStripMenuItem.Text = "Số bản ghi";
             this.sốBảnGhiToolStripMenuItem.Click += new System.EventHandler(this.sốBảnGhiToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(142, 6);
             // 
             // tổngHợpToolStripMenuItem
             // 
             this.tổngHợpToolStripMenuItem.Name = "tổngHợpToolStripMenuItem";
-            this.tổngHợpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.tổngHợpToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.tổngHợpToolStripMenuItem.Text = "Tổng hợp";
             this.tổngHợpToolStripMenuItem.Click += new System.EventHandler(this.tổngHợpToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(166, 6);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(166, 6);
             // 
             // xửLýToolStripMenuItem
             // 
             this.xửLýToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xửLýToolStripMenuItem.Name = "xửLýToolStripMenuItem";
-            this.xửLýToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.xửLýToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.xửLýToolStripMenuItem.Text = "Xử lý";
             this.xửLýToolStripMenuItem.Click += new System.EventHandler(this.xửLýToolStripMenuItem_Click);
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "Auto";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
             // Home
             // 
@@ -576,6 +590,7 @@ namespace DB
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Home_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Home_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -631,6 +646,8 @@ namespace DB
         private System.Windows.Forms.RadioButton rdnDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem xửLýToolStripMenuItem;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 

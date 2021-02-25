@@ -34,8 +34,8 @@ namespace DB
             this.label3 = new System.Windows.Forms.Label();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtTo = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.lb = new System.Windows.Forms.Label();
+            this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.btnExe = new System.Windows.Forms.Button();
             this.lbCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -86,23 +86,23 @@ namespace DB
             this.label1.TabIndex = 1000000027;
             this.label1.Text = "Từ ngày";
             // 
+            // lb
+            // 
+            this.lb.AutoSize = true;
+            this.lb.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb.Location = new System.Drawing.Point(547, 15);
+            this.lb.Name = "lb";
+            this.lb.Size = new System.Drawing.Size(70, 19);
+            this.lb.TabIndex = 1000000029;
+            this.lb.Text = "Đến ngày";
+            // 
             // dtTo
             // 
-            this.dtTo.AutoSize = true;
-            this.dtTo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtTo.Location = new System.Drawing.Point(547, 15);
+            this.dtTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtTo.Location = new System.Drawing.Point(623, 12);
             this.dtTo.Name = "dtTo";
-            this.dtTo.Size = new System.Drawing.Size(70, 19);
-            this.dtTo.TabIndex = 1000000029;
-            this.dtTo.Text = "Đến ngày";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(623, 12);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(114, 27);
-            this.dateTimePicker2.TabIndex = 1000000028;
+            this.dtTo.Size = new System.Drawing.Size(114, 27);
+            this.dtTo.TabIndex = 1000000028;
             // 
             // btnExe
             // 
@@ -111,7 +111,7 @@ namespace DB
             this.btnExe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExe.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExe.Location = new System.Drawing.Point(292, 349);
+            this.btnExe.Location = new System.Drawing.Point(336, 349);
             this.btnExe.Name = "btnExe";
             this.btnExe.Size = new System.Drawing.Size(89, 28);
             this.btnExe.TabIndex = 1000000030;
@@ -244,15 +244,15 @@ namespace DB
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbCount);
             this.Controls.Add(this.btnExe);
+            this.Controls.Add(this.lb);
             this.Controls.Add(this.dtTo);
-            this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtFrom);
             this.Controls.Add(this.cbxNguoiXuLy);
             this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "QuaTrinhXuLy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -270,8 +270,8 @@ namespace DB
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtFrom;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label dtTo;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label lb;
+        private System.Windows.Forms.DateTimePicker dtTo;
         private System.Windows.Forms.Button btnExe;
         private System.Windows.Forms.Label lbCount;
         private System.Windows.Forms.Label label2;
