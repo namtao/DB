@@ -1124,7 +1124,7 @@ namespace DB
                 if (sqlConnection.State == ConnectionState.Open)
                 {
                     //nếu connection mở thì gán chuỗi sql string
-                    Home.sqlConnect = @"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword";
+                    //Home.sqlConnect = @"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword";
 
                     quaTrinhXuLyKS(sqlConnection);
                     quaTrinhXuLyKT(sqlConnection);

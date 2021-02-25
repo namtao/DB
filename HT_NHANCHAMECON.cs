@@ -8,7 +8,7 @@ namespace DB
 {
     class HT_NHANCHAMECON
     {
-        public string ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, loaiDangKy, loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, cmQuocTich, cmLoaiCuTru, cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, ncNgaySinh, ncDanToc, ncQuocTich, ncLoaiCuTru, ncLoaiGiayToTuyThan, ncSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, GhiChu, cmNoiCuTru, ncNoiCuTru, nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, nguoiThucHien, cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan;
+        private string ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, loaiDangKy, loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, cmQuocTich, cmLoaiCuTru, cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, ncNgaySinh, ncDanToc, ncQuocTich, ncLoaiCuTru, ncLoaiGiayToTuyThan, ncSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, GhiChu, cmNoiCuTru, ncNoiCuTru, nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, nguoiThucHien, cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan;
 
         public HT_NHANCHAMECON(string iD, string so, string quyenSo, string trangSo, string quyetDinhSo, string ngayDangKy, string loaiDangKy, string loaiXacNhan, string noiDangKy, string cmHoTen, string cmNgaySinh, string cmDanToc, string cmQuocTich, string cmLoaiCuTru, string cmLoaiGiayToTuyThan, string cmSoGiayToTuyThan, string ncHoTen, string ncNgaySinh, string ncDanToc, string ncQuocTich, string ncLoaiCuTru, string ncLoaiGiayToTuyThan, string ncSoGiayToTuyThan, string tinhTrangID, string tenFile, string tenFileSauUpload, string uRLTapTinDinhKem, string namMoSo, string loaiGiay, string duLieuCu, string ngayCapNhat, string ghiChu, string cmNoiCuTru, string ncNoiCuTru, string nycHoTen, string nycQHNguoiDuocNhan, string nguoiKy, string chucVuNguoiKy, string nguoiThucHien, string cmQueQuan, string cmNgayCapGiayToTuyThan, string cmNoiCapGiayToTuyThan, string ncQueQuan, string ncNgayCapGiayToTuyThan, string ncNoiCapGiayToTuyThan, string nycLoaiGiayToTuyThan, string nycSoGiayToTuyThan, string nycNgayCapGiayToTuyThan, string nycNoiCapGiayToTuyThan)
         {
@@ -62,6 +62,60 @@ namespace DB
             this.nycNgayCapGiayToTuyThan = nycNgayCapGiayToTuyThan;
             this.nycNoiCapGiayToTuyThan = nycNoiCapGiayToTuyThan;
         }
+
+        public HT_NHANCHAMECON()
+        {
+        }
+
+        public string ID1 { get => ID; set => ID = value; }
+        public string So1 { get => So; set => So = value; }
+        public string QuyenSo { get => quyenSo; set => quyenSo = value; }
+        public string TrangSo { get => trangSo; set => trangSo = value; }
+        public string QuyetDinhSo { get => quyetDinhSo; set => quyetDinhSo = value; }
+        public string NgayDangKy { get => ngayDangKy; set => ngayDangKy = value; }
+        public string LoaiDangKy { get => loaiDangKy; set => loaiDangKy = value; }
+        public string LoaiXacNhan { get => loaiXacNhan; set => loaiXacNhan = value; }
+        public string NoiDangKy { get => noiDangKy; set => noiDangKy = value; }
+        public string CmHoTen { get => cmHoTen; set => cmHoTen = value; }
+        public string CmNgaySinh { get => cmNgaySinh; set => cmNgaySinh = value; }
+        public string CmDanToc { get => cmDanToc; set => cmDanToc = value; }
+        public string CmQuocTich { get => cmQuocTich; set => cmQuocTich = value; }
+        public string CmLoaiCuTru { get => cmLoaiCuTru; set => cmLoaiCuTru = value; }
+        public string CmLoaiGiayToTuyThan { get => cmLoaiGiayToTuyThan; set => cmLoaiGiayToTuyThan = value; }
+        public string CmSoGiayToTuyThan { get => cmSoGiayToTuyThan; set => cmSoGiayToTuyThan = value; }
+        public string NcHoTen { get => ncHoTen; set => ncHoTen = value; }
+        public string NcNgaySinh { get => ncNgaySinh; set => ncNgaySinh = value; }
+        public string NcDanToc { get => ncDanToc; set => ncDanToc = value; }
+        public string NcQuocTich { get => ncQuocTich; set => ncQuocTich = value; }
+        public string NcLoaiCuTru { get => ncLoaiCuTru; set => ncLoaiCuTru = value; }
+        public string NcLoaiGiayToTuyThan { get => ncLoaiGiayToTuyThan; set => ncLoaiGiayToTuyThan = value; }
+        public string NcSoGiayToTuyThan { get => ncSoGiayToTuyThan; set => ncSoGiayToTuyThan = value; }
+        public string TinhTrangID1 { get => TinhTrangID; set => TinhTrangID = value; }
+        public string TenFile1 { get => TenFile; set => TenFile = value; }
+        public string TenFileSauUpload1 { get => TenFileSauUpload; set => TenFileSauUpload = value; }
+        public string URLTapTinDinhKem1 { get => URLTapTinDinhKem; set => URLTapTinDinhKem = value; }
+        public string NamMoSo1 { get => NamMoSo; set => NamMoSo = value; }
+        public string LoaiGiay1 { get => LoaiGiay; set => LoaiGiay = value; }
+        public string DuLieuCu1 { get => DuLieuCu; set => DuLieuCu = value; }
+        public string NgayCapNhat1 { get => NgayCapNhat; set => NgayCapNhat = value; }
+        public string GhiChu1 { get => GhiChu; set => GhiChu = value; }
+        public string CmNoiCuTru { get => cmNoiCuTru; set => cmNoiCuTru = value; }
+        public string NcNoiCuTru { get => ncNoiCuTru; set => ncNoiCuTru = value; }
+        public string NycHoTen { get => nycHoTen; set => nycHoTen = value; }
+        public string NycQHNguoiDuocNhan { get => nycQHNguoiDuocNhan; set => nycQHNguoiDuocNhan = value; }
+        public string NguoiKy { get => nguoiKy; set => nguoiKy = value; }
+        public string ChucVuNguoiKy { get => chucVuNguoiKy; set => chucVuNguoiKy = value; }
+        public string NguoiThucHien { get => nguoiThucHien; set => nguoiThucHien = value; }
+        public string CmQueQuan { get => cmQueQuan; set => cmQueQuan = value; }
+        public string CmNgayCapGiayToTuyThan { get => cmNgayCapGiayToTuyThan; set => cmNgayCapGiayToTuyThan = value; }
+        public string CmNoiCapGiayToTuyThan { get => cmNoiCapGiayToTuyThan; set => cmNoiCapGiayToTuyThan = value; }
+        public string NcQueQuan { get => ncQueQuan; set => ncQueQuan = value; }
+        public string NcNgayCapGiayToTuyThan { get => ncNgayCapGiayToTuyThan; set => ncNgayCapGiayToTuyThan = value; }
+        public string NcNoiCapGiayToTuyThan { get => ncNoiCapGiayToTuyThan; set => ncNoiCapGiayToTuyThan = value; }
+        public string NycLoaiGiayToTuyThan { get => nycLoaiGiayToTuyThan; set => nycLoaiGiayToTuyThan = value; }
+        public string NycSoGiayToTuyThan { get => nycSoGiayToTuyThan; set => nycSoGiayToTuyThan = value; }
+        public string NycNgayCapGiayToTuyThan { get => nycNgayCapGiayToTuyThan; set => nycNgayCapGiayToTuyThan = value; }
+        public string NycNoiCapGiayToTuyThan { get => nycNoiCapGiayToTuyThan; set => nycNoiCapGiayToTuyThan = value; }
 
         public override bool Equals(object obj)
         {
@@ -173,5 +227,7 @@ namespace DB
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nycNoiCapGiayToTuyThan);
             return hashCode;
         }
+
+
     }
 }
