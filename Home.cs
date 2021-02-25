@@ -871,7 +871,7 @@ namespace DB
             dt = (DataTable)datagrid.DataSource;
             if (datagrid.Rows.Count != 0 && datagrid.Rows != null)
             {
-                Utils.Export(dt, datagrid, "SHEET 1", "CAPTION");
+                Utils.Export(dt, datagrid, "KIỂM TRA", "KIỂM TRA DỮ LIỆU");
             }
             else MessageBox.Show("Không có dữ liệu để lưu vào excel, vui lòng kiểm tra lại!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
@@ -1018,6 +1018,13 @@ namespace DB
                         Convert.ToInt32(new SqlCommand(dbName + "SELECT COUNT(*) FROM HT_NHANCHAMECON", conn).ExecuteScalar())));
                 conn.Close();
                 datagrid.DataSource = dt;
+
+                //XUẤT EXCEL
+                if (datagrid.Rows.Count != 0 && datagrid.Rows != null)
+                {
+                    Utils.ExportThongKe(dt, datagrid, "THỐNG KÊ", "THỐNG KÊ DỮ LIỆU HỘ TỊCH");
+                }
+                else MessageBox.Show("Không có dữ liệu để lưu vào excel, vui lòng kiểm tra lại!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
