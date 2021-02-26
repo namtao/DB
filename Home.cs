@@ -30,7 +30,6 @@ namespace DB
         int khDuoi16 = 0, khTren16 = 0;
         int cmcDuoi16 = 0, cmcTren16 = 0;
         Thread threadKS, threadKT, threadKH, threadCMC;
-        Thread threadAG, threadAG1, threadAG2;
         DataTable dt;
         List<XuLy> listXuLyKS, listXuLyKT, listXuLyKH, listXuLyCMC, listKS, listKT, listKH, listCMC;
         Thread threadXuLyKS, threadXuLyKT, threadXuLyKH, threadXuLyCMC;
@@ -38,6 +37,7 @@ namespace DB
         public void AG()
         {
             //thread An Giang
+            //Thread threadAG, threadAG1, threadAG2;
             /*threadAG = new Thread(() =>
             {
                 using (SqlConnection con = new SqlConnection(sqlConnect))

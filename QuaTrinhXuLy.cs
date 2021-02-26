@@ -1525,21 +1525,5 @@ namespace DB
             diff.kt = tt7.GetType().GetProperty(columnName).GetValue(tt7, null) + "";
             listDiff.Add(diff);
         }
-
-        private void cbxNdk_DropDown(object sender, EventArgs e)
-        {
-            SqlConnection conn = new SqlConnection(Home.sqlConnect);
-            conn.Open();
-            string strCmd = "SELECT * FROM HT_NOIDANGKY WHERE TenNoiDangKy LIKE N'%Quận 10%' ORDER BY TenNoiDangKy";
-            SqlCommand cmd = new SqlCommand(strCmd, conn);
-            SqlDataAdapter da = new SqlDataAdapter(strCmd, conn);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            cmd.ExecuteNonQuery();
-            conn.Close();
-            cbxNdk.DisplayMember = "TenNoiDangKy";
-            cbxNdk.ValueMember = "MaNoiDangKy";
-            cbxNdk.DataSource = ds.Tables[0];
-        }
     }
 }
