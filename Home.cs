@@ -464,6 +464,7 @@ namespace DB
             });
         }
 
+        //thêm bản ghi có trạng thái mói db
         public void quaTrinhXuLyKS(SqlConnection sqlConnection)
         {
             listXuLyKS = new List<XuLy>();
