@@ -135,7 +135,7 @@ namespace DB
                         }
 
                         //so sánh 2 trạng thái nếu khác nhau thì so sánh từng cột 1 để lưu vào db
-                        if (!tt7.Equals(tt6)||!tt7.Equals(tt5))
+                        if (!tt7.Equals(tt6)||!tt7.Equals(tt5)||!tt6.Equals(tt5))
                         {
                             List<Diff> listDiff = new List<Diff>();
 
@@ -145,7 +145,8 @@ namespace DB
                             foreach (System.Reflection.PropertyInfo property in type.GetProperties())
                             {
                                 if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null))
-                                || !tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null)))
+                                || !tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null))
+                                || !tt6.GetType().GetProperty(property.Name).GetValue(tt6, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null)))
                                     if (!property.Name.Equals("TinhTrangID1")) 
                                         addListDiff<HT_KHAISINH>(listDiff, tt7, tt6, tt5, property.Name);
                             }
@@ -279,7 +280,7 @@ namespace DB
                         }
 
                         //so sánh 2 trạng thái nếu khác nhau thì so sánh từng cột 1 để lưu vào db
-                        if (!tt7.Equals(tt6) || !tt7.Equals(tt5))
+                        if (!tt7.Equals(tt6) || !tt7.Equals(tt5) || !tt6.Equals(tt5))
                         {
                             List<Diff> listDiff = new List<Diff>();
 
@@ -289,7 +290,8 @@ namespace DB
                             foreach (System.Reflection.PropertyInfo property in type.GetProperties())
                             {
                                 if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null))
-                                ||!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null)))
+                                ||!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null))
+                                || !tt6.GetType().GetProperty(property.Name).GetValue(tt6, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null)))
                                     if (!property.Name.Equals("TinhTrangID1"))  
                                         addListDiff<HT_KHAITU>(listDiff, tt7, tt6, tt5, property.Name);
                             }
@@ -424,7 +426,7 @@ namespace DB
                         }
 
                         //so sánh 2 trạng thái nếu khác nhau thì so sánh từng cột 1 để lưu vào db
-                        if (!tt7.Equals(tt6) || !tt7.Equals(tt5))
+                        if (!tt7.Equals(tt6) || !tt7.Equals(tt5) || !tt6.Equals(tt5))
                         {
                             List<Diff> listDiff = new List<Diff>();
 
@@ -434,7 +436,8 @@ namespace DB
                             foreach (System.Reflection.PropertyInfo property in type.GetProperties())
                             {
                                 if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null))
-                                || !tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null)))
+                                || !tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null))
+                                || !tt6.GetType().GetProperty(property.Name).GetValue(tt6, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null)))
                                     if (!property.Name.Equals("TinhTrangID1"))  
                                         addListDiff<HT_KETHON>(listDiff, tt7, tt6, tt5, property.Name);
                             }
@@ -602,7 +605,7 @@ namespace DB
                         }
 
                         //so sánh 2 trạng thái nếu khác nhau thì so sánh từng cột 1 để lưu vào db
-                        if (!tt7.Equals(tt6) || !tt7.Equals(tt5))
+                        if (!tt7.Equals(tt6) || !tt7.Equals(tt5) || !tt6.Equals(tt5))
                         {
                             List<Diff> listDiff = new List<Diff>();
 
@@ -612,7 +615,8 @@ namespace DB
                             foreach (System.Reflection.PropertyInfo property in type.GetProperties())
                             {
                                 if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null))
-                                || !tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null))) 
+                                || !tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null))
+                                || !tt6.GetType().GetProperty(property.Name).GetValue(tt6, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null))) 
                                     if (!property.Name.Equals("TinhTrangID1"))
                                         addListDiff<HT_NHANCHAMECON>(listDiff, tt7, tt6, tt5, property.Name);
                             }
