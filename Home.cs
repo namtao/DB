@@ -641,6 +641,8 @@ namespace DB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                ConnectDB connectDB = new ConnectDB();
+                connectDB.Show();
             }
         }
 
@@ -684,6 +686,10 @@ namespace DB
                 if (threadKT.ThreadState == ThreadState.Running) threadKT.Abort();
                 if (threadKH.ThreadState == ThreadState.Running) threadKH.Abort();
                 if (threadCMC.ThreadState == ThreadState.Running) threadCMC.Abort();
+                if (threadXuLyCMC.ThreadState == ThreadState.Running) threadXuLyCMC.Abort();
+                if (threadXuLyKS.ThreadState == ThreadState.Running) threadXuLyKS.Abort();
+                if (threadXuLyKT.ThreadState == ThreadState.Running) threadXuLyKT.Abort();
+                if (threadXuLyKH.ThreadState == ThreadState.Running) threadXuLyKH.Abort();
                 Application.Exit();
             }
             else if (dialogResult == DialogResult.No)
