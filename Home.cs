@@ -500,7 +500,7 @@ namespace DB
                 {
                     if (!listXuLyKS.Contains(listKS[i])) insertXuLyKS(listKS[i].Id);
                 }
-                MessageBox.Show("Hoàn tất quá trình xử lý!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Hoàn tất quá trình xử lý!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             });
         }
 
@@ -1188,10 +1188,8 @@ namespace DB
         private void xửLýToolStripMenuItem_Click(object sender, EventArgs e)
         {
             QuaTrinhXuLy qtxl = new QuaTrinhXuLy();
-            qtxl.Show();
-            this.Hide();
 
-            using (SqlConnection sqlConnection = new SqlConnection(@"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword"))
+            using (SqlConnection sqlConnection = new SqlConnection(Home.sqlConnect))
             {
                 sqlConnection.Open();
                 if (sqlConnection.State == ConnectionState.Open)
@@ -1218,6 +1216,9 @@ namespace DB
 
                     sqlConnection.Close();
                 }
+
+                qtxl.Show();
+                this.Hide();
             }
         }
 

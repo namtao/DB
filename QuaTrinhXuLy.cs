@@ -135,7 +135,7 @@ namespace DB
                         }
 
                         //so sánh 2 trạng thái nếu khác nhau thì so sánh từng cột 1 để lưu vào db
-                        if (!tt7.Equals(tt6))
+                        if (!tt7.Equals(tt6)||!tt7.Equals(tt5))
                         {
                             List<Diff> listDiff = new List<Diff>();
 
@@ -144,7 +144,8 @@ namespace DB
                             //lấy value theo tên thuộc tính (có get set)
                             foreach (System.Reflection.PropertyInfo property in type.GetProperties())
                             {
-                                if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null)))
+                                if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null))
+                                || !tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null)))
                                     if (!property.Name.Equals("TinhTrangID1")) 
                                         addListDiff<HT_KHAISINH>(listDiff, tt7, tt6, tt5, property.Name);
                             }
@@ -165,7 +166,6 @@ namespace DB
                         }
 
                     }
-
                     MessageBox.Show("Đã xử lý xong KS", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             });
@@ -279,7 +279,7 @@ namespace DB
                         }
 
                         //so sánh 2 trạng thái nếu khác nhau thì so sánh từng cột 1 để lưu vào db
-                        if (!tt7.Equals(tt6))
+                        if (!tt7.Equals(tt6) || !tt7.Equals(tt5))
                         {
                             List<Diff> listDiff = new List<Diff>();
 
@@ -288,7 +288,8 @@ namespace DB
                             //lấy value theo tên thuộc tính (có get set)
                             foreach (System.Reflection.PropertyInfo property in type.GetProperties())
                             {
-                                if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null)))
+                                if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null))
+                                ||!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null)))
                                     if (!property.Name.Equals("TinhTrangID1"))  
                                         addListDiff<HT_KHAITU>(listDiff, tt7, tt6, tt5, property.Name);
                             }
@@ -423,7 +424,7 @@ namespace DB
                         }
 
                         //so sánh 2 trạng thái nếu khác nhau thì so sánh từng cột 1 để lưu vào db
-                        if (!tt7.Equals(tt6))
+                        if (!tt7.Equals(tt6) || !tt7.Equals(tt5))
                         {
                             List<Diff> listDiff = new List<Diff>();
 
@@ -432,7 +433,8 @@ namespace DB
                             //lấy value theo tên thuộc tính (có get set)
                             foreach (System.Reflection.PropertyInfo property in type.GetProperties())
                             {
-                                if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null)))
+                                if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null))
+                                || !tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null)))
                                     if (!property.Name.Equals("TinhTrangID1"))  
                                         addListDiff<HT_KETHON>(listDiff, tt7, tt6, tt5, property.Name);
                             }
@@ -600,7 +602,7 @@ namespace DB
                         }
 
                         //so sánh 2 trạng thái nếu khác nhau thì so sánh từng cột 1 để lưu vào db
-                        if (!tt7.Equals(tt6))
+                        if (!tt7.Equals(tt6) || !tt7.Equals(tt5))
                         {
                             List<Diff> listDiff = new List<Diff>();
 
@@ -609,7 +611,8 @@ namespace DB
                             //lấy value theo tên thuộc tính (có get set)
                             foreach (System.Reflection.PropertyInfo property in type.GetProperties())
                             {
-                                if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null))) 
+                                if (!tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt6.GetType().GetProperty(property.Name).GetValue(tt6, null))
+                                || !tt7.GetType().GetProperty(property.Name).GetValue(tt7, null).Equals(tt5.GetType().GetProperty(property.Name).GetValue(tt5, null))) 
                                     if (!property.Name.Equals("TinhTrangID1"))
                                         addListDiff<HT_NHANCHAMECON>(listDiff, tt7, tt6, tt5, property.Name);
                             }
@@ -639,6 +642,7 @@ namespace DB
 
         private void QuaTrinhXuLy_Load(object sender, EventArgs e)
         {
+            
         }
 
         private void addListDiff<T>(List<Diff> listDiff, T tt7, T tt6, T tt5, string columnName)
@@ -657,6 +661,22 @@ namespace DB
             diff.ktbm2 = tt6.GetType().GetProperty(columnName).GetValue(tt6, null) + "";
             diff.kt = tt5.GetType().GetProperty(columnName).GetValue(tt5, null) + "";
             listDiff.Add(diff);
+        }
+
+        private void cbxNdk_DropDown(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(Home.sqlConnect);
+            conn.Open();
+            string strCmd = "SELECT * FROM HT_NOIDANGKY WHERE TenNoiDangKy LIKE N'%Quận 10%' ORDER BY TenNoiDangKy";
+            SqlCommand cmd = new SqlCommand(strCmd, conn);
+            SqlDataAdapter da = new SqlDataAdapter(strCmd, conn);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            cbxNdk.DisplayMember = "TenNoiDangKy";
+            cbxNdk.ValueMember = "MaNoiDangKy";
+            cbxNdk.DataSource = ds.Tables[0];
         }
     }
 }

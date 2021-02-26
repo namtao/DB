@@ -30,8 +30,6 @@ namespace DB
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuaTrinhXuLy));
-            this.cbxNguoiXuLy = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.lb = new System.Windows.Forms.Label();
@@ -46,41 +44,25 @@ namespace DB
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.cbxNdk = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtYear = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // cbxNguoiXuLy
-            // 
-            this.cbxNguoiXuLy.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxNguoiXuLy.FormattingEnabled = true;
-            this.cbxNguoiXuLy.Location = new System.Drawing.Point(111, 12);
-            this.cbxNguoiXuLy.Margin = new System.Windows.Forms.Padding(10, 10, 15, 15);
-            this.cbxNguoiXuLy.Name = "cbxNguoiXuLy";
-            this.cbxNguoiXuLy.Size = new System.Drawing.Size(176, 27);
-            this.cbxNguoiXuLy.TabIndex = 1000000024;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 19);
-            this.label3.TabIndex = 1000000025;
-            this.label3.Text = "Người xử lý";
             // 
             // dtFrom
             // 
             this.dtFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFrom.Location = new System.Drawing.Point(387, 12);
+            this.dtFrom.Location = new System.Drawing.Point(254, 64);
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Size = new System.Drawing.Size(116, 27);
-            this.dtFrom.TabIndex = 1000000026;
+            this.dtFrom.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(320, 14);
+            this.label1.Location = new System.Drawing.Point(187, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 19);
             this.label1.TabIndex = 1000000027;
@@ -90,7 +72,7 @@ namespace DB
             // 
             this.lb.AutoSize = true;
             this.lb.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb.Location = new System.Drawing.Point(547, 15);
+            this.lb.Location = new System.Drawing.Point(414, 67);
             this.lb.Name = "lb";
             this.lb.Size = new System.Drawing.Size(70, 19);
             this.lb.TabIndex = 1000000029;
@@ -99,10 +81,10 @@ namespace DB
             // dtTo
             // 
             this.dtTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtTo.Location = new System.Drawing.Point(623, 12);
+            this.dtTo.Location = new System.Drawing.Point(490, 64);
             this.dtTo.Name = "dtTo";
             this.dtTo.Size = new System.Drawing.Size(114, 27);
-            this.dtTo.TabIndex = 1000000028;
+            this.dtTo.TabIndex = 4;
             // 
             // btnExe
             // 
@@ -111,7 +93,7 @@ namespace DB
             this.btnExe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExe.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExe.Location = new System.Drawing.Point(336, 349);
+            this.btnExe.Location = new System.Drawing.Point(351, 198);
             this.btnExe.Name = "btnExe";
             this.btnExe.Size = new System.Drawing.Size(89, 28);
             this.btnExe.TabIndex = 1000000030;
@@ -124,67 +106,62 @@ namespace DB
             // 
             this.lbCount.AutoSize = true;
             this.lbCount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCount.Location = new System.Drawing.Point(18, 74);
+            this.lbCount.Location = new System.Drawing.Point(27, 114);
             this.lbCount.Margin = new System.Windows.Forms.Padding(20);
             this.lbCount.Name = "lbCount";
             this.lbCount.Size = new System.Drawing.Size(119, 19);
             this.lbCount.TabIndex = 1000000031;
             this.lbCount.Text = "Tổng số bản ghi: ";
-            this.lbCount.Visible = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(235, 74);
+            this.label2.Location = new System.Drawing.Point(244, 114);
             this.label2.Margin = new System.Windows.Forms.Padding(20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(190, 19);
             this.label2.TabIndex = 1000000032;
             this.label2.Text = "Số trường hợp khác KTBM2:";
-            this.label2.Visible = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(528, 74);
+            this.label4.Location = new System.Drawing.Point(537, 114);
             this.label4.Margin = new System.Windows.Forms.Padding(20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(190, 19);
             this.label4.TabIndex = 1000000033;
             this.label4.Text = "Số trường hợp khác KTBM1:";
-            this.label4.Visible = false;
             // 
             // lbSUM
             // 
             this.lbSUM.AutoSize = true;
             this.lbSUM.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSUM.Location = new System.Drawing.Point(151, 74);
+            this.lbSUM.Location = new System.Drawing.Point(160, 114);
             this.lbSUM.Margin = new System.Windows.Forms.Padding(20);
             this.lbSUM.Name = "lbSUM";
             this.lbSUM.Size = new System.Drawing.Size(17, 19);
             this.lbSUM.TabIndex = 1000000034;
             this.lbSUM.Text = "0";
-            this.lbSUM.Visible = false;
             // 
             // lbKTBM2
             // 
             this.lbKTBM2.AutoSize = true;
             this.lbKTBM2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbKTBM2.Location = new System.Drawing.Point(441, 74);
+            this.lbKTBM2.Location = new System.Drawing.Point(450, 114);
             this.lbKTBM2.Margin = new System.Windows.Forms.Padding(20);
             this.lbKTBM2.Name = "lbKTBM2";
             this.lbKTBM2.Size = new System.Drawing.Size(17, 19);
             this.lbKTBM2.TabIndex = 1000000034;
             this.lbKTBM2.Text = "0";
-            this.lbKTBM2.Visible = false;
             // 
             // lbKTBM1
             // 
             this.lbKTBM1.AutoSize = true;
             this.lbKTBM1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbKTBM1.Location = new System.Drawing.Point(734, 74);
+            this.lbKTBM1.Location = new System.Drawing.Point(745, 114);
             this.lbKTBM1.Margin = new System.Windows.Forms.Padding(20);
             this.lbKTBM1.Name = "lbKTBM1";
             this.lbKTBM1.Size = new System.Drawing.Size(17, 19);
@@ -196,44 +173,85 @@ namespace DB
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(62, 116);
+            this.label5.Location = new System.Drawing.Point(62, 156);
             this.label5.Margin = new System.Windows.Forms.Padding(20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(138, 19);
             this.label5.TabIndex = 1000000035;
             this.label5.Text = "Kiểm tra biên mục 1";
-            this.label5.Visible = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(321, 116);
+            this.label6.Location = new System.Drawing.Point(321, 156);
             this.label6.Margin = new System.Windows.Forms.Padding(20);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(138, 19);
             this.label6.TabIndex = 1000000035;
             this.label6.Text = "Kiểm tra biên mục 2";
-            this.label6.Visible = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(589, 116);
+            this.label7.Location = new System.Drawing.Point(589, 156);
             this.label7.Margin = new System.Windows.Forms.Padding(20);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 19);
             this.label7.TabIndex = 1000000035;
             this.label7.Text = "Kết thúc";
-            this.label7.Visible = false;
+            // 
+            // cbxNdk
+            // 
+            this.cbxNdk.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxNdk.FormattingEnabled = true;
+            this.cbxNdk.Location = new System.Drawing.Point(325, 18);
+            this.cbxNdk.Margin = new System.Windows.Forms.Padding(10, 10, 15, 15);
+            this.cbxNdk.Name = "cbxNdk";
+            this.cbxNdk.Size = new System.Drawing.Size(437, 27);
+            this.cbxNdk.TabIndex = 2;
+            this.cbxNdk.DropDown += new System.EventHandler(this.cbxNdk_DropDown);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(232, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 19);
+            this.label3.TabIndex = 1000000039;
+            this.label3.Text = "Nơi đăng ký";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(41, 21);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 19);
+            this.label8.TabIndex = 1000000038;
+            this.label8.Text = "Năm";
+            // 
+            // txtYear
+            // 
+            this.txtYear.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYear.Location = new System.Drawing.Point(86, 18);
+            this.txtYear.Multiline = true;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(75, 28);
+            this.txtYear.TabIndex = 1;
             // 
             // QuaTrinhXuLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(771, 389);
+            this.ClientSize = new System.Drawing.Size(791, 244);
+            this.Controls.Add(this.cbxNdk);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtYear);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -248,8 +266,6 @@ namespace DB
             this.Controls.Add(this.dtTo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtFrom);
-            this.Controls.Add(this.cbxNguoiXuLy);
-            this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -265,9 +281,6 @@ namespace DB
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cbxNguoiXuLy;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtFrom;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lb;
@@ -282,5 +295,9 @@ namespace DB
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbxNdk;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtYear;
     }
 }
