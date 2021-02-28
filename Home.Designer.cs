@@ -30,10 +30,10 @@ namespace DB
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.datagrid = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
@@ -76,9 +76,24 @@ namespace DB
             this.tổngHợpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.cậpNhậtDữLiệuMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.xửLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.quảnLyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thốngKêThôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quáTrìnhXửLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tắtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.khởiĐộngLạiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tắtToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.khởiĐộngLạiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tắtToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.khởiĐộngLạiToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thôngTinPhiênBảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -90,37 +105,37 @@ namespace DB
             this.datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.datagrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagrid.DefaultCellStyle = dataGridViewCellStyle10;
             this.datagrid.Location = new System.Drawing.Point(18, 261);
             this.datagrid.Margin = new System.Windows.Forms.Padding(20);
             this.datagrid.Name = "datagrid";
             this.datagrid.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datagrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datagrid.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.datagrid.Size = new System.Drawing.Size(1115, 510);
             this.datagrid.TabIndex = 1000000003;
             this.datagrid.TabStop = false;
@@ -433,7 +448,9 @@ namespace DB
             this.menuStrip.BackColor = System.Drawing.Color.White;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.toolsToolStripMenuItem});
+            this.toolsToolStripMenuItem,
+            this.quảnLyToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1143, 27);
@@ -454,14 +471,14 @@ namespace DB
             // 
             this.saveToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.saveToolStripMenuItem.Text = "Lưu vào Excel";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // toolsToolStripMenuItem
             // 
@@ -472,6 +489,9 @@ namespace DB
             this.thốngKêToolStripMenuItem,
             this.toolStripSeparator7,
             this.toolStripSeparator5,
+            this.cậpNhậtDữLiệuMenuItem,
+            this.toolStripSeparator8,
+            this.toolStripSeparator9,
             this.xửLýToolStripMenuItem});
             this.toolsToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
@@ -482,19 +502,19 @@ namespace DB
             // 
             this.clonePDFToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clonePDFToolStripMenuItem.Name = "clonePDFToolStripMenuItem";
-            this.clonePDFToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
+            this.clonePDFToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
             this.clonePDFToolStripMenuItem.Text = "Nhân bản PDF";
             this.clonePDFToolStripMenuItem.Click += new System.EventHandler(this.clonePDFToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(181, 6);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(181, 6);
             // 
             // thốngKêToolStripMenuItem
             // 
@@ -505,53 +525,72 @@ namespace DB
             this.tổngHợpToolStripMenuItem});
             this.thốngKêToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thốngKêToolStripMenuItem.Name = "thốngKêToolStripMenuItem";
-            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
+            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
             this.thốngKêToolStripMenuItem.Text = "Thống kê";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // sốBảnGhiToolStripMenuItem
             // 
             this.sốBảnGhiToolStripMenuItem.Name = "sốBảnGhiToolStripMenuItem";
-            this.sốBảnGhiToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.sốBảnGhiToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.sốBảnGhiToolStripMenuItem.Text = "Số bản ghi";
             this.sốBảnGhiToolStripMenuItem.Click += new System.EventHandler(this.sốBảnGhiToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // tổngHợpToolStripMenuItem
             // 
             this.tổngHợpToolStripMenuItem.Name = "tổngHợpToolStripMenuItem";
-            this.tổngHợpToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.tổngHợpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.tổngHợpToolStripMenuItem.Text = "Tổng hợp";
             this.tổngHợpToolStripMenuItem.Click += new System.EventHandler(this.tổngHợpToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(181, 6);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(181, 6);
+            // 
+            // cậpNhậtDữLiệuMenuItem
+            // 
+            this.cậpNhậtDữLiệuMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cậpNhậtDữLiệuMenuItem.Name = "cậpNhậtDữLiệuMenuItem";
+            this.cậpNhậtDữLiệuMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.cậpNhậtDữLiệuMenuItem.Text = "Cập nhật dữ liệu";
+            this.cậpNhậtDữLiệuMenuItem.Click += new System.EventHandler(this.cậpNhậtDữLiệuMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(181, 6);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(181, 6);
             // 
             // xửLýToolStripMenuItem
             // 
             this.xửLýToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xửLýToolStripMenuItem.Name = "xửLýToolStripMenuItem";
-            this.xửLýToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
+            this.xửLýToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
             this.xửLýToolStripMenuItem.Text = "Xử lý";
             this.xửLýToolStripMenuItem.Click += new System.EventHandler(this.xửLýToolStripMenuItem_Click);
             // 
             // timer
             // 
+            this.timer.Interval = 2000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // notifyIcon
@@ -560,6 +599,106 @@ namespace DB
             this.notifyIcon.Text = "Auto";
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
+            // quảnLyToolStripMenuItem
+            // 
+            this.quảnLyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thốngKêThôngTinToolStripMenuItem,
+            this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem,
+            this.quáTrìnhXửLýToolStripMenuItem});
+            this.quảnLyToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quảnLyToolStripMenuItem.Name = "quảnLyToolStripMenuItem";
+            this.quảnLyToolStripMenuItem.Size = new System.Drawing.Size(51, 23);
+            this.quảnLyToolStripMenuItem.Text = "Help";
+            // 
+            // thốngKêThôngTinToolStripMenuItem
+            // 
+            this.thốngKêThôngTinToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tắtToolStripMenuItem,
+            this.khởiĐộngLạiToolStripMenuItem});
+            this.thốngKêThôngTinToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thốngKêThôngTinToolStripMenuItem.Name = "thốngKêThôngTinToolStripMenuItem";
+            this.thốngKêThôngTinToolStripMenuItem.Size = new System.Drawing.Size(257, 24);
+            this.thốngKêThôngTinToolStripMenuItem.Text = "Thống kê thông tin";
+            // 
+            // cậpNhậtTrạngTháiKếtThúcToolStripMenuItem
+            // 
+            this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tắtToolStripMenuItem1,
+            this.khởiĐộngLạiToolStripMenuItem1});
+            this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem.Name = "cậpNhậtTrạngTháiKếtThúcToolStripMenuItem";
+            this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem.Size = new System.Drawing.Size(257, 24);
+            this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem.Text = "Cập nhật trạng thái kết thúc";
+            // 
+            // quáTrìnhXửLýToolStripMenuItem
+            // 
+            this.quáTrìnhXửLýToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tắtToolStripMenuItem2,
+            this.khởiĐộngLạiToolStripMenuItem2});
+            this.quáTrìnhXửLýToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quáTrìnhXửLýToolStripMenuItem.Name = "quáTrìnhXửLýToolStripMenuItem";
+            this.quáTrìnhXửLýToolStripMenuItem.Size = new System.Drawing.Size(257, 24);
+            this.quáTrìnhXửLýToolStripMenuItem.Text = "Quá trình xử lý";
+            // 
+            // tắtToolStripMenuItem
+            // 
+            this.tắtToolStripMenuItem.Name = "tắtToolStripMenuItem";
+            this.tắtToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.tắtToolStripMenuItem.Text = "Tắt";
+            this.tắtToolStripMenuItem.Click += new System.EventHandler(this.tắtToolStripMenuItem_Click);
+            // 
+            // khởiĐộngLạiToolStripMenuItem
+            // 
+            this.khởiĐộngLạiToolStripMenuItem.Name = "khởiĐộngLạiToolStripMenuItem";
+            this.khởiĐộngLạiToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.khởiĐộngLạiToolStripMenuItem.Text = "Khởi động lại";
+            this.khởiĐộngLạiToolStripMenuItem.Click += new System.EventHandler(this.khởiĐộngLạiToolStripMenuItem_Click);
+            // 
+            // tắtToolStripMenuItem1
+            // 
+            this.tắtToolStripMenuItem1.Name = "tắtToolStripMenuItem1";
+            this.tắtToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.tắtToolStripMenuItem1.Text = "Tắt";
+            this.tắtToolStripMenuItem1.Click += new System.EventHandler(this.tắtToolStripMenuItem1_Click);
+            // 
+            // khởiĐộngLạiToolStripMenuItem1
+            // 
+            this.khởiĐộngLạiToolStripMenuItem1.Name = "khởiĐộngLạiToolStripMenuItem1";
+            this.khởiĐộngLạiToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.khởiĐộngLạiToolStripMenuItem1.Text = "Khởi động lại";
+            this.khởiĐộngLạiToolStripMenuItem1.Click += new System.EventHandler(this.khởiĐộngLạiToolStripMenuItem1_Click);
+            // 
+            // tắtToolStripMenuItem2
+            // 
+            this.tắtToolStripMenuItem2.Name = "tắtToolStripMenuItem2";
+            this.tắtToolStripMenuItem2.Size = new System.Drawing.Size(180, 24);
+            this.tắtToolStripMenuItem2.Text = "Tắt";
+            this.tắtToolStripMenuItem2.Click += new System.EventHandler(this.tắtToolStripMenuItem2_Click);
+            // 
+            // khởiĐộngLạiToolStripMenuItem2
+            // 
+            this.khởiĐộngLạiToolStripMenuItem2.Name = "khởiĐộngLạiToolStripMenuItem2";
+            this.khởiĐộngLạiToolStripMenuItem2.Size = new System.Drawing.Size(180, 24);
+            this.khởiĐộngLạiToolStripMenuItem2.Text = "Khởi động lại";
+            this.khởiĐộngLạiToolStripMenuItem2.Click += new System.EventHandler(this.khởiĐộngLạiToolStripMenuItem2_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thôngTinPhiênBảnToolStripMenuItem});
+            this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(59, 23);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // thôngTinPhiênBảnToolStripMenuItem
+            // 
+            this.thôngTinPhiênBảnToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thôngTinPhiênBảnToolStripMenuItem.Name = "thôngTinPhiênBảnToolStripMenuItem";
+            this.thôngTinPhiênBảnToolStripMenuItem.Size = new System.Drawing.Size(206, 24);
+            this.thôngTinPhiênBảnToolStripMenuItem.Text = "Thông tin phiên bản";
+            this.thôngTinPhiênBảnToolStripMenuItem.Click += new System.EventHandler(this.thôngTinPhiênBảnToolStripMenuItem_Click);
             // 
             // Home
             // 
@@ -588,7 +727,6 @@ namespace DB
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang chủ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Home_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Home_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).EndInit();
@@ -648,6 +786,21 @@ namespace DB
         private System.Windows.Forms.ToolStripMenuItem xửLýToolStripMenuItem;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem cậpNhậtDữLiệuMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quảnLyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thốngKêThôngTinToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cậpNhậtTrạngTháiKếtThúcToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quáTrìnhXửLýToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tắtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem khởiĐộngLạiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tắtToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem khởiĐộngLạiToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tắtToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem khởiĐộngLạiToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thôngTinPhiênBảnToolStripMenuItem;
     }
 }
 

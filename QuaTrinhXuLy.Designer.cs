@@ -77,6 +77,7 @@ namespace DB
             // 
             this.btnExe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnExe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnExe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExe.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExe.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -94,7 +95,7 @@ namespace DB
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(614, 83);
+            this.ClientSize = new System.Drawing.Size(614, 75);
             this.Controls.Add(this.btnExe);
             this.Controls.Add(this.lb);
             this.Controls.Add(this.dtTo);

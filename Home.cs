@@ -33,6 +33,7 @@ namespace DB
         DataTable dt;
         List<XuLy> listXuLyKS, listXuLyKT, listXuLyKH, listXuLyCMC, listKS, listKT, listKH, listCMC;
         Thread threadXuLyKS, threadXuLyKT, threadXuLyKH, threadXuLyCMC;
+        Thread threadUpdateKS7, threadUpdateKT7, threadUpdateKH7, threadUpdateCMC7;
 
         public void AG()
         {
@@ -270,7 +271,7 @@ namespace DB
             timer.Start();
         }
 
-        public void thongKe()
+        public void ThongKe()
         {
             // thread thống kê khai sinh
             threadKS = new Thread(() =>
@@ -464,16 +465,18 @@ namespace DB
             });
         }
 
-        //thêm bản ghi có trạng thái mói db
-        public void quaTrinhXuLyKS(SqlConnection sqlConnection)
+        //thêm bản ghi có trạng thái mới db
+        public void QuaTrinhXuLyKS(SqlConnection sqlConnection)
         {
             listXuLyKS = new List<XuLy>();
 
             listKS = new List<XuLy>();
 
             //thêm phần tử vào list xử lý (bảng QTXLKS lưu tất cả các trạng thái)
-            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLKS", sqlConnection);
-            command.CommandType = CommandType.Text;
+            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLKS", sqlConnection)
+            {
+                CommandType = CommandType.Text
+            };
             SqlDataReader dr1 = command.ExecuteReader();
             while (dr1.Read())
             {
@@ -483,8 +486,10 @@ namespace DB
             dr1.Dispose();
 
             //thêm phẩn tử vào list KS (bảng KS lưu bản ghi)
-            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_KHAISINH", sqlConnection);
-            command2.CommandType = CommandType.Text;
+            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_KHAISINH", sqlConnection)
+            {
+                CommandType = CommandType.Text
+            };
             SqlDataReader dr2 = command2.ExecuteReader();
             while (dr2.Read())
             {
@@ -505,14 +510,16 @@ namespace DB
             });
         }
 
-        public void quaTrinhXuLyKT(SqlConnection sqlConnection)
+        public void QuaTrinhXuLyKT(SqlConnection sqlConnection)
         {
             listXuLyKT = new List<XuLy>();
 
             listKT = new List<XuLy>();
 
-            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLKT", sqlConnection);
-            command.CommandType = CommandType.Text;
+            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLKT", sqlConnection)
+            {
+                CommandType = CommandType.Text
+            };
             SqlDataReader dr1 = command.ExecuteReader();
             while (dr1.Read())
             {
@@ -521,8 +528,10 @@ namespace DB
             dr1.Close();
             dr1.Dispose();
 
-            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_KHAITU", sqlConnection);
-            command2.CommandType = CommandType.Text;
+            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_KHAITU", sqlConnection)
+            {
+                CommandType = CommandType.Text
+            };
             SqlDataReader dr2 = command2.ExecuteReader();
             while (dr2.Read())
             {
@@ -540,14 +549,16 @@ namespace DB
             });
         }
 
-        public void quaTrinhXuLyKH(SqlConnection sqlConnection)
+        public void QuaTrinhXuLyKH(SqlConnection sqlConnection)
         {
             listXuLyKH = new List<XuLy>();
 
             listKH = new List<XuLy>();
 
-            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLKH", sqlConnection);
-            command.CommandType = CommandType.Text;
+            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLKH", sqlConnection)
+            {
+                CommandType = CommandType.Text
+            };
             SqlDataReader dr1 = command.ExecuteReader();
             while (dr1.Read())
             {
@@ -556,8 +567,10 @@ namespace DB
             dr1.Close();
             dr1.Dispose();
 
-            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_KETHON", sqlConnection);
-            command2.CommandType = CommandType.Text;
+            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_KETHON", sqlConnection)
+            {
+                CommandType = CommandType.Text
+            };
             SqlDataReader dr2 = command2.ExecuteReader();
             while (dr2.Read())
             {
@@ -575,14 +588,16 @@ namespace DB
             });
         }
 
-        public void quaTrinhXuLyCMC(SqlConnection sqlConnection)
+        public void QuaTrinhXuLyCMC(SqlConnection sqlConnection)
         {
             listXuLyCMC = new List<XuLy>();
 
             listCMC = new List<XuLy>();
 
-            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLCMC", sqlConnection);
-            command.CommandType = CommandType.Text;
+            SqlCommand command = new SqlCommand("SELECT ID, TinhTrangID FROM QTXLCMC", sqlConnection)
+            {
+                CommandType = CommandType.Text
+            };
             SqlDataReader dr1 = command.ExecuteReader();
             while (dr1.Read())
             {
@@ -591,8 +606,10 @@ namespace DB
             dr1.Close();
             dr1.Dispose();
 
-            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_NHANCHAMECON", sqlConnection);
-            command2.CommandType = CommandType.Text;
+            SqlCommand command2 = new SqlCommand("SELECT ID, TinhTrangID FROM HT_NHANCHAMECON", sqlConnection)
+            {
+                CommandType = CommandType.Text
+            };
             SqlDataReader dr2 = command2.ExecuteReader();
             while (dr2.Read())
             {
@@ -610,9 +627,579 @@ namespace DB
             });
         }
 
+        //thực hiện thêm bản ghi có trạng thái mới vào db
+        private void insertXuLyKS(string id)
+        {
+            using (SqlConnection con = new SqlConnection(sqlConnect))
+            {
+                string sql = "SET IDENTITY_INSERT QTXLKS ON;" +
+                    "insert into QTXLKS(ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, " +
+                    "meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, " +
+                    "chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, " +
+                    "nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, " +
+                    "NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu)" +
+                    " SELECT ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, " +
+                    "meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, " +
+                    "chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, " +
+                    "nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, " +
+                    "NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu" +
+                    " FROM HT_KHAISINH" +
+                    " where id = " + id + ";" +
+                    " SET IDENTITY_INSERT QTXLKS OFF; ";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        private void insertXuLyKT(string id)
+        {
+            using (SqlConnection con = new SqlConnection(sqlConnect))
+            {
+                string sql = "SET IDENTITY_INSERT QTXLKT ON;" +
+                    "insert into QTXLKT(ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, " +
+                    "noiDangKy, nktHoTen, nktGioiTinh, nktNgaySinh, nktDanToc, nktQuocTich, " +
+                    "nktLoaiCuTru, nktLoaiGiayToTuyThan, nktSoGiayToTuyThan, nktNgayChet, " +
+                    "TinhTrangID, TenFile, TenFileSauUpload, URLTapTinDinhKem, NamMoSo, " +
+                    "LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, nktGioPhutChet, " +
+                    "nktNoiChet, nktNguyenNhanChet, nktNoiCuTru, nycHoTen, nycQuanHe, " +
+                    "nguoiKy, chucVuNguoiKy, nguoiThucHien, nktNgayCapGiayToTuyThan, " +
+                    "nktNoiCapGiayToTuyThan, gbtLoai, gbtSo, gbtNgay, gbtCoQuanCap, " +
+                    "nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan)" +
+                    " SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nktHoTen, nktGioiTinh, nktNgaySinh, nktDanToc, nktQuocTich, nktLoaiCuTru, " +
+                    "nktLoaiGiayToTuyThan, nktSoGiayToTuyThan, nktNgayChet, TinhTrangID, TenFile, " +
+                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
+                    "urlAnhCu, GhiChu, nktGioPhutChet, nktNoiChet, nktNguyenNhanChet, nktNoiCuTru, " +
+                    "nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, nguoiThucHien, nktNgayCapGiayToTuyThan, " +
+                    "nktNoiCapGiayToTuyThan, gbtLoai, gbtSo, gbtNgay, gbtCoQuanCap, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan" +
+                    " FROM HT_KHAITU" +
+                    " where id = " + id + ";" +
+                    " SET IDENTITY_INSERT QTXLKT OFF; ";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        private void insertXuLyKH(string id)
+        {
+            using (SqlConnection con = new SqlConnection(sqlConnect))
+            {
+                string sql = "SET IDENTITY_INSERT QTXLKH ON;" +
+                    "insert into QTXLKH(ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, " +
+                    "noiDangKy, chongHoTen, chongNgaySinh, chongDanToc, chongQuocTich, " +
+                    "chongLoaiCuTru, chongLoaiGiayToTuyThan, chongSoGiayToTuyThan, voHoTen, " +
+                    "voNgaySinh, voDanToc, voQuocTich, voLoaiCuTru, voLoaiGiayToTuyThan, " +
+                    "voSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpLoad, URLTapTinDinhKem, " +
+                    "NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, chongNoiCuTru, " +
+                    "voNoiCuTru, nguoiKy, chucVuNguoiKy, nguoiThucHien, chongNgayCapGiayToTuyThan, " +
+                    "chongNoiCapGiayToTuyThan, voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan)" +
+                    " SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, chongHoTen, " +
+                    "chongNgaySinh, chongDanToc, chongQuocTich, chongLoaiCuTru, chongLoaiGiayToTuyThan, " +
+                    "chongSoGiayToTuyThan, voHoTen, voNgaySinh, voDanToc, voQuocTich, voLoaiCuTru, " +
+                    "voLoaiGiayToTuyThan, voSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, " +
+                    "chongNoiCuTru, voNoiCuTru, nguoiKy, chucVuNguoiKy, nguoiThucHien, chongNgayCapGiayToTuyThan, " +
+                    "chongNoiCapGiayToTuyThan, voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan" +
+                    " FROM HT_KETHON" +
+                    " where id = " + id + ";" +
+                    " SET IDENTITY_INSERT QTXLKH OFF; ";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        private void insertXuLyCMC(string id)
+        {
+            using (SqlConnection con = new SqlConnection(sqlConnect))
+            {
+                string sql = "SET IDENTITY_INSERT QTXLCMC ON;" +
+                    "insert into QTXLCMC(ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, " +
+                    "loaiDangKy, loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, " +
+                    "cmQuocTich, cmLoaiCuTru, cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, " +
+                    "ncNgaySinh, ncDanToc, ncQuocTich, ncLoaiCuTru, ncLoaiGiayToTuyThan, " +
+                    "ncSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpload, URLTapTinDinhKem, " +
+                    "NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, GhiChu, cmNoiCuTru, ncNoiCuTru, " +
+                    "nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, nguoiThucHien, " +
+                    "cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, " +
+                    "ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan)" +
+                    " SELECT ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, loaiDangKy, " +
+                    "loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, cmQuocTich, cmLoaiCuTru, " +
+                    "cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, ncNgaySinh, ncDanToc, ncQuocTich, " +
+                    "ncLoaiCuTru, ncLoaiGiayToTuyThan, ncSoGiayToTuyThan, TinhTrangID, TenFile, " +
+                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
+                    "GhiChu, cmNoiCuTru, ncNoiCuTru, nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, " +
+                    "nguoiThucHien, cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, " +
+                    "ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, " +
+                    "nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan" +
+                    " FROM HT_NHANCHAMECON" +
+                    " where id = " + id + ";" +
+                    " SET IDENTITY_INSERT QTXLCMC OFF; ";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        private void UpdateID7()
+        {
+            //thread update trạng thái 7
+            threadUpdateKS7 = new Thread(() =>
+            {
+                SqlConnection con = new SqlConnection(Home.sqlConnect);
+                string strCmd = "SELECT id FROM QTXLKS where TinhTrangID = 7";
+                List<string> listID7 = new List<string>();
+                HT_KHAISINH root = new HT_KHAISINH(), qtxl = new HT_KHAISINH();
+
+                using (SqlCommand command = new SqlCommand(strCmd, con))
+                {
+                    command.CommandType = CommandType.Text;
+                    con.Open();
+                    SqlDataReader d = command.ExecuteReader();
+
+                    //duyệt từng bản ghi gán vào 2 2 đối tượng r so sánh
+                    while (d.Read())
+                    {
+                        listID7.Add(d[0].ToString());
+                    }
+                    con.Close();
+                }
+
+                foreach (string str in listID7)
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, " +
+                    "meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, " +
+                    "chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, " +
+                    "nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, " +
+                    "NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu FROM QTXLKS WHERE ID = " + str, con))
+                    {
+                        con.Open();
+                        cmd.CommandType = CommandType.Text;
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        //duyệt từng bản ghi
+                        while (dr.Read())
+                        {
+                            Type type = (new HT_KHAISINH()).GetType();
+
+                            //lấy value theo tên thuộc tính (có get set)
+                            int i = 0;
+                            foreach (System.Reflection.PropertyInfo property in type.GetProperties())
+                            {
+                                qtxl.GetType().GetProperty(property.Name).SetValue(qtxl, dr[i].ToString().Trim(), null);
+                                i++;
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, " +
+                    "meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, " +
+                    "chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, " +
+                    "nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, " +
+                    "NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu FROM HT_KHAISINH WHERE ID = " + str, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        //duyệt từng bản ghi
+                        while (dr.Read())
+                        {
+                            Type type = (new HT_KHAISINH()).GetType();
+
+                            //lấy value theo tên thuộc tính (có get set)
+                            int i = 0;
+                            foreach (System.Reflection.PropertyInfo property in type.GetProperties())
+                            {
+                                root.GetType().GetProperty(property.Name).SetValue(root, dr[i].ToString().Trim(), null);
+                                i++;
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    //so sánh 2 đối tượng
+                    Type t = (new HT_KHAISINH()).GetType();
+                    foreach (System.Reflection.PropertyInfo property in t.GetProperties())
+                    {
+                        //nếu khác nhau thì cập nhật lại qtxl
+                        if (root.GetType().GetProperty(property.Name).GetValue(root, null) != null
+                            && (qtxl.GetType().GetProperty(property.Name).GetValue(qtxl, null) != null))
+                        {
+                            if (!root.GetType().GetProperty(property.Name).GetValue(root, null).Equals(qtxl.GetType().GetProperty(property.Name).GetValue(qtxl, null)))
+                            {
+                                string strCo = "use HoTich; delete QTXLKS where TinhTrangID  = 7  and ID = " + str;
+                                using (SqlCommand cmd = new SqlCommand(strCo, con))
+                                {
+                                    cmd.CommandType = CommandType.Text;
+                                    con.Open();
+                                    cmd.ExecuteNonQuery();
+                                    con.Close();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            //thread update trạng thái 7
+            threadUpdateKT7 = new Thread(() =>
+            {
+                SqlConnection con = new SqlConnection(Home.sqlConnect);
+                string strCmd = "SELECT id FROM QTXLKT where TinhTrangID = 7";
+                List<string> listID7 = new List<string>();
+                HT_KHAITU root = new HT_KHAITU(), qtxl = new HT_KHAITU();
+
+                using (SqlCommand command = new SqlCommand(strCmd, con))
+                {
+                    command.CommandType = CommandType.Text;
+                    con.Open();
+                    SqlDataReader d = command.ExecuteReader();
+
+                    //duyệt từng bản ghi gán vào 2 2 đối tượng r so sánh
+                    while (d.Read())
+                    {
+                        listID7.Add(d[0].ToString());
+                    }
+                    con.Close();
+                }
+
+                foreach (string str in listID7)
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nktHoTen, nktGioiTinh, nktNgaySinh, nktDanToc, nktQuocTich, nktLoaiCuTru, " +
+                    "nktLoaiGiayToTuyThan, nktSoGiayToTuyThan, nktNgayChet, TinhTrangID, TenFile, " +
+                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
+                    "urlAnhCu, GhiChu, nktGioPhutChet, nktNoiChet, nktNguyenNhanChet, nktNoiCuTru, " +
+                    "nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, nguoiThucHien, nktNgayCapGiayToTuyThan, " +
+                    "nktNoiCapGiayToTuyThan, gbtLoai, gbtSo, gbtNgay, gbtCoQuanCap, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan FROM QTXLKT WHERE ID = " + str, con))
+                    {
+                        con.Open();
+                        cmd.CommandType = CommandType.Text;
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        //duyệt từng bản ghi
+                        while (dr.Read())
+                        {
+                            Type type = (new HT_KHAITU()).GetType();
+
+                            //lấy value theo tên thuộc tính (có get set)
+                            int i = 0;
+                            foreach (System.Reflection.PropertyInfo property in type.GetProperties())
+                            {
+                                qtxl.GetType().GetProperty(property.Name).SetValue(qtxl, dr[i].ToString().Trim(), null);
+                                i++;
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
+                    "nktHoTen, nktGioiTinh, nktNgaySinh, nktDanToc, nktQuocTich, nktLoaiCuTru, " +
+                    "nktLoaiGiayToTuyThan, nktSoGiayToTuyThan, nktNgayChet, TinhTrangID, TenFile, " +
+                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
+                    "urlAnhCu, GhiChu, nktGioPhutChet, nktNoiChet, nktNguyenNhanChet, nktNoiCuTru, " +
+                    "nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, nguoiThucHien, nktNgayCapGiayToTuyThan, " +
+                    "nktNoiCapGiayToTuyThan, gbtLoai, gbtSo, gbtNgay, gbtCoQuanCap, nycLoaiGiayToTuyThan, " +
+                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan FROM HT_KHAITU WHERE ID = " + str, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        //duyệt từng bản ghi
+                        while (dr.Read())
+                        {
+                            Type type = (new HT_KHAITU()).GetType();
+
+                            //lấy value theo tên thuộc tính (có get set)
+                            int i = 0;
+                            foreach (System.Reflection.PropertyInfo property in type.GetProperties())
+                            {
+                                root.GetType().GetProperty(property.Name).SetValue(root, dr[i].ToString().Trim(), null);
+                                i++;
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    //so sánh 2 đối tượng
+                    Type t = (new HT_KHAITU()).GetType();
+                    foreach (System.Reflection.PropertyInfo property in t.GetProperties())
+                    {
+                        //nếu khác nhau thì cập nhật lại qtxl
+                        if (root.GetType().GetProperty(property.Name).GetValue(root, null) != null
+                            && (qtxl.GetType().GetProperty(property.Name).GetValue(qtxl, null) != null))
+                        {
+                            if (!root.GetType().GetProperty(property.Name).GetValue(root, null).Equals(qtxl.GetType().GetProperty(property.Name).GetValue(qtxl, null)))
+                            {
+                                string strCo = "use HoTich; delete QTXLKT where TinhTrangID  = 7  and ID = " + str;
+                                using (SqlCommand cmd = new SqlCommand(strCo, con))
+                                {
+                                    cmd.CommandType = CommandType.Text;
+                                    con.Open();
+                                    cmd.ExecuteNonQuery();
+                                    con.Close();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            //thread update trạng thái 7
+            threadUpdateKH7 = new Thread(() =>
+            {
+                SqlConnection con = new SqlConnection(Home.sqlConnect);
+                string strCmd = "SELECT id FROM QTXLKH where TinhTrangID = 7";
+                List<string> listID7 = new List<string>();
+                HT_KETHON root = new HT_KETHON(), qtxl = new HT_KETHON();
+
+                using (SqlCommand command = new SqlCommand(strCmd, con))
+                {
+                    command.CommandType = CommandType.Text;
+                    con.Open();
+                    SqlDataReader d = command.ExecuteReader();
+
+                    //duyệt từng bản ghi gán vào 2 2 đối tượng r so sánh
+                    while (d.Read())
+                    {
+                        listID7.Add(d[0].ToString());
+                    }
+                    con.Close();
+                }
+
+                foreach (string str in listID7)
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, chongHoTen, " +
+                    "chongNgaySinh, chongDanToc, chongQuocTich, chongLoaiCuTru, chongLoaiGiayToTuyThan, " +
+                    "chongSoGiayToTuyThan, voHoTen, voNgaySinh, voDanToc, voQuocTich, voLoaiCuTru, " +
+                    "voLoaiGiayToTuyThan, voSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, " +
+                    "chongNoiCuTru, voNoiCuTru, nguoiKy, chucVuNguoiKy, nguoiThucHien, chongNgayCapGiayToTuyThan, " +
+                    "chongNoiCapGiayToTuyThan, voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan FROM QTXLKH WHERE ID = " + str, con))
+                    {
+                        con.Open();
+                        cmd.CommandType = CommandType.Text;
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        //duyệt từng bản ghi
+                        while (dr.Read())
+                        {
+                            Type type = (new HT_KETHON()).GetType();
+
+                            //lấy value theo tên thuộc tính (có get set)
+                            int i = 0;
+                            foreach (System.Reflection.PropertyInfo property in type.GetProperties())
+                            {
+                                qtxl.GetType().GetProperty(property.Name).SetValue(qtxl, dr[i].ToString().Trim(), null);
+                                i++;
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, chongHoTen, " +
+                    "chongNgaySinh, chongDanToc, chongQuocTich, chongLoaiCuTru, chongLoaiGiayToTuyThan, " +
+                    "chongSoGiayToTuyThan, voHoTen, voNgaySinh, voDanToc, voQuocTich, voLoaiCuTru, " +
+                    "voLoaiGiayToTuyThan, voSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpLoad, " +
+                    "URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, " +
+                    "chongNoiCuTru, voNoiCuTru, nguoiKy, chucVuNguoiKy, nguoiThucHien, chongNgayCapGiayToTuyThan, " +
+                    "chongNoiCapGiayToTuyThan, voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan FROM HT_KETHON WHERE ID = " + str, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        //duyệt từng bản ghi
+                        while (dr.Read())
+                        {
+                            Type type = (new HT_KETHON()).GetType();
+
+                            //lấy value theo tên thuộc tính (có get set)
+                            int i = 0;
+                            foreach (System.Reflection.PropertyInfo property in type.GetProperties())
+                            {
+                                root.GetType().GetProperty(property.Name).SetValue(root, dr[i].ToString().Trim(), null);
+                                i++;
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    //so sánh 2 đối tượng
+                    Type t = (new HT_KETHON()).GetType();
+                    foreach (System.Reflection.PropertyInfo property in t.GetProperties())
+                    {
+                        //nếu khác nhau thì cập nhật lại qtxl
+                        if (root.GetType().GetProperty(property.Name).GetValue(root, null) != null
+                                && (qtxl.GetType().GetProperty(property.Name).GetValue(qtxl, null) != null))
+                        {
+                            if (!root.GetType().GetProperty(property.Name).GetValue(root, null).Equals(qtxl.GetType().GetProperty(property.Name).GetValue(qtxl, null)))
+                            {
+                                string strCo = "use HoTich; delete QTXLKH where TinhTrangID  = 7  and ID = " + str;
+                                using (SqlCommand cmd = new SqlCommand(strCo, con))
+                                {
+                                    cmd.CommandType = CommandType.Text;
+                                    con.Open();
+                                    cmd.ExecuteNonQuery();
+                                    con.Close();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            //thread update trạng thái 7
+            threadUpdateCMC7 = new Thread(() =>
+            {
+                SqlConnection con = new SqlConnection(Home.sqlConnect);
+                string strCmd = "SELECT id FROM QTXLCMC where TinhTrangID = 7";
+                List<string> listID7 = new List<string>();
+                HT_NHANCHAMECON root = new HT_NHANCHAMECON(), qtxl = new HT_NHANCHAMECON();
+
+                using (SqlCommand command = new SqlCommand(strCmd, con))
+                {
+                    command.CommandType = CommandType.Text;
+                    con.Open();
+                    SqlDataReader d = command.ExecuteReader();
+
+                    //duyệt từng bản ghi gán vào 2 2 đối tượng r so sánh
+                    while (d.Read())
+                    {
+                        listID7.Add(d[0].ToString());
+                    }
+                    con.Close();
+                }
+
+                foreach (string str in listID7)
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, loaiDangKy, " +
+                    "loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, cmQuocTich, cmLoaiCuTru, " +
+                    "cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, ncNgaySinh, ncDanToc, ncQuocTich, " +
+                    "ncLoaiCuTru, ncLoaiGiayToTuyThan, ncSoGiayToTuyThan, TinhTrangID, TenFile, " +
+                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
+                    "GhiChu, cmNoiCuTru, ncNoiCuTru, nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, " +
+                    "nguoiThucHien, cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, " +
+                    "ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, " +
+                    "nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan FROM QTXLCMC WHERE ID = " + str, con))
+                    {
+                        con.Open();
+                        cmd.CommandType = CommandType.Text;
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        //duyệt từng bản ghi
+                        while (dr.Read())
+                        {
+                            Type type = (new HT_NHANCHAMECON()).GetType();
+
+                            //lấy value theo tên thuộc tính (có get set)
+                            int i = 0;
+                            foreach (System.Reflection.PropertyInfo property in type.GetProperties())
+                            {
+                                qtxl.GetType().GetProperty(property.Name).SetValue(qtxl, dr[i].ToString().Trim(), null);
+                                i++;
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, loaiDangKy, " +
+                    "loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, cmQuocTich, cmLoaiCuTru, " +
+                    "cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, ncNgaySinh, ncDanToc, ncQuocTich, " +
+                    "ncLoaiCuTru, ncLoaiGiayToTuyThan, ncSoGiayToTuyThan, TinhTrangID, TenFile, " +
+                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
+                    "GhiChu, cmNoiCuTru, ncNoiCuTru, nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, " +
+                    "nguoiThucHien, cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, " +
+                    "ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, " +
+                    "nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan FROM HT_NHANCHAMECON WHERE ID = " + str, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        //duyệt từng bản ghi
+                        while (dr.Read())
+                        {
+                            Type type = (new HT_NHANCHAMECON()).GetType();
+
+                            //lấy value theo tên thuộc tính (có get set)
+                            int i = 0;
+                            foreach (System.Reflection.PropertyInfo property in type.GetProperties())
+                            {
+                                root.GetType().GetProperty(property.Name).SetValue(root, dr[i].ToString().Trim(), null);
+                                i++;
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    //so sánh 2 đối tượng
+                    Type t = (new HT_NHANCHAMECON()).GetType();
+                    foreach (System.Reflection.PropertyInfo property in t.GetProperties())
+                    {
+                        //nếu khác nhau thì cập nhật lại qtxl
+                        if (root.GetType().GetProperty(property.Name).GetValue(root, null) != null
+                            && (qtxl.GetType().GetProperty(property.Name).GetValue(qtxl, null) != null))
+                        {
+                            if (!root.GetType().GetProperty(property.Name).GetValue(root, null).Equals(qtxl.GetType().GetProperty(property.Name).GetValue(qtxl, null)))
+                            {
+                                string strCo = "use HoTich; delete QTXLCMC where TinhTrangID  = 7  and ID = " + str;
+                                using (SqlCommand cmd = new SqlCommand(strCo, con))
+                                {
+                                    cmd.CommandType = CommandType.Text;
+                                    con.Open();
+                                    cmd.ExecuteNonQuery();
+                                    con.Close();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        private void QuaTrinhXuLy(SqlConnection sqlConnection)
+        {
+            QuaTrinhXuLyKS(sqlConnection);
+            QuaTrinhXuLyKT(sqlConnection);
+            QuaTrinhXuLyKH(sqlConnection);
+            QuaTrinhXuLyCMC(sqlConnection);
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            SqlConnection sqlConnection = null;
+            //hide title in form
+            //ControlBox = false;
+
+            SqlConnection sqlConnection;
             try
             {
                 using (sqlConnection = new SqlConnection(@"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword"))
@@ -623,14 +1210,17 @@ namespace DB
                         //nếu connection mở thì gán chuỗi sql string
                         Home.sqlConnect = @"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword";
 
-                        quaTrinhXuLyKS(sqlConnection);
-                        quaTrinhXuLyKT(sqlConnection);
-                        quaTrinhXuLyKH(sqlConnection);
-                        quaTrinhXuLyCMC(sqlConnection);
+                        QuaTrinhXuLy(sqlConnection);
+                        ThongKe();
+                        UpdateID7();
+
+                        //chạy luôn quá trình xử lý, thống kê và update id7 thì phải chọn mới bắt đầu thực hiện
+                        threadXuLyKS.Start();
+                        threadXuLyKT.Start();
+                        threadXuLyKH.Start();
+                        threadXuLyCMC.Start();
 
                         sqlConnection.Close();
-
-                        thongKe();
                     }
                     else
                     {
@@ -647,7 +1237,7 @@ namespace DB
             }
         }
 
-        public void fillDgv(string sqlQuery)
+        public void FillDgv(string sqlQuery)
         {
             SqlConnection conn = new SqlConnection(sqlConnect);
             conn.Open();
@@ -664,12 +1254,28 @@ namespace DB
         {
             try
             {
-                //strCommandSql = rtbSQL.Text;
-                if (rdnOther.Checked) strCommandSql = rtbSQL.Text;
-                datagrid.Visible = true;
-                lbCount.Visible = true;
-                fillDgv(strCommandSql);
-                lbCount.Text = (datagrid.Rows.Count - 1).ToString() + " Rows";
+                if (rdnBM.Checked || rdnKTBM1.Checked || rdnKTBM2.Checked || rdnKetThuc.Checked)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn cập nhật về trạng thái biên mục không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        if (rdnOther.Checked) strCommandSql = rtbSQL.Text;
+                        datagrid.Visible = true;
+                        lbCount.Visible = true;
+                        FillDgv(strCommandSql);
+                        lbCount.Text = (datagrid.Rows.Count - 1).ToString() + " Rows";
+                    }
+                    else MessageBox.Show("Đã hủy bỏ thao tác cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    //strCommandSql = rtbSQL.Text;
+                    if (rdnOther.Checked) strCommandSql = rtbSQL.Text;
+                    datagrid.Visible = true;
+                    lbCount.Visible = true;
+                    FillDgv(strCommandSql);
+                    lbCount.Text = (datagrid.Rows.Count - 1).ToString() + " Rows";
+                }
             }
             catch (Exception ex)
             {
@@ -883,6 +1489,94 @@ namespace DB
             else MessageBox.Show("Không có dữ liệu để lưu vào excel, vui lòng kiểm tra lại!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
+        //tắt luồng thống kê dữ liệu
+        private void tắtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            threadKS.Abort();
+            threadKT.Abort();
+            threadKH.Abort();
+            threadCMC.Abort();
+            MessageBox.Show("Thống kê đã dừng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        //tắt luồng cập nhật trạng thái kêt thúc
+        private void tắtToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            threadUpdateKS7.Abort();
+            threadUpdateKT7.Abort();
+            threadUpdateKH7.Abort();
+            threadUpdateCMC7.Abort();
+            MessageBox.Show("Cập nhật trạng thái kết thúc đã dừng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        //tắt luồng quá trình xử lý
+        private void tắtToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            threadXuLyKS.Abort();
+            threadXuLyKT.Abort();
+            threadXuLyKH.Abort();
+            threadXuLyCMC.Abort();
+            MessageBox.Show("Quá trình xử lý đã dừng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        //khởi động lại luồng thống kê dữ liệu
+        private void khởiĐộngLạiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThongKe();
+            threadKS.Start();
+            threadKT.Start();
+            threadKH.Start();
+            threadCMC.Start();
+            MessageBox.Show("Khởi động lại chức năng thống kê!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        //khởi động lại luồng cập nhật trạng thái kêt thúc
+        private void khởiĐộngLạiToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            UpdateID7();
+            threadUpdateKS7.Start();
+            threadUpdateKT7.Start();
+            threadUpdateKH7.Start();
+            threadUpdateCMC7.Start();
+            MessageBox.Show("Khởi động lại chức năng cập nhật trạng thái kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        //khởi động lại luồng quá trình xử lý
+        private void khởiĐộngLạiToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            SqlConnection connection = new SqlConnection(Home.sqlConnect);
+            connection.Open();
+            QuaTrinhXuLy(connection);
+            threadXuLyKS.Start();
+            threadXuLyKT.Start();
+            threadXuLyKH.Start();
+            threadXuLyCMC.Start();
+            connection.Close();
+            MessageBox.Show("Khởi động lại chức năng quá trình xử lý!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void thôngTinPhiênBảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            MessageBox.Show(String.Format("Phiên bản hiện tại là: {0}", version), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void cậpNhậtDữLiệuMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!threadUpdateKS7.IsAlive &&
+                !threadUpdateKT7.IsAlive &&
+                !threadUpdateKH7.IsAlive &&
+                !threadUpdateCMC7.IsAlive)
+            {
+                UpdateID7();
+                threadUpdateKS7.Start();
+                threadUpdateKT7.Start();
+                threadUpdateKH7.Start();
+                threadUpdateCMC7.Start();
+            }
+            else MessageBox.Show("Đang cập nhật dữ liệu ở trạng thái kết thúc, vui lòng chờ ít phút!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         private void clonePDFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Clone form3 = new Clone();
@@ -895,26 +1589,23 @@ namespace DB
             xuLyLenh();
         }
 
+        //10 phút sẽ cập nhật các trạng thái mới 1 lần
         private void timer_Tick(object sender, EventArgs e)
         {
-            if ((threadXuLyKS.ThreadState == ThreadState.Stopped &&
-                        threadXuLyKT.ThreadState == ThreadState.Stopped &&
-                        threadXuLyKH.ThreadState == ThreadState.Stopped &&
-                        threadXuLyCMC.ThreadState == ThreadState.Stopped) ||
-                        (threadXuLyKS.ThreadState == ThreadState.Unstarted &&
-                        threadXuLyKT.ThreadState == ThreadState.Unstarted &&
-                        threadXuLyKH.ThreadState == ThreadState.Unstarted &&
-                        threadXuLyCMC.ThreadState == ThreadState.Unstarted))
+            if (threadXuLyKS.IsAlive &&
+                        threadXuLyKT.IsAlive &&
+                        threadXuLyKH.IsAlive &&
+                        threadXuLyCMC.IsAlive)
             {
                 using (SqlConnection sqlConnection = new SqlConnection(@"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword"))
                 {
                     sqlConnection.Open();
                     if (sqlConnection.State == ConnectionState.Open)
                     {
-                        quaTrinhXuLyKS(sqlConnection);
-                        quaTrinhXuLyKT(sqlConnection);
-                        quaTrinhXuLyKH(sqlConnection);
-                        quaTrinhXuLyCMC(sqlConnection);
+                        QuaTrinhXuLyKS(sqlConnection);
+                        QuaTrinhXuLyKT(sqlConnection);
+                        QuaTrinhXuLyKH(sqlConnection);
+                        QuaTrinhXuLyCMC(sqlConnection);
 
                         threadXuLyKS.Start();
                         threadXuLyKT.Start();
@@ -978,6 +1669,7 @@ namespace DB
 
         private void tổngHợpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //datagrid.Visible = true;
             if (threadCMC.ThreadState == ThreadState.Running ||
                 threadKS.ThreadState == ThreadState.Running ||
                 threadKT.ThreadState == ThreadState.Running ||
@@ -992,12 +1684,7 @@ namespace DB
                 threadKT.ThreadState == ThreadState.Stopped &&
                 threadKH.ThreadState == ThreadState.Stopped)
             {
-                thongKe();
-
-                //gán dữ liệu vào datagridview
-                datagrid.Visible = true;
-                datagrid.Visible = true;
-                //btnExportExcel.Visible = true;
+                ThongKe();
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add(new DataColumn(" ", typeof(string)));
@@ -1035,6 +1722,7 @@ namespace DB
             }
             else
             {
+                ThongKe();
                 threadKS.Start();
                 threadKT.Start();
                 threadKH.Start();
@@ -1048,185 +1736,19 @@ namespace DB
             xuLyLenh();
         }
 
-        private void Home_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        }
-
-        private void insertXuLyKS(string id)
-        {
-            using (SqlConnection con = new SqlConnection(sqlConnect))
-            {
-                string sql = "SET IDENTITY_INSERT QTXLKS ON;" +
-                    "insert into QTXLKS(ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
-                    "nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, " +
-                    "meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, " +
-                    "chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, " +
-                    "URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, " +
-                    "nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, " +
-                    "NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, " +
-                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu)" +
-                    " SELECT ID, so, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
-                    "nksHoTen, nksGioiTinh, nksNgaySinh, nksDanToc, nksQuocTich, meHoTen, " +
-                    "meNgaySinh, meDanToc, meQuocTich, meLoaiCuTru, chaHoTen, chaNgaySinh, " +
-                    "chaDanToc, chaQuocTich, chaLoaiCuTru, TinhTrangID, TenFile, TenFileSauUpLoad, " +
-                    "URLTapTinDinhKem, NamMoSo, DuLieuCu, NgayCapNhat, LoaiGiay, URLAnhCu, GhiChu, " +
-                    "nksNoiSinh, meNoiCuTru, chaNoiCuTru, nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, " +
-                    "NguoiThucHien, nksLoaiKhaiSinh, nksNoiSinhDVHC, nksQueQuan, nycLoaiGiayToTuyThan, " +
-                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan, nksNgaySinhBangChu" +
-                    " FROM HT_KHAISINH" +
-                    " where id = " + id + ";" +
-                    " SET IDENTITY_INSERT QTXLKS OFF; ";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
-        }
-
-        private void insertXuLyKT(string id)
-        {
-            using (SqlConnection con = new SqlConnection(sqlConnect))
-            {
-                string sql = "SET IDENTITY_INSERT QTXLKT ON;" +
-                    "insert into QTXLKT(ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, " +
-                    "noiDangKy, nktHoTen, nktGioiTinh, nktNgaySinh, nktDanToc, nktQuocTich, " +
-                    "nktLoaiCuTru, nktLoaiGiayToTuyThan, nktSoGiayToTuyThan, nktNgayChet, " +
-                    "TinhTrangID, TenFile, TenFileSauUpload, URLTapTinDinhKem, NamMoSo, " +
-                    "LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, nktGioPhutChet, " +
-                    "nktNoiChet, nktNguyenNhanChet, nktNoiCuTru, nycHoTen, nycQuanHe, " +
-                    "nguoiKy, chucVuNguoiKy, nguoiThucHien, nktNgayCapGiayToTuyThan, " +
-                    "nktNoiCapGiayToTuyThan, gbtLoai, gbtSo, gbtNgay, gbtCoQuanCap, " +
-                    "nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan)" +
-                    " SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, " +
-                    "nktHoTen, nktGioiTinh, nktNgaySinh, nktDanToc, nktQuocTich, nktLoaiCuTru, " +
-                    "nktLoaiGiayToTuyThan, nktSoGiayToTuyThan, nktNgayChet, TinhTrangID, TenFile, " +
-                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
-                    "urlAnhCu, GhiChu, nktGioPhutChet, nktNoiChet, nktNguyenNhanChet, nktNoiCuTru, " +
-                    "nycHoTen, nycQuanHe, nguoiKy, chucVuNguoiKy, nguoiThucHien, nktNgayCapGiayToTuyThan, " +
-                    "nktNoiCapGiayToTuyThan, gbtLoai, gbtSo, gbtNgay, gbtCoQuanCap, nycLoaiGiayToTuyThan, " +
-                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan" +
-                    " FROM HT_KHAITU" +
-                    " where id = " + id + ";" +
-                    " SET IDENTITY_INSERT QTXLKT OFF; ";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
-        }
-
-        private void insertXuLyKH(string id)
-        {
-            using (SqlConnection con = new SqlConnection(sqlConnect))
-            {
-                string sql = "SET IDENTITY_INSERT QTXLKH ON;" +
-                    "insert into QTXLKH(ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, " +
-                    "noiDangKy, chongHoTen, chongNgaySinh, chongDanToc, chongQuocTich, " +
-                    "chongLoaiCuTru, chongLoaiGiayToTuyThan, chongSoGiayToTuyThan, voHoTen, " +
-                    "voNgaySinh, voDanToc, voQuocTich, voLoaiCuTru, voLoaiGiayToTuyThan, " +
-                    "voSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpLoad, URLTapTinDinhKem, " +
-                    "NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, chongNoiCuTru, " +
-                    "voNoiCuTru, nguoiKy, chucVuNguoiKy, nguoiThucHien, chongNgayCapGiayToTuyThan, " +
-                    "chongNoiCapGiayToTuyThan, voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan)" +
-                    " SELECT ID, So, quyenSo, trangSo, ngayDangKy, loaiDangKy, noiDangKy, chongHoTen, " +
-                    "chongNgaySinh, chongDanToc, chongQuocTich, chongLoaiCuTru, chongLoaiGiayToTuyThan, " +
-                    "chongSoGiayToTuyThan, voHoTen, voNgaySinh, voDanToc, voQuocTich, voLoaiCuTru, " +
-                    "voLoaiGiayToTuyThan, voSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpLoad, " +
-                    "URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, urlAnhCu, GhiChu, " +
-                    "chongNoiCuTru, voNoiCuTru, nguoiKy, chucVuNguoiKy, nguoiThucHien, chongNgayCapGiayToTuyThan, " +
-                    "chongNoiCapGiayToTuyThan, voNgayCapGiayToTuyThan, voNoiCapGiayToTuyThan" +
-                    " FROM HT_KETHON" +
-                    " where id = " + id + ";" +
-                    " SET IDENTITY_INSERT QTXLKH OFF; ";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
-        }
-
-        private void insertXuLyCMC(string id)
-        {
-            using (SqlConnection con = new SqlConnection(sqlConnect))
-            {
-                string sql = "SET IDENTITY_INSERT QTXLCMC ON;" +
-                    "insert into QTXLCMC(ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, " +
-                    "loaiDangKy, loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, " +
-                    "cmQuocTich, cmLoaiCuTru, cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, " +
-                    "ncNgaySinh, ncDanToc, ncQuocTich, ncLoaiCuTru, ncLoaiGiayToTuyThan, " +
-                    "ncSoGiayToTuyThan, TinhTrangID, TenFile, TenFileSauUpload, URLTapTinDinhKem, " +
-                    "NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, GhiChu, cmNoiCuTru, ncNoiCuTru, " +
-                    "nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, nguoiThucHien, " +
-                    "cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, " +
-                    "ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, " +
-                    "nycSoGiayToTuyThan, nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan)" +
-                    " SELECT ID, So, quyenSo, trangSo, quyetDinhSo, ngayDangKy, loaiDangKy, " +
-                    "loaiXacNhan, noiDangKy, cmHoTen, cmNgaySinh, cmDanToc, cmQuocTich, cmLoaiCuTru, " +
-                    "cmLoaiGiayToTuyThan, cmSoGiayToTuyThan, ncHoTen, ncNgaySinh, ncDanToc, ncQuocTich, " +
-                    "ncLoaiCuTru, ncLoaiGiayToTuyThan, ncSoGiayToTuyThan, TinhTrangID, TenFile, " +
-                    "TenFileSauUpload, URLTapTinDinhKem, NamMoSo, LoaiGiay, DuLieuCu, NgayCapNhat, " +
-                    "GhiChu, cmNoiCuTru, ncNoiCuTru, nycHoTen, nycQHNguoiDuocNhan, nguoiKy, chucVuNguoiKy, " +
-                    "nguoiThucHien, cmQueQuan, cmNgayCapGiayToTuyThan, cmNoiCapGiayToTuyThan, ncQueQuan, " +
-                    "ncNgayCapGiayToTuyThan, ncNoiCapGiayToTuyThan, nycLoaiGiayToTuyThan, nycSoGiayToTuyThan, " +
-                    "nycNgayCapGiayToTuyThan, nycNoiCapGiayToTuyThan" +
-                    " FROM HT_NHANCHAMECON" +
-                    " where id = " + id + ";" +
-                    " SET IDENTITY_INSERT QTXLCMC OFF; ";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
-        }
-
+        //thêm bản ghi có trạng thái mới vào db
         private void xửLýToolStripMenuItem_Click(object sender, EventArgs e)
         {
             QuaTrinhXuLy qtxl = new QuaTrinhXuLy();
 
-            using (SqlConnection sqlConnection = new SqlConnection(Home.sqlConnect))
+            if (!threadUpdateKS7.IsAlive &&
+                !threadUpdateKT7.IsAlive &&
+                !threadUpdateKH7.IsAlive &&
+                !threadUpdateCMC7.IsAlive)
             {
-                sqlConnection.Open();
-                if (sqlConnection.State == ConnectionState.Open)
-                {
-                    //nếu connection mở thì gán chuỗi sql string
-                    //Home.sqlConnect = @"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword";
-
-                    quaTrinhXuLyKS(sqlConnection);
-                    quaTrinhXuLyKT(sqlConnection);
-                    quaTrinhXuLyKH(sqlConnection);
-                    quaTrinhXuLyCMC(sqlConnection);
-
-                    if (threadXuLyKS.ThreadState == ThreadState.Running &&
-                        threadXuLyKT.ThreadState == ThreadState.Running &&
-                        threadXuLyKH.ThreadState == ThreadState.Running &&
-                        threadXuLyCMC.ThreadState == ThreadState.Running)
-                        MessageBox.Show("Đang chạy, xin vui lòng chờ trong giây lát!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    {
-                        threadXuLyKS.Start();
-                        threadXuLyKT.Start();
-                        threadXuLyKH.Start();
-                        threadXuLyCMC.Start();
-                    }
-
-                    sqlConnection.Close();
-                }
-
                 qtxl.Show();
                 this.Hide();
-            }
+            } else MessageBox.Show("Đang cập nhật dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void rdnTKQuyenSo_CheckedChanged(object sender, EventArgs e)
