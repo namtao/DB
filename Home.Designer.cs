@@ -30,10 +30,10 @@ namespace DB
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.datagrid = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
@@ -80,20 +80,21 @@ namespace DB
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.xửLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.quảnLyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thốngKêThôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quáTrìnhXửLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tắtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.khởiĐộngLạiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tắtToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.khởiĐộngLạiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.quáTrìnhXửLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tắtToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.khởiĐộngLạiToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinPhiênBảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timerInsertDiff = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -105,37 +106,37 @@ namespace DB
             this.datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.datagrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagrid.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagrid.DefaultCellStyle = dataGridViewCellStyle6;
             this.datagrid.Location = new System.Drawing.Point(18, 261);
             this.datagrid.Margin = new System.Windows.Forms.Padding(20);
             this.datagrid.Name = "datagrid";
             this.datagrid.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datagrid.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datagrid.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.datagrid.Size = new System.Drawing.Size(1115, 510);
             this.datagrid.TabIndex = 1000000003;
             this.datagrid.TabStop = false;
@@ -471,14 +472,14 @@ namespace DB
             // 
             this.saveToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
             this.saveToolStripMenuItem.Text = "Lưu vào Excel";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
             // 
             // toolsToolStripMenuItem
             // 
@@ -531,24 +532,24 @@ namespace DB
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(142, 6);
             // 
             // sốBảnGhiToolStripMenuItem
             // 
             this.sốBảnGhiToolStripMenuItem.Name = "sốBảnGhiToolStripMenuItem";
-            this.sốBảnGhiToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.sốBảnGhiToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.sốBảnGhiToolStripMenuItem.Text = "Số bản ghi";
             this.sốBảnGhiToolStripMenuItem.Click += new System.EventHandler(this.sốBảnGhiToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(142, 6);
             // 
             // tổngHợpToolStripMenuItem
             // 
             this.tổngHợpToolStripMenuItem.Name = "tổngHợpToolStripMenuItem";
-            this.tổngHợpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.tổngHợpToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.tổngHợpToolStripMenuItem.Text = "Tổng hợp";
             this.tổngHợpToolStripMenuItem.Click += new System.EventHandler(this.tổngHợpToolStripMenuItem_Click);
             // 
@@ -588,18 +589,6 @@ namespace DB
             this.xửLýToolStripMenuItem.Text = "Xử lý";
             this.xửLýToolStripMenuItem.Click += new System.EventHandler(this.xửLýToolStripMenuItem_Click);
             // 
-            // timer
-            // 
-            this.timer.Interval = 2000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // notifyIcon
-            // 
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "Auto";
-            this.notifyIcon.Visible = true;
-            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
-            // 
             // quảnLyToolStripMenuItem
             // 
             this.quảnLyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -621,6 +610,20 @@ namespace DB
             this.thốngKêThôngTinToolStripMenuItem.Size = new System.Drawing.Size(257, 24);
             this.thốngKêThôngTinToolStripMenuItem.Text = "Thống kê thông tin";
             // 
+            // tắtToolStripMenuItem
+            // 
+            this.tắtToolStripMenuItem.Name = "tắtToolStripMenuItem";
+            this.tắtToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
+            this.tắtToolStripMenuItem.Text = "Tắt";
+            this.tắtToolStripMenuItem.Click += new System.EventHandler(this.tắtToolStripMenuItem_Click);
+            // 
+            // khởiĐộngLạiToolStripMenuItem
+            // 
+            this.khởiĐộngLạiToolStripMenuItem.Name = "khởiĐộngLạiToolStripMenuItem";
+            this.khởiĐộngLạiToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
+            this.khởiĐộngLạiToolStripMenuItem.Text = "Khởi động lại";
+            this.khởiĐộngLạiToolStripMenuItem.Click += new System.EventHandler(this.khởiĐộngLạiToolStripMenuItem_Click);
+            // 
             // cậpNhậtTrạngTháiKếtThúcToolStripMenuItem
             // 
             this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -630,6 +633,20 @@ namespace DB
             this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem.Name = "cậpNhậtTrạngTháiKếtThúcToolStripMenuItem";
             this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem.Size = new System.Drawing.Size(257, 24);
             this.cậpNhậtTrạngTháiKếtThúcToolStripMenuItem.Text = "Cập nhật trạng thái kết thúc";
+            // 
+            // tắtToolStripMenuItem1
+            // 
+            this.tắtToolStripMenuItem1.Name = "tắtToolStripMenuItem1";
+            this.tắtToolStripMenuItem1.Size = new System.Drawing.Size(163, 24);
+            this.tắtToolStripMenuItem1.Text = "Tắt";
+            this.tắtToolStripMenuItem1.Click += new System.EventHandler(this.tắtToolStripMenuItem1_Click);
+            // 
+            // khởiĐộngLạiToolStripMenuItem1
+            // 
+            this.khởiĐộngLạiToolStripMenuItem1.Name = "khởiĐộngLạiToolStripMenuItem1";
+            this.khởiĐộngLạiToolStripMenuItem1.Size = new System.Drawing.Size(163, 24);
+            this.khởiĐộngLạiToolStripMenuItem1.Text = "Khởi động lại";
+            this.khởiĐộngLạiToolStripMenuItem1.Click += new System.EventHandler(this.khởiĐộngLạiToolStripMenuItem1_Click);
             // 
             // quáTrìnhXửLýToolStripMenuItem
             // 
@@ -641,45 +658,17 @@ namespace DB
             this.quáTrìnhXửLýToolStripMenuItem.Size = new System.Drawing.Size(257, 24);
             this.quáTrìnhXửLýToolStripMenuItem.Text = "Quá trình xử lý";
             // 
-            // tắtToolStripMenuItem
-            // 
-            this.tắtToolStripMenuItem.Name = "tắtToolStripMenuItem";
-            this.tắtToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.tắtToolStripMenuItem.Text = "Tắt";
-            this.tắtToolStripMenuItem.Click += new System.EventHandler(this.tắtToolStripMenuItem_Click);
-            // 
-            // khởiĐộngLạiToolStripMenuItem
-            // 
-            this.khởiĐộngLạiToolStripMenuItem.Name = "khởiĐộngLạiToolStripMenuItem";
-            this.khởiĐộngLạiToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.khởiĐộngLạiToolStripMenuItem.Text = "Khởi động lại";
-            this.khởiĐộngLạiToolStripMenuItem.Click += new System.EventHandler(this.khởiĐộngLạiToolStripMenuItem_Click);
-            // 
-            // tắtToolStripMenuItem1
-            // 
-            this.tắtToolStripMenuItem1.Name = "tắtToolStripMenuItem1";
-            this.tắtToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
-            this.tắtToolStripMenuItem1.Text = "Tắt";
-            this.tắtToolStripMenuItem1.Click += new System.EventHandler(this.tắtToolStripMenuItem1_Click);
-            // 
-            // khởiĐộngLạiToolStripMenuItem1
-            // 
-            this.khởiĐộngLạiToolStripMenuItem1.Name = "khởiĐộngLạiToolStripMenuItem1";
-            this.khởiĐộngLạiToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
-            this.khởiĐộngLạiToolStripMenuItem1.Text = "Khởi động lại";
-            this.khởiĐộngLạiToolStripMenuItem1.Click += new System.EventHandler(this.khởiĐộngLạiToolStripMenuItem1_Click);
-            // 
             // tắtToolStripMenuItem2
             // 
             this.tắtToolStripMenuItem2.Name = "tắtToolStripMenuItem2";
-            this.tắtToolStripMenuItem2.Size = new System.Drawing.Size(180, 24);
+            this.tắtToolStripMenuItem2.Size = new System.Drawing.Size(163, 24);
             this.tắtToolStripMenuItem2.Text = "Tắt";
             this.tắtToolStripMenuItem2.Click += new System.EventHandler(this.tắtToolStripMenuItem2_Click);
             // 
             // khởiĐộngLạiToolStripMenuItem2
             // 
             this.khởiĐộngLạiToolStripMenuItem2.Name = "khởiĐộngLạiToolStripMenuItem2";
-            this.khởiĐộngLạiToolStripMenuItem2.Size = new System.Drawing.Size(180, 24);
+            this.khởiĐộngLạiToolStripMenuItem2.Size = new System.Drawing.Size(163, 24);
             this.khởiĐộngLạiToolStripMenuItem2.Text = "Khởi động lại";
             this.khởiĐộngLạiToolStripMenuItem2.Click += new System.EventHandler(this.khởiĐộngLạiToolStripMenuItem2_Click);
             // 
@@ -696,9 +685,25 @@ namespace DB
             // 
             this.thôngTinPhiênBảnToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thôngTinPhiênBảnToolStripMenuItem.Name = "thôngTinPhiênBảnToolStripMenuItem";
-            this.thôngTinPhiênBảnToolStripMenuItem.Size = new System.Drawing.Size(206, 24);
+            this.thôngTinPhiênBảnToolStripMenuItem.Size = new System.Drawing.Size(207, 24);
             this.thôngTinPhiênBảnToolStripMenuItem.Text = "Thông tin phiên bản";
             this.thôngTinPhiênBảnToolStripMenuItem.Click += new System.EventHandler(this.thôngTinPhiênBảnToolStripMenuItem_Click);
+            // 
+            // timer
+            // 
+            this.timer.Interval = 2000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "Auto";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
+            // timerInsertDiff
+            // 
+            this.timerInsertDiff.Tick += new System.EventHandler(this.timerInsertDiff_Tick);
             // 
             // Home
             // 
@@ -726,8 +731,8 @@ namespace DB
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang chủ";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
+            this.Load += new System.EventHandler(this.Home_Load);
             this.SizeChanged += new System.EventHandler(this.Home_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -801,6 +806,7 @@ namespace DB
         private System.Windows.Forms.ToolStripMenuItem khởiĐộngLạiToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thôngTinPhiênBảnToolStripMenuItem;
+        private System.Windows.Forms.Timer timerInsertDiff;
     }
 }
 
