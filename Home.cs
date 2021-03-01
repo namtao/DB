@@ -19,6 +19,7 @@ namespace DB
         public string database = "";
         public static string sqlConnect;
         public static Home form1;
+        public static string dtTo, dtFrom;
         public static string dbName = "USE HoTich;\n";
         string hoten = null;
         string ngaySinh = null;
@@ -1567,9 +1568,9 @@ namespace DB
             MessageBox.Show(String.Format("Phiên bản hiện tại là: {0}", version), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        //21h hằng ngày cập nhật Diff
         private void timerInsertDiff_Tick(object sender, EventArgs e)
         {
-            //21h hằng ngày cập nhật Diff
             if (DateTime.Now.ToString("HH:mm:ss").ToString().Equals("21:00:00"))
             {
                 Thread threadDiffKS = new Thread(() =>
@@ -2203,6 +2204,13 @@ namespace DB
             listDiff.Add(diff);
         }
 
+        private void nhânSựToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //this.Hide();
+            ThongKeNhanSu tk = new ThongKeNhanSu();
+            tk.ShowDialog();
+        }
+
         private void cậpNhậtDữLiệuMenuItem_Click(object sender, EventArgs e)
         {
             if (!threadUpdateKS7.IsAlive &&
@@ -2234,10 +2242,10 @@ namespace DB
         //10 phút sẽ cập nhật các trạng thái mới 1 lần
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (threadXuLyKS.IsAlive &&
-                        threadXuLyKT.IsAlive &&
-                        threadXuLyKH.IsAlive &&
-                        threadXuLyCMC.IsAlive)
+            if (!threadXuLyKS.IsAlive &&
+                        !threadXuLyKT.IsAlive &&
+                        !threadXuLyKH.IsAlive &&
+                        !threadXuLyCMC.IsAlive)
             {
                 using (SqlConnection sqlConnection = new SqlConnection(@"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword"))
                 {

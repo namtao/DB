@@ -50,8 +50,10 @@ C:\Project\C#\DB\obj\Debug\DB.ConnectDB.resources
 C:\Project\C#\DB\obj\Debug\DB.Clone.resources
 C:\Project\C#\DB\obj\Debug\DB.Properties.Resources.resources
 C:\Project\C#\DB\obj\Debug\DB.QuaTrinhXuLy.resources
+C:\Project\C#\DB\obj\Debug\DB.ThongKeNhanSu.resources
 C:\Project\C#\DB\obj\Debug\DB.csproj.GenerateResource.cache
 C:\Project\C#\DB\obj\Debug\DB.csproj.CoreCompileInputs.cache
 C:\Project\C#\DB\obj\Debug\DB.csproj.CopyComplete
 C:\Project\C#\DB\obj\Debug\DB.exe
 C:\Project\C#\DB\obj\Debug\DB.pdb
+C:\Project\C#\DB\obj\Debug\DB.csprojAssemblyReference.cache

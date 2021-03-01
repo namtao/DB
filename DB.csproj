@@ -116,6 +116,12 @@
     <Compile Include="QuaTrinhXuLy.Designer.cs">
       <DependentUpon>QuaTrinhXuLy.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThongKeNhanSu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongKeNhanSu.Designer.cs">
+      <DependentUpon>ThongKeNhanSu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="XuLy.cs" />
     <EmbeddedResource Include="Home.resx">
@@ -139,6 +145,9 @@
     </Compile>
     <EmbeddedResource Include="QuaTrinhXuLy.resx">
       <DependentUpon>QuaTrinhXuLy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKeNhanSu.resx">
+      <DependentUpon>ThongKeNhanSu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
