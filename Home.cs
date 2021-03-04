@@ -269,7 +269,7 @@ namespace DB
             form1 = this;
             Home.sqlConnect = @"Data Source=.;Initial Catalog = HoTich;User ID=sa;Password=P@ssword";
             //timer insert quá trình xử lý
-            timer.Interval = 600000;
+            timer.Interval = 60000;
             timer.Start();
         }
 

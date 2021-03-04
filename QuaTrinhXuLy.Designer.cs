@@ -44,15 +44,21 @@ namespace DB
             this.lbSumData = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnDiff = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thôngTinPhiênBảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbxNDK
             // 
             this.cbxNDK.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxNDK.FormattingEnabled = true;
-            this.cbxNDK.Location = new System.Drawing.Point(617, 14);
+            this.cbxNDK.Location = new System.Drawing.Point(617, 51);
             this.cbxNDK.Margin = new System.Windows.Forms.Padding(10, 10, 15, 15);
             this.cbxNDK.Name = "cbxNDK";
             this.cbxNDK.Size = new System.Drawing.Size(334, 27);
@@ -64,7 +70,7 @@ namespace DB
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(524, 16);
+            this.label3.Location = new System.Drawing.Point(524, 53);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 19);
             this.label3.TabIndex = 1000000034;
@@ -74,7 +80,7 @@ namespace DB
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(275, 18);
+            this.label4.Location = new System.Drawing.Point(275, 55);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 19);
             this.label4.TabIndex = 1000000033;
@@ -84,7 +90,7 @@ namespace DB
             // 
             this.cbxQuyenSo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxQuyenSo.FormattingEnabled = true;
-            this.cbxQuyenSo.Location = new System.Drawing.Point(358, 13);
+            this.cbxQuyenSo.Location = new System.Drawing.Point(358, 50);
             this.cbxQuyenSo.Margin = new System.Windows.Forms.Padding(10, 10, 15, 15);
             this.cbxQuyenSo.Name = "cbxQuyenSo";
             this.cbxQuyenSo.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -95,6 +101,7 @@ namespace DB
             // 
             // cbxLoai
             // 
+            this.cbxLoai.BackColor = System.Drawing.Color.White;
             this.cbxLoai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLoai.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxLoai.FormattingEnabled = true;
@@ -103,7 +110,7 @@ namespace DB
             "HT_KHAITU",
             "HT_KETHON",
             "HT_NHANCHAMECON"});
-            this.cbxLoai.Location = new System.Drawing.Point(63, 15);
+            this.cbxLoai.Location = new System.Drawing.Point(63, 52);
             this.cbxLoai.Margin = new System.Windows.Forms.Padding(10, 10, 15, 15);
             this.cbxLoai.Name = "cbxLoai";
             this.cbxLoai.Size = new System.Drawing.Size(194, 27);
@@ -114,7 +121,7 @@ namespace DB
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(14, 22);
+            this.label2.Location = new System.Drawing.Point(14, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 19);
             this.label2.TabIndex = 1000000037;
@@ -124,7 +131,7 @@ namespace DB
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 73);
+            this.label5.Location = new System.Drawing.Point(26, 110);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(145, 19);
@@ -135,7 +142,7 @@ namespace DB
             // 
             this.lbSum.AutoSize = true;
             this.lbSum.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSum.Location = new System.Drawing.Point(180, 73);
+            this.lbSum.Location = new System.Drawing.Point(180, 110);
             this.lbSum.Margin = new System.Windows.Forms.Padding(3, 0, 3, 15);
             this.lbSum.Name = "lbSum";
             this.lbSum.Size = new System.Drawing.Size(17, 19);
@@ -156,7 +163,7 @@ namespace DB
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.datagrid.Location = new System.Drawing.Point(19, 128);
+            this.datagrid.Location = new System.Drawing.Point(19, 165);
             this.datagrid.Margin = new System.Windows.Forms.Padding(20);
             this.datagrid.Name = "datagrid";
             this.datagrid.ReadOnly = true;
@@ -171,7 +178,7 @@ namespace DB
             // 
             this.lbSumData.AutoSize = true;
             this.lbSumData.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSumData.Location = new System.Drawing.Point(525, 73);
+            this.lbSumData.Location = new System.Drawing.Point(565, 110);
             this.lbSumData.Margin = new System.Windows.Forms.Padding(3, 0, 3, 15);
             this.lbSumData.Name = "lbSumData";
             this.lbSumData.Size = new System.Drawing.Size(17, 19);
@@ -182,7 +189,7 @@ namespace DB
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(373, 72);
+            this.label6.Location = new System.Drawing.Point(413, 109);
             this.label6.Margin = new System.Windows.Forms.Padding(3, 0, 3, 15);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(140, 19);
@@ -196,7 +203,7 @@ namespace DB
             this.btnDiff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDiff.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDiff.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDiff.Location = new System.Drawing.Point(741, 68);
+            this.btnDiff.Location = new System.Drawing.Point(862, 104);
             this.btnDiff.Name = "btnDiff";
             this.btnDiff.Size = new System.Drawing.Size(89, 28);
             this.btnDiff.TabIndex = 1000000042;
@@ -205,21 +212,57 @@ namespace DB
             this.btnDiff.UseVisualStyleBackColor = false;
             this.btnDiff.Click += new System.EventHandler(this.btnDiff_Click);
             // 
-            // btnExport
+            // menuStrip
             // 
-            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnExport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExport.Location = new System.Drawing.Point(862, 68);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(89, 28);
-            this.btnExport.TabIndex = 1000000043;
-            this.btnExport.TabStop = false;
-            this.btnExport.Text = "Xuất Excel";
-            this.btnExport.UseVisualStyleBackColor = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            this.menuStrip.BackColor = System.Drawing.Color.White;
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(972, 27);
+            this.menuStrip.TabIndex = 1000000044;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.toolStripSeparator1});
+            this.fileToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 23);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveToolStripMenuItem.Text = "Lưu vào Excel";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thôngTinPhiênBảnToolStripMenuItem});
+            this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(59, 23);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // thôngTinPhiênBảnToolStripMenuItem
+            // 
+            this.thôngTinPhiênBảnToolStripMenuItem.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thôngTinPhiênBảnToolStripMenuItem.Name = "thôngTinPhiênBảnToolStripMenuItem";
+            this.thôngTinPhiênBảnToolStripMenuItem.Size = new System.Drawing.Size(207, 24);
+            this.thôngTinPhiênBảnToolStripMenuItem.Text = "Thông tin phiên bản";
+            this.thôngTinPhiênBảnToolStripMenuItem.Click += new System.EventHandler(this.thôngTinPhiênBảnToolStripMenuItem_Click);
             // 
             // QuaTrinhXuLy
             // 
@@ -227,8 +270,9 @@ namespace DB
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(972, 443);
-            this.Controls.Add(this.btnExport);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(972, 483);
+            this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.btnDiff);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lbSumData);
@@ -251,6 +295,8 @@ namespace DB
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QuaTrinhXuLy_FormClosing);
             this.Load += new System.EventHandler(this.QuaTrinhXuLy_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,6 +315,11 @@ namespace DB
         private System.Windows.Forms.Label lbSumData;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnDiff;
-        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thôngTinPhiênBảnToolStripMenuItem;
     }
 }

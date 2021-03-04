@@ -112,14 +112,20 @@ namespace DB
             datagrid.Visible = true;
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)datagrid.DataSource;
             if (datagrid.Rows.Count != 0 && datagrid.Rows != null)
             {
-                Utils.Export(dt, datagrid, "So sánh", "So sánh biên mục");
+                Utils.Export(dt, datagrid, "KIỂM TRA", "KIỂM TRA DỮ LIỆU");
             }
             else MessageBox.Show("Không có dữ liệu để lưu vào excel, vui lòng kiểm tra lại!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private void thôngTinPhiênBảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            MessageBox.Show(String.Format("Phiên bản hiện tại là: {0}", version), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
