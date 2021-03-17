@@ -56,4 +56,3 @@ C:\Project\C#\DB\obj\Debug\DB.csproj.CoreCompileInputs.cache
 C:\Project\C#\DB\obj\Debug\DB.csproj.CopyComplete
 C:\Project\C#\DB\obj\Debug\DB.exe
 C:\Project\C#\DB\obj\Debug\DB.pdb
-C:\Project\C#\DB\obj\Debug\DB.csprojAssemblyReference.cache
