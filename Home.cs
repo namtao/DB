@@ -26,15 +26,12 @@ namespace DB
         string strCommandSql = null;
         string table = null;
         SqlConnection conn;
-        int ksDuoi16 = 0, ksTren16 = 0;
-        int ktDuoi16 = 0, ktTren16 = 0;
-        int khDuoi16 = 0, khTren16 = 0;
-        int cmcDuoi16 = 0, cmcTren16 = 0;
         Thread threadKS, threadKT, threadKH, threadCMC;
         DataTable dt;
         List<XuLy> listXuLyKS, listXuLyKT, listXuLyKH, listXuLyCMC, listKS, listKT, listKH, listCMC;
         Thread threadXuLyKS, threadXuLyKT, threadXuLyKH, threadXuLyCMC;
         Thread threadUpdateKS7, threadUpdateKT7, threadUpdateKH7, threadUpdateCMC7;
+        int ksDuoi16 = 0, ksTren16 = 0, ktDuoi16 = 0, ktTren16 = 0, khDuoi16 = 0, khTren16 = 0, cmcDuoi16 = 0, cmcTren16 = 0;
 
         public void AG()
         {
@@ -275,15 +272,6 @@ namespace DB
 
         public void ThongKe()
         {
-            ksDuoi16 = 0;
-            ksTren16 = 0;
-            ktDuoi16 = 0;
-            ktTren16 = 0;
-            khDuoi16 = 0;
-            khTren16 = 0;
-            cmcDuoi16 = 0;
-            cmcTren16 = 0;
-
             // thread thống kê khai sinh
             threadKS = new Thread(() =>
             {
@@ -1773,6 +1761,7 @@ namespace DB
                 threadKT.ThreadState == ThreadState.Stopped &&
                 threadKH.ThreadState == ThreadState.Stopped)
             {
+            
                 ThongKe();
 
                 DataTable dt = new DataTable();
@@ -1806,6 +1795,7 @@ namespace DB
                 if (datagrid.Rows.Count != 0 && datagrid.Rows != null)
                 {
                     Utils.ExportThongKe(dt, datagrid, "THỐNG KÊ", "THỐNG KÊ DỮ LIỆU HỘ TỊCH");
+                    ksDuoi16 = 0; ksTren16 = 0; ktDuoi16 = 0; ktTren16 = 0; khDuoi16 = 0; khTren16 = 0; cmcDuoi16 = 0; cmcTren16 = 0;
                 }
                 else MessageBox.Show("Không có dữ liệu để lưu vào excel, vui lòng kiểm tra lại!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
