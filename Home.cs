@@ -275,6 +275,15 @@ namespace DB
 
         public void ThongKe()
         {
+            ksDuoi16 = 0;
+            ksTren16 = 0;
+            ktDuoi16 = 0;
+            ktTren16 = 0;
+            khDuoi16 = 0;
+            khTren16 = 0;
+            cmcDuoi16 = 0;
+            cmcTren16 = 0;
+
             // thread thống kê khai sinh
             threadKS = new Thread(() =>
             {
@@ -1775,7 +1784,7 @@ namespace DB
                 dt.Columns.Add(new DataColumn("Tổng", typeof(int)));
 
                 //Thêm dữ liệu
-                dt.Rows.Add("Dưới 16 ký tự", ksDuoi16, ktDuoi16, ksDuoi16, cmcDuoi16, ksDuoi16 + ktDuoi16 + khDuoi16 + cmcDuoi16);
+                dt.Rows.Add("Dưới 16 ký tự", ksDuoi16, ktDuoi16, khDuoi16, cmcDuoi16, ksDuoi16 + ktDuoi16 + khDuoi16 + cmcDuoi16);
                 dt.Rows.Add("Trên 16 ký tự", ksTren16, ktTren16, khTren16, cmcTren16, ksTren16 + ktTren16 + khTren16 + cmcTren16);
                 dt.Rows.Add("Tổng số trường", ksTren16 + ksDuoi16, ktDuoi16 + ktTren16, khTren16 + khDuoi16, cmcDuoi16 + cmcTren16,
                     ksDuoi16 + ktDuoi16 + khDuoi16 + cmcDuoi16 + ksTren16 + ktTren16 + khTren16 + cmcTren16);
